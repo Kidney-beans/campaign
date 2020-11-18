@@ -7,7 +7,12 @@
   export default {
     name:'',
     props:{
-      
+      numstr:String
+    },
+    methods:{
+
+    },
+    computed:{
     }
   }
 </script>
