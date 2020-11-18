@@ -1,5 +1,6 @@
 <template>
-  <div class=''>
+  <div class='relation'>
+      <h1>relation</h1>
   </div>
 </template>
 <script>

@@ -5,8 +5,24 @@ Vue.use(VueRouter)
 
 const routes = [
   {
-    path:'/math',
-    components:()=>import('views/math.vue')
+    path:'/diary',
+    component:()=>import('views/diary.vue')
+  },
+  {
+    path:'/music',
+    component:()=>import('views/music.vue')
+  },
+  {
+    path:'/photos',
+    component:()=>import('views/photos.vue')
+  },
+  {
+    path:'/plan',
+    component:()=>import('views/plan.vue')
+  },
+  {
+    path:'/relation',
+    component:()=>import('views/relation.vue')
   }
 ]
 
