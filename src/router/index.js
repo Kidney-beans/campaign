@@ -4,7 +4,10 @@ import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
 const routes = [
-  
+  {
+    path:'/math',
+    components:()=>import('views/math.vue')
+  }
 ]
 
 const router = new VueRouter({
