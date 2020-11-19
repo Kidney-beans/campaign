@@ -1,1 +1,189 @@
 @import './general.css';
+
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(0, 0, 0);
+}
+
+.bgc{
+    width: 100vw;
+    height: 100vh;
+    /* background-image:url(../assets/plan/IMG_bg.jpg);
+    background-size: cover;  */
+    background: rgb(0, 0, 0);
+    filter:blur(4px);
+    z-index: -3;
+}
+
+.bgc .mask{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    filter:blur(10px);
+    background: linear-gradient(rgba(70, 48, 3, 0.2), rgba(255, 81, 254, 0.2));
+    z-index: -1;
+}
+
+/* 日历外框样式 */
+.plan .calendar{
+    width: 60vw;
+    height: 85vh;
+    background: linear-gradient(rgba(46,3,242,14%),rgba(255, 3, 129, 0.363),rgba(3, 202, 242, 0.137));
+    border: none;
+    border-radius: 25px;
+    box-shadow:0px 10px 20px 3px rgba(1, 11, 14, 0.637);
+    position: absolute;
+    left: 8vw;
+    top:11vh;
+    z-index: 1;
+    
+}
+
+/* 日期-日期外框样式 */
+.plan .calendar .date{
+    width: 15vw;
+    height: 85vh;
+    position: absolute;
+    border-radius: 20px;
+    user-select: none;
+}
+
+/* 日期-年份,月份,时间公共样式 */
+.plan .calendar .date .year,
+.plan .calendar .date .month,
+.plan .calendar .date .time{
+    position: absolute;
+    left: 3vw;
+    width: 7vw;
+    height: 6vh;
+    /* background-color:rgba(3, 255, 255,1); */
+    text-align: center;
+    border-radius: 25px;
+    box-shadow:  2px 2px 8px rgba(3, 255, 255,1),
+                 -2px -2px 12px rgba(255,255,255,0.5),
+                 inset 2px 2px 4px rgba(255,255,255,.1),
+                 2px 2px 8px rgba(0,0,0,0.15);
+    font-size: 2vw;
+    font-weight: 700;
+    text-shadow: 0 0 1px 1px rebeccapurple;
+}
+
+/* 日期-年份,月份,时间公共样式  鼠标放上时*/
+.plan .calendar .date  .year:hover,
+.plan .calendar .date .month:hover,
+.plan .calendar .date .time:hover,
+.plan .calendar .date .plus:hover,
+.plan .calendar .date .subtract:hover,
+.plan .calendar .date .time .stop:hover{
+    box-shadow:  inset 2px 2px 8px rgba(3, 255, 255,1),
+                 inset -2px -2px 12px rgba(255,255,255,0.5),
+                 inset 2px 2px 4px rgba(255,255,255,.1),
+                 inset 2px 2px 8px rgba(0,0,0,0.15);
+}
+
+/* 增加（或减少）年份（或月份）*/
+.plan .calendar .date  .plus,
+.plan .calendar .date  .subtract,
+.plan .calendar .date  .time .stop{
+    position: absolute;
+    top: 0;
+    width: 3.5vw;
+    height: 6vh;
+    background-color: rgb(32,165,177);
+    color: aliceblue;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* 增加（或减少）年份（或月份） 鼠标放上时*/
+.plan .calendar .date  .plus:hover,
+.plan .calendar .date  .subtract:hover,
+.plan .calendar .date  .time .stop:hover{
+    opacity: 1;
+}
+
+/* 增加*/
+.plan .calendar .date  .plus{
+    left: 0;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+}
+
+/* 减少 */
+.plan .calendar .date  .subtract{
+    right: 0;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+}
+
+/* 停止 */
+.plan .calendar .date  .time .stop{
+    width: 7vw;
+    border-radius: 25px;
+}
+
+/* .plan .calendar .date  .year:hover .choise{
+    display: block;
+}
+
+.plan .calendar .date  .year .choise{
+    position: relative;
+    top: -4vw;
+    left: 7vw;
+    width: 20vw;
+    height: 10vw;
+    background-color: rgba(255, 255, 255, 0.267);
+    display: none;
+} */
+
+/* 日期-年份 */
+.plan .calendar .date  .year{
+    top: 5vh;
+}
+
+/* 日期-月份 */
+.plan .calendar .date .month{
+    top: 39vh;
+}
+
+/* 日期-时间 */
+.plan .calendar .date .time{
+    width: 10vw;
+    left: 1vw;
+    top: 73vh;
+}
+
+/* 添加计划外框样式 */
+.plan .add{
+    width: 9vw;
+    height: 20vh;
+    background: linear-gradient(45deg,rgba(0,95,145, 0.137),rgba(15, 22, 49, 0.664));
+    border: none;
+    border-radius: 1%;
+    box-shadow:0px 10px 20px 3px rgba(3, 202, 242, 0.11);
+    position: absolute;
+    left: 73vw;
+    top:45vh;
+    z-index: 2;
+}
+
+.plan .calendar .day{
+    width: 42vw;
+    height: 60vh;
+    /* background:purple; */
+    position: relative;
+    left: 15vw;
+    top: 12vh;
+}
+
+.plan .calendar .day .dayNumber{
+    width: 6vw;
+    height: 10vh;
+    background-color: rgba(255, 255, 255, 0.178);
+    float: left;
+    text-align: center;
+    line-height: 10vh;
+}
