@@ -82,7 +82,7 @@ $(function(){
 			"top":y-btnTop-400 + "px",
 			"left":x-btnLeft-400 + "px"
 		})
-		div.appendTo(this);
+		div.appendTo(btn);
 		setTimeout(()=>{
 			div.remove()
 		},2500);
@@ -96,7 +96,27 @@ $(function(){
 		window.open(baseUrl + linkto)
 	})
 
-	
+	$("body").click(function(e){
+		let event = e;
+		let x = e.clientX;
+		let y = e.clientY;
+		let span1 = $('<span class="click-ripple" style="border: 7px solid #03a9f4"></span>')
+		let span2 = $('<span class="click-ripple" style="border: 7px solid #d43f8d;animation-delay: 0.1s;"></span>')
+		span1.css({
+			'left':x-100 + 'px',
+			'top':y-100 + 'px'
+		}).appendTo($('body'))
+		span2.css({
+			'left':x-100 + 'px',
+			'top':y-100 + 'px'
+		}).appendTo($('body'))
+		setTimeout(()=>{
+			span1.remove()
+			setTimeout(()=>{
+				span2.remove()
+			})
+		},1000)
+	})
 })
 
 function commonRotate(){
