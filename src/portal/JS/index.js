@@ -26,13 +26,8 @@ let titles = [
 ]
 $(function(){
 
-	//获取当前窗口高度
-	console.log($(window).height());
-	//获取当前窗口宽度
-	console.log($(window).width());
 	var h =$(window).height()/2-130;
 	var w =$(window).width()/2-130;
-	console.log(h);
 	let inter = setInterval(()=>{
 		commonRotate()
 	},4000)
