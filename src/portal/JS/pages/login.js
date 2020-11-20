@@ -9,68 +9,13 @@ let switch_mode = (mo)=>{
 	}
 }
 
-let login_content = `<div class="title-container">
-Login
-</div>
-<div class="inputs-container">
-<div class="username form-item">
-  <input type="text" class="input" id="username-input" />
-  <span class="small-mark">Accout</span>
-</div>
-<div class="password form-item">
-  <input type="password" class="input" id="password-input" />
-  <span class="small-mark">Password</span>
-</div>
-<!-- <div class="verify form-item"></div> -->
-</div>
-<div class="btn-container">
-<div class="btn-item left-btn">
-  <div class="optical-btn">
-	<div class="button">Login</div>
-  </div>
-</div>
-<div class="btn-item right-btn">
-  <div class="optical-btn">
-	<div class="button" style="color:white" id="to-re">Register</div>
-  </div>
-</div>
-</div>`
-
-let register_content = `
-<div class="title-container">
-	Signup
-</div>
-<div class="inputs-container">
-	<div class="username form-item">
-	<input type="text" class="input" id="username-input" />
-	<span class="small-mark">Accout</span>
-	</div>
-	<div class="password form-item">
-	<input type="password" class="input" id="password-input" />
-	<span class="small-mark">Password</span>
-	</div>
-	<div class="re-password form-item">
-	<input type="password" class="input" id="re-password-input" />
-	<span class="small-mark">Re-Password</span>
-	</div>
-	<!-- <div class="verify form-item"></div> -->
-</div>
-<div class="btn-container">
-	<div class="btn-item left-btn">
-	<div class="optical-btn">
-		<div class="button">Login</div>
-	</div>
-	</div>
-	<div class="btn-item right-btn">
-	<div class="optical-btn">
-		<div class="button" style="color:white" id="to-re">Register</div>
-	</div>
-	</div>
-</div>`
-
 $(function () {
 	let offy = $("#water-surface").offset().top
-	for (let i = 0; i < 30; ++i) {
+	let count = 40;
+	let inter = setInterval(()=>{
+		if(count < 0){
+			clearInterval(inter)
+		}
 		let randomx = Math.floor(Math.random() * 100)
 		let randomy = Math.floor(Math.random() * 100)
 		let color = Math.floor(Math.random() * 10)
@@ -84,7 +29,8 @@ $(function () {
 			'box-shadow': '0px 0px 10px 2px ' + ((color % 2 == 0) ? '#0250c5' : '#d43f8d')
 		})
 		star.appendTo($('#top-bar'))
-	}
+		count--;
+	},100)
 
 	$("#water-surface").click(function (e) {
 		let event = e;
@@ -111,12 +57,32 @@ $(function () {
 
 	$('#to-re').click(() => {
 		$('.login-block').css({
-			'animation': 'to-re 3s forwards'
+			'animation': 'to-re 3s'
 		})
 		setTimeout(()=>{
-			$('.login-block-main').html(register_content)
-			
-		},1200)
+			$('#login-main').css({
+				'display':'none'
+			})
+			$('#signup-main').css({
+				'display':'block'
+			})
+			switch_mode('signup')
+		},300)
+	})
+
+	$('#to-lo').click(() => {
+		$('.login-block').css({
+			'animation': 'to-lo 3s'
+		})
+		setTimeout(()=>{
+			$('#signup-main').css({
+				'display':'none'
+			})
+			$('#login-main').css({
+				'display':'block'
+			})
+			switch_mode('login')
+		},300)
 	})
 	setInterval(() => {
 		let randx = Math.floor(Math.random() * 100)
