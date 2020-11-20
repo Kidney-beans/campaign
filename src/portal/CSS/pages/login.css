@@ -319,6 +319,18 @@ body{
     }
 }
 
+@keyframes to-lo{
+    0%{
+        transform: translateZ(0px) rotateY(0);
+    }
+    50%{
+        transform: translateZ(-400px) rotateY(180deg);
+    }
+    100%{
+        transform: translateZ(0px) rotateY(360deg);
+    }
+}
+
 @keyframes click-ripple-anim{
 	from{
 		transform: scale(0.2) rotateX(70deg);
