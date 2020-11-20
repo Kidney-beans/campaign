@@ -23,16 +23,75 @@
             <div class="stop">STOP</div>
           </div>
         </div>
-        <div>
+        <!-- 天数和添加计划 -->
+        <div class="day-box">
           <!-- 天数 -->
           <div class="day">
-            <div class="dayNumber">日</div>
-            <div class="dayNumber">一</div>
-            <div class="dayNumber">二</div>
-            <div class="dayNumber">三</div>
-            <div class="dayNumber">四</div>
-            <div class="dayNumber">五</div>
-            <div class="dayNumber">六</div>
+            <!-- 小计划图标 -->
+            <div class="havePlan">
+              <!-- 计划图标1 -->
+              <div class="plan-1">
+                <!-- <div class="fontPlan">计划</div>
+                <div class="cil">1</div> -->
+                <spot-lamp text='plan1' font-size='1em'></spot-lamp>
+              </div>
+            </div>
+            <!-- 星期 -->
+            <div class="week">日</div>
+            <div class="week">一</div>
+            <div class="week">二</div>
+            <div class="week">三</div>
+            <div class="week">四</div>
+            <div class="week">五</div>
+            <div class="week">六</div>
+
+            <div class="week">日</div>
+            <div class="week">一</div>
+            <div class="week">二</div>
+            <div class="week">三</div>
+            <div class="week">四</div>
+            <div class="week">五</div>
+            <div class="week">六</div>
+
+            <div class="week">日</div>
+            <div class="week">一</div>
+            <div class="week">二</div>
+            <div class="week">三</div>
+            <div class="week">四</div>
+            <div class="week">五</div>
+            <div class="week">六</div>
+
+            <div class="week">日</div>
+            <div class="week">一</div>
+            <div class="week">二</div>
+            <div class="week">三</div>
+            <div class="week">四</div>
+            <div class="week">五</div>
+            <div class="week">六</div>
+
+            <div class="week">日</div>
+            <div class="week">一</div>
+            <div class="week">二</div>
+            <div class="week">三</div>
+            <div class="week">四</div>
+            <div class="week">五</div>
+            <div class="week">六</div>
+
+            <div class="week">日</div>
+            <div class="week">一</div>
+            <div class="week">二</div>
+            <div class="week">三</div>
+            <div class="week">四</div>
+            <div class="week">五</div>
+            <div class="week">六</div>
+
+            <div class="week">日</div>
+            <div class="week">一</div>
+            <div class="week">二</div>
+            <div class="week">三</div>
+            <div class="week">四</div>
+            <div class="week">五</div>
+            <div class="week">六</div>
             <div></div>
           </div>
           <!-- 添加计划 -->
@@ -42,10 +101,14 @@
   </div>
 </template>
 <script>
+  import SpotLamp from 'components/common/spot-lamp.vue'
   export default {
     name:'',
     props:{
       
+    },
+    components:{
+      SpotLamp
     }
   }
 </script>

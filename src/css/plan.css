@@ -9,9 +9,9 @@ body{
 .bgc{
     width: 100vw;
     height: 100vh;
-    /* background-image:url(../assets/plan/IMG_bg.jpg);
-    background-size: cover;  */
-    background: rgb(0, 0, 0);
+    background-image:url(../assets/plan/IMG_bg.jpg);
+    background-size: cover; 
+    /* background: rgb(0, 0, 0); */
     filter:blur(4px);
     z-index: -3;
 }
@@ -29,12 +29,15 @@ body{
 
 /* 日历外框样式 */
 .plan .calendar{
-    width: 60vw;
+    width: 66vw;
     height: 85vh;
-    background: linear-gradient(rgba(46,3,242,14%),rgba(255, 3, 129, 0.363),rgba(3, 202, 242, 0.137));
+    background: linear-gradient(45deg,rgba(68,140,173,40%), rgba(68,140,173,30%),rgba(0, 0, 0, 0.78),rgba(219,87,110,45%) 78%,rgba(255,76,87,90%) 81%,rgba(43,45,60,60%) 85%);
     border: none;
     border-radius: 25px;
-    box-shadow:0px 10px 20px 3px rgba(1, 11, 14, 0.637);
+    box-shadow: 10px 10px 20px 3px rgba(146,51,85, 0.64),
+                10px -10px 20px 3px rgba(130,38,38, 0.64),
+                -10px -10px 20px 3px rgba(6,115,148, 0.64),
+                -10px 10px 20px 3px rgba(32,29,72, 0.64);
     position: absolute;
     left: 8vw;
     top:11vh;
@@ -61,14 +64,18 @@ body{
     height: 6vh;
     /* background-color:rgba(3, 255, 255,1); */
     text-align: center;
+    line-height: 6vh;
     border-radius: 25px;
     box-shadow:  2px 2px 8px rgba(3, 255, 255,1),
                  -2px -2px 12px rgba(255,255,255,0.5),
                  inset 2px 2px 4px rgba(255,255,255,.1),
                  2px 2px 8px rgba(0,0,0,0.15);
     font-size: 2vw;
-    font-weight: 700;
+    font-weight: 200;
     text-shadow: 0 0 1px 1px rebeccapurple;
+    color: white;
+    text-shadow: 0 0 0px 10px turquoise;
+    font-family:'GoodVibrationsROB';
 }
 
 /* 日期-年份,月份,时间公共样式  鼠标放上时*/
@@ -140,7 +147,7 @@ body{
 } */
 
 /* 日期-年份 */
-.plan .calendar .date  .year{
+.plan .calendar .date .year{
     top: 5vh;
 }
 
@@ -170,16 +177,74 @@ body{
     z-index: 2;
 }
 
+/* 天数 */
 .plan .calendar .day{
     width: 42vw;
     height: 60vh;
     /* background:purple; */
     position: relative;
     left: 15vw;
-    top: 12vh;
+    top: 7vh;
+    color: white;
 }
 
-.plan .calendar .day .dayNumber{
+/* 小计划图标*/
+.plan .calendar .day .havePlan{
+    position: absolute;
+    left: 42vw;
+    top:  5vh;
+    width: 7vw;
+    height: 60vh;
+    background-color: rgba(255, 255, 255, 0.884);
+    /* border-radius: 25px; */
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+    background:linear-gradient(45deg,rgb(53, 7, 20,48%),rgba(120,55,57,75%),rgba(125,175,184,72%),rgba(10,43,49,78%),rgba(7,220,235,55%),rgba(40,12,25,92%),rgba(217,68,10))
+
+}
+
+/* 计划图标1 */
+.plan .calendar .day .havePlan .plan-1{
+    position: absolute;
+    left: 0.5vw;
+    top: 2vh;
+    width: 6vw;
+    height: 5vh;
+    text-align: right;
+    border-radius: 25px;
+    background-color: rgba(255, 255, 255, 0.288);
+}
+
+/* 计划图标1 fontPlan */
+/* .plan .calendar .day .havePlan .plan-1 .fontPlan{
+    position: absolute;
+    right: 3vw;
+    top: 0;
+    height: 5vh;
+    line-height: 5vh;
+    text-align: center;
+    word-spacing: 1vw;
+    letter-spacing:0.5vw;
+} */
+
+/* 计划图标1 cil */
+/* .plan .calendar .day .havePlan .plan-1 .cil{
+    position: absolute;
+    right: 1vw;
+    top: 1vh;
+    width: 1.5vw;
+    height: 3vh;
+    line-height: 3vh;
+    text-align: center;
+    border-radius: 50%;
+    background:linear-gradient(145deg,#5bc6ff,#4da7db);
+    color: #55b9f3;
+    box-shadow:  2px 2px 4px 4px,
+                 -2px -2px 4px #62d5ff;
+}  */
+
+/* 星期 */
+.plan .calendar .day .week{
     width: 6vw;
     height: 10vh;
     background-color: rgba(255, 255, 255, 0.178);
@@ -187,3 +252,4 @@ body{
     text-align: center;
     line-height: 10vh;
 }
+
