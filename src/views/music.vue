@@ -31,6 +31,8 @@
         <img src="../assets/music/pause.png" class="music-btn-position music-btn-pause" id="music-pause">
       </span>
       <span><img src="../assets/music/last.png" class="music-btn-next"></span>
+
+      <volumn-control side-length="4vh" top="1.5vh" left="15%" top-offset="-16.5vh" bar-height="134px"></volumn-control>
         <!-- <span><img src="../assets/music/音量.png"></span> -->
       <div class="music-porgre-border">
          <span class="music-porgre-solid" :style="{'left':-100+((currentMusicTime / currentDuration) * 100) + '%'}"></span>
@@ -41,9 +43,11 @@
   </div>
 </template>
 <script>
+
+import VolumnControl from 'components/own/volumn-control.vue'
+
 export default {
   
-
   props: {
     Abc: String,
   },
@@ -74,7 +78,9 @@ export default {
     }
   },
   computed: {},
-  components: {},
+  components: {
+    VolumnControl
+  },
   mounted() {
     // setTimeout(()=>{
     //     console.log("音乐时长：",document.getElementById("audio").duration);

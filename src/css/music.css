@@ -105,6 +105,7 @@ animation: showtxt 2s ;
     background:linear-gradient(to right,rgb(28, 114, 251),rgb(241, 30, 178),rgb(30, 234, 241),rgb(241, 30, 178),rgb(28, 114, 251));
     background-size: 400%;
     animation: porgreColor 20s infinite linear;
+    transition: all 0.4s;
 }
 @keyframes porgreColor{
     0%{
