@@ -47,7 +47,6 @@ animation: showtxt 2s ;
     transition: all .3s;
     animation: show 0.8s ; 
     opacity: .7;
-    /* display: none; */
 }
 .music-btn-last{
     position: absolute;
@@ -56,15 +55,24 @@ animation: showtxt 2s ;
     left: 1%;
     top: 1.2vh;
     background-size: 100%;
+    user-select: none;
 }
-.music-btn-play{
+.music-btn-position{
     position: absolute;
     height: 50px;
     width: 50px;
     left: 5%;
     top: 1vh;
     background-size: 100%;
-    transform: rotateZ(180deg);
+    user-select: none;
+    
+    
+}
+.music-btn-play{
+    display: none;
+}
+.music-btn-pause{
+    display: block;
 }
 .music-btn-next{
     position: absolute;
@@ -73,26 +81,40 @@ animation: showtxt 2s ;
     left: 9.5%;
     top: 1.2vh;
     background-size: 100%;
-    transform: rotateZ(180deg);
+    transform: rotateZ(-180deg);
+    user-select: none;
+
 }
+
 .music-porgre-border{
     position: absolute;
     border: 1px solid pink;
-    height: 2vh;
+    height: 1.5vh;
     width: 58vw;
-    top: 2.4vh;
+    top: 2.75vh;
     left: 22%;
     overflow: hidden;
 
 }
 .music-porgre-solid{
     position: absolute;
-    height: 3vh;
-    width: 58vw;
-    top: -.5vh;
-    left: -22%;
-    background-color: aqua;
-    
+    height:1.5vh;
+    width: 100%;
+    /* top: 10vh; */
+    left: -100vw;
+    background:linear-gradient(to right,rgb(28, 114, 251),rgb(241, 30, 178),rgb(30, 234, 241),rgb(241, 30, 178),rgb(28, 114, 251));
+    background-size: 400%;
+    animation: porgreColor 20s infinite linear;
+}
+@keyframes porgreColor{
+    0%{
+        background-position-x: -400%;
+    }50%{
+        background-position-x: 0;
+    }
+    100%{
+        background-position-x: -400%;
+    }
 }
 
 .music-bar{
@@ -111,7 +133,7 @@ animation: showtxt 2s ;
     width: 80vw;
     left: 0;
     top:91%;
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(0, 0, 0, .8);
 }
 .music-porgre{
 
