@@ -88,7 +88,7 @@ animation: showtxt 2s ;
 
 .music-porgre-border{
     position: absolute;
-    border: 1px solid pink;
+    border: 1px solid rgb(17, 255, 255);
     height: 1.5vh;
     width: 58vw;
     top: 2.75vh;
@@ -151,7 +151,7 @@ animation: showtxt 2s ;
     border-color:rgb(169, 22, 182);
     border-radius: 1vh;
 }
-button{
+/* button{
     position: absolute;
     left: 47.8vw;
     top: 1.2vh;
@@ -161,7 +161,7 @@ button{
     border-radius: 5vh;
     border: none;
     outline: none;
-}
+} */
 .music-log{
     position: absolute;
     width: 8vw;

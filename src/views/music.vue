@@ -2,8 +2,8 @@
   <div class="music">
     <h1 class="title-h1">music</h1>
     
-    <audio controls @timeupdate="timeUpdate">
-    <source src="../assets/music/临安初雨.mp3" type="audio/mpeg">
+    <audio controls @timeupdate="timeUpdate" id="audioSwitch" >
+    <source src="../assets/music/临安初雨.mp3">
     </audio>
     <div class="music-box">
       <div class="music-bar" @mouseenter="mousdrop" @mouseleave="mousadd"></div>
@@ -24,12 +24,17 @@
       <div class="music-porgre"></div>
       
       <span><img src="../assets/music/last.png" class="music-btn-last"></span>
+      <div id="SS">
       <span id="musicPause">
-        <img src="../assets/music/play.png" class="music-btn-position music-btn-play" id="music-play">
+        <img src="../assets/music/play.png" class="music-btn-position music-btn-play" id="music-play" >
       </span>
+    </div>
+    <div id="BB">
       <span id="musicPlay">
+        
         <img src="../assets/music/pause.png" class="music-btn-position music-btn-pause" id="music-pause">
       </span>
+    </div>
       <span><img src="../assets/music/last.png" class="music-btn-next"></span>
 
       <volumn-control side-length="4vh" top="1.5vh" left="15%" top-offset="-16.5vh" bar-height="134px"></volumn-control>
@@ -60,6 +65,7 @@ export default {
     };
   },
   methods: {
+
     mousdrop:function(event){
      
        this.mubarShow='showbar';
@@ -74,6 +80,7 @@ export default {
       this.currentMusicTime = srcEle.currentTime
       this.currentDuration = srcEle.duration
       console.log("已更改：")
+      console.log(srcEle)
       console.log(this.currentMusicTime,this.currentDuration)
     }
   },
@@ -82,23 +89,29 @@ export default {
     VolumnControl
   },
   mounted() {
-    // setTimeout(()=>{
-    //     console.log("音乐时长：",document.getElementById("audio").duration);
-    //   },1000);
+
       setTimeout(()=>{
         let musicpause=document.getElementById("music-play");
         let musicplay=document.getElementById("music-pause");
         let Play=document.getElementById("musicPlay");
         let Pause= document.getElementById("musicPause");
+        // let img = document.createElement("AUDIO")
+        var myMusic=document.getElementById("myMusic");
         Play.onclick=function(){
           musicplay.style.display="none"
           musicpause.style.display="block"
+       
+          // img.Play()不行
+         
         }
         Pause.onclick=function(){
           musicplay.style.display="block"
           musicpause.style.display="none"
+          // img.Pause()不行
+          
         }
       },1000);
+
   },
 };
 </script>
