@@ -29,6 +29,7 @@
       </span>
       <span id="musicPlay" v-show="pause" @click="musicPlay">
         <img src="~assets/music/play.png" class="some-btns music-btn-position music-btn-pause" id="music-pause">
+      <!-- 注意！注意！播放完歌后按钮没变暂停 -->
       </span>
       <span><img src="../assets/music/last.png" class="some-btns music-btn-next"></span>
 
