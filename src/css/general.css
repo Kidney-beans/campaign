@@ -1,13 +1,10 @@
 *{
-<<<<<<< HEAD
-    margin: 0;
-    padding: 0;
-=======
+	margin: 0;
+	padding: 0;
     -webkit-touch-callout: none;
 	-webkit-user-select: none;
 	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
->>>>>>> efb13fd9139510c128b939d92e7f67605128947a
 }
