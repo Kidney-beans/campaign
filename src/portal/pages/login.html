@@ -21,24 +21,24 @@
                     </div>
                     <div class="inputs-container">
                       <div class="username form-item">
-                        <input type="text" class="input" id="username-input" />
-                        <span class="small-mark">Accout</span>
+                        <input type="text" class="input" id="lo-account-input" />
+                        <span class="small-mark" id="lo-account-mark">Accout</span>
                       </div>
                       <div class="password form-item">
-                        <input type="password" class="input" id="password-input" />
-                        <span class="small-mark">Password</span>
+                        <input type="password" class="input" id="lo-password-input" />
+                        <span class="small-mark" id="lo-password-mark">Password</span>
                       </div>
                       <!-- <div class="verify form-item"></div> -->
                     </div>
                     <div class="btn-container">
                       <div class="btn-item left-btn">
                         <div class="optical-btn">
-                          <div class="button">Login</div>
+                          <div class="button" id="enter-login">Login</div>
                         </div>
                       </div>
                       <div class="btn-item right-btn">
                         <div class="optical-btn">
-                          <div class="button" style="color:white" id="to-re">Register</div>
+                          <div class="button" style="color:white" id="to-re">ToRegister</div>
                         </div>
                       </div>
                     </div>
@@ -49,34 +49,45 @@
                     </div>
                     <div class="inputs-container">
                       <div class="username form-item">
-                        <input type="text" class="input" id="username-input" />
-                        <span class="small-mark">Name</span>
+                        <input type="text" class="input" id="si-name-input" />
+                        <span class="small-mark" id="si-name-mark">Name</span>
                       </div>
                       <div class="password form-item">
-                        <input type="password" class="input" id="password-input" />
-                        <span class="small-mark">Password</span>
+                        <input type="password" class="input" id="si-password-input" />
+                        <span class="small-mark" id="si-password-mark">Password</span>
                       </div>
                       <div class="re-password form-item">
-                        <input type="password" class="input" id="re-password-input" />
-                        <span class="small-mark">Re-Password</span>
+                        <input type="password" class="input" id="si-re-password-input" />
+                        <span class="small-mark" id="si-re-password-mark">Re-Password</span>
                       </div>
                       <!-- <div class="verify form-item"></div> -->
                     </div>
                     <div class="btn-container">
                       <div class="btn-item left-btn">
                         <div class="optical-btn">
-                          <div class="button">Signup</div>
+                          <div class="button" id="enter-signup">Signup</div>
                         </div>
                       </div>
                       <div class="btn-item right-btn">
                         <div class="optical-btn">
-                          <div class="button" style="color:white" id="to-lo">Login</div>
+                          <div class="button" style="color:white" id="to-lo">ToLogin</div>
                         </div>
                       </div>
                     </div>
                   </div>
               </div>
           </div>
+      </div>
+      <div class="supplement-container">
+        <div id="all-screen-mask">
+        </div>
+        <div id="loading-state">
+          <img src="../images/loading.png" />
+        </div>
+        <div id="prompt-block-container">
+          <div id="prompt-block" tex="hahahah">
+          </div>
+        </div>  
       </div>
     </body>
   </html>

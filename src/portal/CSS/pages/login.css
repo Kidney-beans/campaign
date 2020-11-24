@@ -294,6 +294,136 @@ body{
     filter: blur(10px) brightness(0.3);
 }
 
+#all-screen-mask,#loading-state{
+    position: absolute;
+    left: 0;
+    top:0;
+    width:100vw;
+    height:100vh;
+    z-index: 100;
+    display: none;
+    background-color: rgba(0,0,0,0.1);
+    /* background-color: khaki; */
+}
+
+#loading-state{
+    z-index: 101;
+    /* background-color: khaki; */
+}
+
+#loading-state img{
+    display: block;
+    position: relative;
+    width: 5vh;
+    height:5vh;
+    margin: auto;
+    top:45vh;
+    animation: img-rota 0.8s infinite linear;
+    filter: brightness(2);
+}
+
+#prompt-block-container{
+    position: absolute;
+    z-index: 108;
+    width:100vw;
+    height:100vh;
+    top:0;
+    left:0;
+    animation: prompt-show 3s forwards;
+    display: none;
+}
+
+#prompt-block:before{
+    content: attr(tex);
+    position: absolute;
+    top:5px;
+    left:5px;
+    bottom:5px;
+    right:5px;
+    background-color: black;
+    z-index: 111;
+    border-radius: 5px;
+    color: ivory;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family:'VisbyRoundCF-Bold';
+    font-size: 1.5em;
+}
+
+#prompt-block:after{
+    content: '';
+    position: absolute;
+    top:-10px;
+    left:-10px;
+    bottom:-10px;
+    right:-10px;
+    background:linear-gradient(-135deg,#03a9f4,#d43f8d,#03a9f4,#d43f8d,#03a9f4,#d43f8d);
+    background-size: 400%;
+    z-index: 110;
+    border-radius: 5px;
+    z-index: 102;
+    opacity: 0.5;
+    filter: blur(10px);
+    animation:bg-mov 4s infinite linear;
+}
+
+#prompt-block{
+    width:20vw;
+    height:15vh;
+    position: absolute;
+    top:40vh;
+    left: 40vw;
+    background:linear-gradient(-135deg,#03a9f4,#d43f8d,#03a9f4,#d43f8d,#03a9f4,#d43f8d);
+    background-size: 400%;
+    z-index: 109;
+    border-radius: 5px;
+    animation:bg-mov 4s infinite linear;
+    /* display: none; */
+}
+
+@keyframes prompt-show{
+    0%{
+        display: none;
+        opacity: 0;
+        transform: translateY(10vh);
+    }
+    30%{
+        opacity: 1;
+        transform: translateY(0);
+        display: block;
+    }
+    80%{
+        opacity: 1;
+        transform: translateY(0);
+        display: block;
+    }
+    100%{
+        opacity: 0;
+        transform: translateY(-10vh);
+        display: none;
+    }
+}
+
+@keyframes bg-mov{
+    0%{
+        background-position-x:-400%;
+    }
+    100%{
+        background-position-x:0;
+    }
+}
+
+@keyframes img-rota{
+    0%{
+        transform: rotateZ(0);
+    }
+    100%{
+        transform: rotateZ(360deg);
+    }
+}
+
 @keyframes block-appear{
     0%{                              
         transform: translate3d(100px,0,-400px) rotateX(30deg);                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     

@@ -84,6 +84,32 @@ $(function () {
 			switch_mode('login')
 		},300)
 	})
+
+	$("#enter-login").click(()=>{
+		let account = $("#lo-account-input").val()
+		let password = $("#lo-password-input").val()
+		$("#all-screen-mask").css("display","block")
+		$("#loading-state").css("display","block")
+		$.ajax({
+			type: "POST",
+			url: "http://localhost:8099/login/user",
+			data: `account=${account}&password=${password}`,
+			success: function(result){
+				$("#all-screen-mask").css("display","none")
+				$("#loading-state").css("display","none")
+			},
+			error:function(){
+				$("#loading-state").css("display","none")
+				$("#prompt-block-container").css("display","block")
+				setTimeout(()=>{
+					$("#all-screen-mask").css("display","none")
+					$("#prompt-block-container").css("display","none")
+				},3000)
+			}
+		 });
+		
+	})
+	for_mark();
 	setInterval(() => {
 		let randx = Math.floor(Math.random() * 100)
 		let randy = Math.floor(Math.random() * 100)
@@ -105,3 +131,51 @@ $(function () {
 		}, 1000)
 	}, 500);
 })
+
+
+function for_mark(){
+	$("#lo-account-input").blur(function(){
+		if($(this).val().length){
+			$("#lo-account-mark").text("")
+		}
+		else{
+			$("#lo-account-mark").text("Account")
+		}
+	})
+
+	$("#lo-password-input").blur(function(){
+		if($(this).val().length){
+			$("#lo-password-mark").text("")
+		}
+		else{
+			$("#lo-password-mark").text("Password")
+		}
+	})
+
+	$("#si-name-input").blur(function(){
+		if($(this).val().length){
+			$("#si-name-mark").text("")
+		}
+		else{
+			$("#si-name-mark").text("Name")
+		}
+	})
+
+	$("#si-password-input").blur(function(){
+		if($(this).val().length){
+			$("#si-password-mark").text("")
+		}
+		else{
+			$("#si-password-mark").text("Password")
+		}
+	})
+
+	$("#si-re-password-input").blur(function(){
+		if($(this).val().length){
+			$("#si-re-password-mark").text("")
+		}
+		else{
+			$("#si-re-password-mark").text("Re-Password")
+		}
+	})
+}
