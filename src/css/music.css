@@ -2,7 +2,7 @@
 
 body{
     /* background-color: black; */
-    background-image: url(../assets/music/music-bj1.jpg);
+    background-image: url(~assets/music/music-bj1.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
 }
@@ -77,12 +77,7 @@ animation: showtxt 2s ;
     
     
 }
-/* .music-btn-play{
-    display: none;
-}
-.music-btn-pause{
-    display: block;
-} */
+
 .music-btn-next{
     position: absolute;
     height: 45px;
@@ -180,24 +175,14 @@ animation: showtxt 2s ;
     border-color:rgb(169, 22, 182);
     border-radius: 1vh;
 }
-/* button{
-    position: absolute;
-    left: 47.8vw;
-    top: 1.2vh;
-    height: 4.6vh;
-    width: 2.3vw;
-    background-color:rgba(0, 242, 250, 0.4);
-    border-radius: 5vh;
-    border: none;
-    outline: none;
-} */
+
 .music-log{
     position: absolute;
     width: 8vw;
     height: 40vh;
     left: 35vw;
     top:20vh;
-    background-image: url(../assets/music/music_log2.png);
+    background-image: url(~assets/music/music_log2.png);
     background-repeat: no-repeat;
     background-size: 100%;
     animation: boun 3s infinite;
@@ -221,7 +206,7 @@ animation: showtxt 2s ;
     left: 4vw;
     top:40vh;
     background-size: 100%;
-    background-image: url(../assets/music/music_log3.png);
+    background-image: url(~assets/music/music_log3.png);
     background-repeat: no-repeat;
     
 
@@ -233,7 +218,7 @@ animation: showtxt 2s ;
     left: -10vw;
     top:13vh;
     background-size: 100%;
-    background-image: url(../assets/music/music_log4.png);
+    background-image: url(~assets/music/music_log4.png);
     background-repeat: no-repeat;
 
 }
@@ -257,16 +242,6 @@ animation: showtxt 2s ;
 }
 
 }
-/* @keyframes show  {
-    from{
-        opacity: .1;
-        transform: translateX(-30vh);
-        
-    }to{
-        opacity: .8;
-        transform: translateX(0vh);
-    }
-} */
 @keyframes showtxt  {
     from{
         opacity: 0;
