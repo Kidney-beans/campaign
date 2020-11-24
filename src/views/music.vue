@@ -2,13 +2,8 @@
   <div class="music">
     <h1 class="title-h1">music</h1>
     
-<<<<<<< HEAD
-    <audio controls @timeupdate="timeUpdate" id="audioSwitch" >
-    <source src="../assets/music/临安初雨.mp3">
-=======
     <audio controls @timeupdate="timeUpdate" id="audio" >
     <source src="../assets/music/临安初雨.mp3" type="audio/mpeg">
->>>>>>> fcdb87cfbd960f66a5c1b80c961c10d56fd111ee
     </audio>
     <div class="music-box">
       <div class="music-bar"></div>
@@ -28,30 +23,15 @@
       <div class="progress-bar">
       <div class="music-porgre"></div>
       
-<<<<<<< HEAD
-      <span><img src="../assets/music/last.png" class="music-btn-last"></span>
-      <div id="SS">
-      <span id="musicPause">
-        <img src="../assets/music/play.png" class="music-btn-position music-btn-play" id="music-play" >
-      </span>
-    </div>
-    <div id="BB">
-      <span id="musicPlay">
-        
-        <img src="../assets/music/pause.png" class="music-btn-position music-btn-pause" id="music-pause">
-      </span>
-    </div>
-      <span><img src="../assets/music/last.png" class="music-btn-next"></span>
-=======
       <span><img src="~assets/music/last.png" class="music-btn-last some-btns"></span>
       <span id="musicPause" v-show="!pause" @click="musicPause">
         <img src="~assets/music/pause.png" class="some-btns music-btn-position music-btn-play" id="music-play">
       </span>
       <span id="musicPlay" v-show="pause" @click="musicPlay">
         <img src="~assets/music/play.png" class="some-btns music-btn-position music-btn-pause" id="music-pause">
+      <!-- 注意！注意！播放完歌后按钮没变暂停 -->
       </span>
       <span><img src="../assets/music/last.png" class="some-btns music-btn-next"></span>
->>>>>>> fcdb87cfbd960f66a5c1b80c961c10d56fd111ee
 
       <volumn-control side-length="4vh" top="1.5vh" left="15%" top-offset="-16.5vh" bar-height="134px" @change="changeV"></volumn-control>
         <!-- <span><img src="../assets/music/音量.png"></span> -->
@@ -80,19 +60,6 @@ export default {
     };
   },
   methods: {
-<<<<<<< HEAD
-
-    mousdrop:function(event){
-     
-       this.mubarShow='showbar';
-       this.mubarstop='musicbartext'
-    },
-    mousadd:function(event){
-      this.mubarShow=''
-    
-    },
-=======
->>>>>>> fcdb87cfbd960f66a5c1b80c961c10d56fd111ee
     timeUpdate(e){
       let srcEle = e.srcElement;
       this.currentMusicTime = srcEle.currentTime
@@ -150,33 +117,7 @@ export default {
     VolumnControl
   },
   mounted() {
-<<<<<<< HEAD
-
-      setTimeout(()=>{
-        let musicpause=document.getElementById("music-play");
-        let musicplay=document.getElementById("music-pause");
-        let Play=document.getElementById("musicPlay");
-        let Pause= document.getElementById("musicPause");
-        // let img = document.createElement("AUDIO")
-        var myMusic=document.getElementById("myMusic");
-        Play.onclick=function(){
-          musicplay.style.display="none"
-          musicpause.style.display="block"
-       
-          // img.Play()不行
-         
-        }
-        Pause.onclick=function(){
-          musicplay.style.display="block"
-          musicpause.style.display="none"
-          // img.Pause()不行
-          
-        }
-      },1000);
-
-=======
     
->>>>>>> fcdb87cfbd960f66a5c1b80c961c10d56fd111ee
   },
 };
 </script>
