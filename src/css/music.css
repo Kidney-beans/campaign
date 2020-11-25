@@ -1,10 +1,16 @@
 @import './general.css';
 
-body{
+#music{
     /* background-color: black; */
     background-image: url(~assets/music/music-bj1.jpg);
     background-repeat: no-repeat;
     background-size: 100%;
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top:0;
+    left:0;
+    overflow: hidden;
 }
 
 #audio{
@@ -16,7 +22,7 @@ body{
     font-family:'Agnes-Bold';
     font-size:5em;
     left: 4vw;
-    top: -5vh;
+    top: 1vh;
     background: linear-gradient(to right,rgb(28, 114, 251),rgb(241, 30, 178));
     background-clip: text;
     color: transparent;
@@ -28,7 +34,7 @@ body{
     height: 80vh;
     width: 80vw;
     left: 10%;
-    top: 10vh;
+    top: 13vh;
     border-radius: 10px;
     border: rgb(97,122,240) 3px solid;
     background-color: rgba(196, 253, 251, 0.2);
