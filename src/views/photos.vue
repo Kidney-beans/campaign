@@ -17,11 +17,13 @@
       </div>
       <!-- 小图片列表 -->
       <div class="photos-list">
-        <ul v-for="item in photosArr" :key="item.date">
+        <ul v-for="item in photosArr" :key="item.date" :style="{'left':left_offset + 'px'}" id="photos-ul">
           <!-- <dt>{{ year + "年" + month + "月" + day + "日" + h + "时" + m + "分" + s + "秒" }}</dt> -->
-          <li v-for="item2 in item.photos" :key="item2.src" @click="showImg(item2.src)"><img :src="item2.src" class="imgtt" /></li>
+          <li v-for="(item2,index2) in item.photos" :key="item2.src" @click="showImg(item2.src,index2)"><img :src="item2.src" class="imgtt" :class="{'active':index2 == indexImg}" /></li>
           <p></p>
         </ul>
+        <div class="left-bound-block bound-block" @mouseenter="leftMove" @mouseleave="leftMoveStop"> 《 </div>
+        <div class="right-bound-block bound-block" @mouseenter="rightMove" @mouseleave="rightMoveStop"> 》 </div>
       </div>
     </div>
   </div>
@@ -75,6 +77,30 @@ export default {
             },
             {
               src: "http://118.25.144.69/public/imgs/13.jpg",
+            },
+            {
+              src: "http://118.25.144.69/public/imgs/14.jpg",
+            },
+            {
+              src: "http://118.25.144.69/public/imgs/15.jpg",
+            },
+            {
+              src: "http://118.25.144.69/public/imgs/16.jpg",
+            },
+            {
+              src: "http://118.25.144.69/public/imgs/17.jpg",
+            },
+            {
+              src: "http://118.25.144.69/public/imgs/18.jpg",
+            },
+            {
+              src: "http://118.25.144.69/public/imgs/19.jpg",
+            },
+            {
+              src: "http://118.25.144.69/public/imgs/20.jpg",
+            },
+            {
+              src: "http://118.25.144.69/public/imgs/21.jpg",
             }
           ],
         },
@@ -103,6 +129,9 @@ export default {
           top: -20,
         },
       ],
+      left_offset:0,
+      leftInterval:null,
+      rightInterval:null
     };
   },
   methods: {
@@ -115,8 +144,9 @@ export default {
       this.m = date.getMinutes();
       this.s = date.getSeconds();
     },
-    showImg(src) {
+    showImg(src,index) {
       this.currentImg = src;
+      this.indexImg = index
     },
     // 图片却换按钮
     photosRightBtn: function () {
@@ -136,6 +166,7 @@ export default {
         // this.rightImgIsShow=true
       }
       this.currentImg=this.photosArr[0].photos[this.indexImg].src
+      this.adaptOffset()
     },
     photosLeftBtn: function(){
        this.indexImg--
@@ -147,21 +178,80 @@ export default {
          this.leftImgIsShow=true
        }
        this.currentImg=this.photosArr[0].photos[this.indexImg].src
+       this.adaptOffset()
     },
     meteorRun() {
       setInterval(() => {
         let temp = [];
-        console.log("aa");
         for (let i = 0; i < 3; i++) {
           let obj = {};
           obj.left = Math.random() * 100 + 50;
           obj.top = Math.random() * 30 - 30;
           temp.push(obj);
-          console.log(this.p[i]);
         }
         this.p = temp;
       }, 5000);
     },
+    leftMove(){
+      this.leftInterval = setInterval(()=>{
+        this.left_offset += 4
+      },10)
+    },
+    leftMoveStop(){
+      clearInterval(this.leftInterval)
+      if(this.left_offset > 0){
+        let ul = document.getElementById('photos-ul')
+        ul.style.transition = "0.4s all"
+        this.left_offset = 0
+        setTimeout(()=>{
+          ul.style.transition = ""
+        },400)
+      }
+    },
+    rightMove(e){
+      this.rightInterval = setInterval(()=>{
+        //计算
+        this.left_offset -= 4
+      },10)
+    },
+    rightMoveStop(){
+      
+      clearInterval(this.rightInterval)
+      let ul = document.getElementById('photos-ul')
+      
+      let widthPx = ul.offsetWidth
+      let screenWidthPx = screen.availWidth
+      let diff = widthPx - screenWidthPx
+      if(-this.left_offset > diff){
+        ul.style.transition = "0.4s all"
+        this.left_offset = -diff
+        setTimeout(()=>{
+          ul.style.transition = ""
+        },400)
+      }
+    },
+    adaptOffset(){
+      setTimeout(()=>{
+        let active =  document.getElementsByClassName('active')[0]
+        let offsetLeft = active.offsetLeft
+        if(offsetLeft + this.left_offset < 0){
+          let ul = document.getElementById('photos-ul')
+          ul.style.transition = "0.4s all"
+          this.left_offset += (-(offsetLeft + this.left_offset))
+          setTimeout(()=>{
+            ul.style.transition = ""
+          },400)
+        }
+        else if(offsetLeft + this.left_offset > screen.availWidth){
+          let ul = document.getElementById('photos-ul')
+          ul.style.transition = "0.4s all"
+          this.left_offset -= (offsetLeft + this.left_offset - screen.availWidth + ul.getElementsByTagName('img')[0].offsetWidth)
+          setTimeout(()=>{
+            ul.style.transition = ""
+          },400)
+        }
+      },100)
+    }
   },
   computed: {},
   components: {},
