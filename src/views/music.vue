@@ -1,5 +1,5 @@
 <template>
-  <div class="music">
+  <div id="music">
     <h1 class="title-h1">music</h1>
     
     <audio controls @timeupdate="timeUpdate" id="audio" >

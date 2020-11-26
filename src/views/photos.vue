@@ -1,12 +1,14 @@
 <template>
-  <div class="photos">
-  <div class="Bj-show"><img :src="currentImg"></div>
-  <span class="meteor"></span>
-  
+  <div id="photos">
+    <!-- <div class="Bj-show"><img :src="currentImg"></div> -->
+    <span class="meteor" :style="{ left: p[0].left + 'vw', top: p[0].top + 'vh' }"></span>
+    <span class="meteor" :style="{ left: p[1].left + 'vw', top: p[1].top + 'vh' }"></span>
+    <span class="meteor" :style="{ left: p[2].left + 'vw', top: p[2].top + 'vh' }"></span>
+
     <h1 class="photos-title">Photos</h1>
     <div class="photosBox">
       <div class="photos-show">
-        <img :src="currentImg"  class="photos-show-imgstyle"/>
+        <img :src="currentImg" class="photos-show-imgstyle" />
         <img src="~assets/photos/photosBtn.png" class="photos-btn-right photos-btn" @click="hd" />
         <img src="~assets/photos/photosBtn.png" class="photos-btn-left photos-btn" />
         <p></p>
@@ -69,6 +71,20 @@ export default {
       h: "",
       m: "",
       s: "",
+      p: [
+        {
+          left: 50,
+          top: -20,
+        },
+        {
+          left: 50,
+          top: -20,
+        },
+        {
+          left: 50,
+          top: -20,
+        },
+      ],
     };
   },
   methods: {
@@ -84,15 +100,37 @@ export default {
     showImg(src) {
       this.currentImg = src;
     },
+    meteorSetTimeout() {
+      //   let meteor=document.getElementById("met");
+      //   setTimeout(function(){
+      //     let a=Math.ceil((Math.random()*100))
+      //     console.log(a)
+      //   },3000);
+    },
     hd: function () {
       console.log();
     },
-
+    meteorRun() {
+      setInterval(() => {
+        let temp = [];
+        console.log("aa");
+        for (let i = 0; i < 3; i++) {
+          let obj = {};
+          obj.left = Math.random() * 100 + 50;
+          obj.top = Math.random() * 30 - 30;
+          temp.push(obj);
+          console.log(this.p[i]);
+        }
+        this.p = temp;
+      }, 5000);
+    },
   },
   computed: {},
   components: {},
   mounted() {
     this.getdate();
+    this.meteorSetTimeout();
+    this.meteorRun();
   },
 };
 </script>

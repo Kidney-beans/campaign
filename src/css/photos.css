@@ -16,18 +16,24 @@
 .photosBox{
 
 }
-body{
-    /* background:url("../assets/photos/photosBj.png"); */
+#photos{ 
+    background:url("~assets/photos/photos-bj.jpg");
+   
     background-repeat: no-repeat;
     background-size: cover;
-    
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: absolute;
+    top:0;
+    left:0;
 }
-.Bj-show{
+/* .Bj-show{
     position: relative;
     height: 100vh;
     width: 100vw;
     overflow: hidden;
-}
+} */
 .Bj-show img{
     position: absolute;
     height: 100vh;
@@ -36,9 +42,6 @@ body{
     filter: blur(10px) contrast(70%);
     /* max-width: 100%; */
     /* filter:contrast(80%); */
-
-
-    
 }
 .photosBox{
     position: absolute;
@@ -51,7 +54,9 @@ body{
     height: 9vh;
     top: 78vh;
     left: 16vw;
-    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid skyblue;
+    background-color: rgba(140, 219, 255, 0.5);
+    overflow: hidden;
     /* display: none; */
 
 }
@@ -126,14 +131,20 @@ ul li img {
 }
 .meteor{
     position: absolute;
-    top: 10vh;
-    left: 40vw;
-    width: 200px;
-    height: 4px;
+    top: -1vh;
+    width: 150px;
+    height: 3px;
     border-radius: 4px;
-    transform: rotate(-30deg);
-    background-image: linear-gradient(to right, rgba(1, 204, 255, 0.801) 20%,transparent 60%,rgba(0, 0, 0, 0.1) 100%,transparent 60%);
+    background-image: linear-gradient(to right, rgba(1, 204, 255, 0.801) 20%,transparent 100%,rgba(240, 240, 0, 0.322) 100%,transparent 60%);
     z-index: 55;
+    animation: met 5s infinite linear;
+}
+@keyframes met {
+from{
+    transform: translateX(0) translateY(0) rotate(-30deg);
+}to{
+    transform: translateX(-260vh) translateY(150vh) rotate(-30deg);
+}
 }
 .meteor::before,
 .meteor::after{
