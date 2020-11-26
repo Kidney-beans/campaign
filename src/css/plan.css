@@ -56,7 +56,7 @@ body{
 }
 
 /* 日历外框样式 */
-.plan .calendar{
+#plan .calendar{
     width: 82vw;
     height: 88vh;
     /* background: linear-gradient(45deg,rgba(68,140,173,40%), rgba(68,140,173,30%),rgba(0, 0, 0, 0.78),rgba(219,87,110,45%) 78%,rgba(255,76,87,90%) 81%,rgba(43,45,60,60%) 85%);
@@ -72,7 +72,7 @@ body{
 }
 
 /* 日期-日期外框样式 */
-.plan .calendar .date{
+#plan .calendar .date{
     width: 39vw;
     height: 13vh;
     position: absolute;
@@ -89,9 +89,9 @@ body{
 }
 
 /* 日期-年份,月份,时间公共样式 */
-.plan .calendar .date .year,
-.plan .calendar .date .month,
-.plan .calendar .date .time{
+#plan .calendar .date .year,
+#plan .calendar .date .month,
+#plan .calendar .date .time{
     position: absolute;
     top: 3vh;
     width: 7vw;
@@ -113,12 +113,12 @@ body{
 }
 
 /* 日期-年份,月份,时间公共样式  鼠标放上时*/
-.plan .calendar .date  .year:hover,
-.plan .calendar .date .month:hover,
-.plan .calendar .date .time:hover,
-.plan .calendar .date .plus:hover,
-.plan .calendar .date .subtract:hover,
-.plan .calendar .date .time .stop:hover{
+#plan .calendar .date  .year:hover,
+#plan .calendar .date .month:hover,
+#plan .calendar .date .time:hover,
+#plan .calendar .date .plus:hover,
+#plan .calendar .date .subtract:hover,
+#plan .calendar .date .time .stop:hover{
     box-shadow:  2px 2px 8px rgba(3, 255, 255,1), 
                  2px -2px 12px #1ac5c5fa, 
                  inset 8px 7px 8px 17px rgb(165 77 77 / 21%), 
@@ -126,9 +126,9 @@ body{
 }
 
 /* 增加（或减少）年份（或月份）*/
-.plan .calendar .date  .plus,
-.plan .calendar .date  .subtract,
-.plan .calendar .date  .time .stop{
+#plan .calendar .date  .plus,
+#plan .calendar .date  .subtract,
+#plan .calendar .date  .time .stop{
     position: absolute;
     top: 0;
     width: 3.5vw;
@@ -141,14 +141,14 @@ body{
 }
 
 /* 增加（或减少）年份（或月份） 鼠标放上时*/
-.plan .calendar .date  .plus:hover,
-.plan .calendar .date  .subtract:hover,
-.plan .calendar .date  .time .stop:hover{
+#plan .calendar .date  .plus:hover,
+#plan .calendar .date  .subtract:hover,
+#plan .calendar .date  .time .stop:hover{
     opacity: 1;
 }
 
 /* 增加*/
-.plan .calendar .date  .plus{
+#plan .calendar .date  .plus{
     left: 0;
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
@@ -156,14 +156,14 @@ body{
 }
 
 /* 减少 */
-.plan .calendar .date  .subtract{
+#plan .calendar .date  .subtract{
     right: 0;
     border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
 }
 
 /* 停止 */
-.plan .calendar .date  .time .stop{
+#plan .calendar .date  .time .stop{
     width: 7vw;
     border-radius: 25px;
 }
@@ -183,20 +183,20 @@ body{
 } */
 
 /* 日期-年份 */
-.plan .calendar .date .year{
+#plan .calendar .date .year{
     
     left: 3.5vw;
-    animation: yearAn 1s linear;
+    animation: dataAn 1s linear;
 }
 
 /* 日期-月份 */
-.plan .calendar .date .month{
+#plan .calendar .date .month{
     left: 15.5vw;
-    animation: monthAn 1s linear;
+    animation: dataAn 1s linear;
 }
 
-.plan .calendar .date .time::before,
-.plan .calendar .date .time::after{
+#plan .calendar .date .time::before,
+#plan .calendar .date .time::after{
     position: absolute;
     content: attr(time);
     top: 0;
@@ -205,9 +205,9 @@ body{
 }
 
 /* 日期-时间 */
-.plan .calendar .date .time{
+#plan .calendar .date .time{
     left:28.5vw;
-    animation: timeAn 1s linear;
+    animation: dataAn 1s linear;
 }
 
 /* 添加计划外框样式 */
@@ -225,7 +225,7 @@ body{
 } */
 
 /* 天数和添加计划 */
-.plan .calendar .day-box{
+#plan .calendar .day-box{
     position: absolute;
     left: 12vw;
     width: 54vw;
@@ -233,7 +233,7 @@ body{
 }
 
 /* 天数 */
-.plan .calendar .day{
+#plan .calendar .day{
     width: 39vw;
     height: 68vh;
     /* background:purple; */
@@ -275,7 +275,7 @@ body{
 }  */
 
 /* 当天日期 外框*/
-.plan .calendar .day .days{
+#plan .calendar .day .days{
     position: relative;
     width: 4.5vw;
     height: 9vh;
@@ -285,7 +285,7 @@ body{
 }
 
 /* 当天日期 样式 */
-.plan .calendar .day .days .week{
+#plan .calendar .day .days .week{
     width: 4.5vw;
     height: 9vh;
     /* background-color: rgb(64,204,201,26%); */
@@ -306,14 +306,14 @@ body{
 }
 
 /* 当天日期 动画 */
-.plan .calendar .day .days .weekAn{
+#plan .calendar .day .days .weekAn{
     opacity: 1;
     transform-origin: left;
     transition: 1s all;
 }
 
 /* 当天日期 动画 鼠标放上时 */
-.plan .calendar .day .days:hover .weekAn{
+#plan .calendar .day .days:hover .weekAn{
     transform: rotateY(90deg);
     opacity: 0;
 }
@@ -329,12 +329,12 @@ body{
     overflow: hidden;
 } */
 
-.plan .calendar .day .days .dAn{
+#plan .calendar .day .days .dAn{
     text-shadow: none !important;
     color: white;
 }
 
-.plan .calendar .day .days .dAn::before{
+#plan .calendar .day .days .dAn::before{
     position: absolute;
     content: attr(week);
     width: 100%;
@@ -349,7 +349,7 @@ body{
     z-index: 2;
 }
 
-.plan .calendar .day .days .dAn::after{
+#plan .calendar .day .days .dAn::after{
     position: absolute;
     content: attr(week);
     width: 100%;
@@ -371,7 +371,7 @@ body{
 /* .plan .calendar .day .addPlan::before{} */
 
 /* 当天日期 添加计划 */
-.plan .calendar .day .addPlan{
+#plan .calendar .day .addPlan{
     position: absolute;
     left: 0;
     top: 0;
@@ -394,13 +394,13 @@ body{
 }
 
 /* 当天日期 添加计划 动画 */
-.plan .calendar .day .days:hover .addPlan{
+#plan .calendar .day .days:hover .addPlan{
     transform: rotateY(0deg);
     opacity: 1;
 }
 
 /* 星期 双数个*/
-.plan .calendar .day .week:nth-child(2n){
+#plan .calendar .day .week:nth-child(2n){
     background-color:rgba(6,37,37,77%) ;
 }
 
@@ -412,81 +412,125 @@ body{
     z-index: 3;
 } */
 
-.plan ul{
+/* 计划列表 */
+#plan .planList{
+    animation: planListDisplay 0.2s;
+    transform-origin: right;
     position: absolute;
-    right: 0;
-    top: 5vw;
-    width: 20vw;
-    height: 88vh;
-    overflow: auto;
+    right:0 ;
+    top: 0;
+    /* width: 10vw;
+    height: 100vh;
+    background-color: rgba(78, 50, 50, 0.158); */
 }
 
-/* 计划列表*/
-div .plan ul .havePlan,
-.plan .btnPlan{
+/* 计划列表内容 */
+#plan .planList ul{
+    position: absolute;
+    right: 0;
+    top: 7vw;
+    width: 20vw;
+    height: 75vh;
+    overflow-y: scroll;
+}
+
+/* 计划列表内的计划 和添加计划*/
+#plan .planList  ul .havePlan,
+#plan .planList .btnPlan{
     position: absolute;
     background:linear-gradient(45deg,rgb(53, 7, 20,48%),rgba(120,55,57,75%),rgba(125,175,184,72%),rgba(10,43,49,78%),rgba(7,220,235,55%),rgba(40,12,25,92%),rgba(217,68,10));
     box-shadow:  2px 2px 8px rgba(3, 255, 255,1), 
                  2px -2px 12px #1ac5c5fa, 
-                 8px 7px 8px 17px rgb(165,77,77,21%), 
-                 -18px -20px 8px rgb(218,50,59,17%);
-}
-
-.plan div .btnPlan{
-    top: 4vh;
-    right: 1vw;
-    width: 8vw;
+                 8px 7px 8px 17px rgba(0, 0, 0, 0.11), 
+                 -18px -20px 8px rgba(32, 12, 13, 0.17);
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    right: 0vw;
+    width: 6vw;
     height: 8vh;
-    border-radius: 28px;
-    text-align: center;
-    line-height: 8vh;
-
+    color: rgba(165,220,210);
+    text-shadow: 2px 0 #0087ff;
+    list-style: none;
 }
 
-div .plan ul .havePlan{
+/* 计划列表 添加计划按钮*/
+#plan .planList .btnPlan{
+    top: 4vh;
+    transition: 0.4s all;
+    /* line-height: 8vh; */
+    
+    /* border-radius: 28px; */
+    /* text-align: center; */
+    /* opacity: 0; */
+}
+
+#plan .planList .btnPlan:hover{
+    width: 8vw;
+}
+
+/* 计划列表 添加计划按钮内的字体样式 */
+#plan .planList .btnPlan div{
+    font-size: 3vw;
+    margin-left: 2vw;
+    line-height: 8vh;
+    cursor: pointer;
+}
+
+/* 计划列表内的计划 */
+#plan .planList ul .havePlan{
     right: 0;
     height: 8vh;
+    width: 6vw;
     /* background-color: rgba(255, 255, 255, 0.884); */
     /* border-radius: 25px; */
     border-top-left-radius: 25px;
     border-bottom-left-radius: 25px;
-    margin-top: 3vh;
+    transition: 0.4s all;
+    /* margin-top: 3vh; */
 }
 
-div .plan ul .havePlan:nth-child(1){
-    width: 14vw;
-    top:  5vh;
+#plan .planList ul .havePlan:hover{
+    width: 12vw;
 }
 
-div .plan ul .havePlan:nth-child(2){
-    width: 11vw;
-    top: 20vh;
-}
 
-div .plan ul .havePlan:nth-child(3){
-    width: 10vw;
-    top:35vh;
-}
-
-div .plan ul .havePlan:nth-child(4){
-    width: 9vw;
-    top:50vh;
-}
-
-div .plan ul .havePlan:nth-child(5){
-    width: 8vw;
-    top:65vh;
-}
-
-div .plan ul .havePlan:nth-child(6){
+/* div .plan ul .havePlan:nth-child(6){
     width: 7vw;
     top:80vh;
+    opacity: 1;
+} */
+
+/* 删除计划按钮 */
+#plan .planList ul .havePlan .planDel{
+    border-radius: 50%;
+    position: absolute;
+    /* left: 2.5vw;
+    top: -4vh; */
+    left: -2.2vw;
+    top: 2.5vh;
+    height: 3vh;
+    width: 1.5vw;
+    line-height: 2.5vh;
+    /* line-height: 7.5vh; */
+    text-align: center;
+    background-color:rgb(109,64,204,35%);
+    color: #02d4f0;
+    /* text-shadow: -2px 0 red; */
+    box-shadow:  inset 3px 3px 8px rgb(3 255 194 / 41%), 
+                 1px 5px 7px #08fff47a, 
+                 5px 0px 5px 0px rgb(156 48 48 / 25%), 
+                 -2px 1px 17px 3px rgb(218 50 59 / 27%);
+    text-shadow: -2px 0 #eeff01,
+                 0 3px #ff0000;
+    cursor: pointer;
 }
 
-div .plan ul .havePlan div{
-    color: white;
+/* 计划文字 */
+#plan .planList ul .havePlan div:nth-child(2){
+    /* color: white; */
     margin-left: 2vw;
-    line-height: 8vh;  
+    line-height: 8vh; 
+    cursor: pointer; 
 }
 
 /* 计划图标1 */
@@ -572,15 +616,15 @@ div .plan ul .havePlan div{
     }
 }
 
-@keyframes dateAn{
-    0% {transform: scale(0); opacity: 0; left: -50vw;}
+@keyframes dataAn{
+    0% {transform: scale(0); opacity: 0;}
     20%{transform: scale(0.3);}
     50%{transform: scale(0.7);}
     70%{transform: scale(0.9);}
-    100%{transform: scale(1); opacity: 1; left: 0vw;}
+    100%{transform: scale(1); opacity: 1;}
 }
 
-@keyframes yearAn{
+/* @keyframes yearAn{
     0% {transform: scale(0); opacity: 0; top: 0vh;}
     20%{transform: scale(0.3);}
     50%{transform: scale(0.7);}
@@ -602,7 +646,7 @@ div .plan ul .havePlan div{
     50%{transform: scale(0.7);}
     70%{transform: scale(0.9);}
     100%{transform: scale(1); opacity: 1; top: 3vh;}
-}
+} */
 
 @keyframes plusAn{
     0% {transform: scale(0); opacity: 0;}
@@ -738,6 +782,24 @@ div .plan ul .havePlan div{
         clip: rect(2.9vh,3vw,3.8vh,0vw);
     }
    
+}
+
+@keyframes planListDisplay{
+    0%{
+        transform: scaleX(0); opacity: 0;
+    }
+    100%{
+        transform: scaleX(1); opacity: 1;
+    }
+}
+
+@keyframes planListHidden{
+    0%{
+        transform: scaleX(1); opacity: 1;
+    }
+    100%{
+        transform: scaleX(0); opacity: 0;
+    }
 }
 
 /* @keyframes dayAn{

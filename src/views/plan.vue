@@ -1,5 +1,5 @@
 <template>
-  <div class='plan'>
+  <div id='plan'>
     <!-- 背景 -->
     <div class="bgc">
       <div class="number"></div>
@@ -41,53 +41,29 @@
               <div class="week dAn" :week="item">{{item}}</div>
             </div>
             <!-- 所有 -->
-            <div v-for="(item) in days" class="days" :key="item" >
+            <div v-for="(item,index) in days" class="days" :key="item" >
               <div :class='{week:true, weekAn:item!=""}' >{{item}}</div>
-              <div class="addPlan" v-if="item!=''" @click="changeAndOpen">...</div>
+              <div class="addPlan" v-if="item!=''" @click="seePlan(index,item)" title="查看计划">...</div>
             </div>
           </div>
-          <!-- 添加计划 -->
+          <!-- 计划选项 -->
           <div class="add" style="display:none"></div>
         </div>
       </div>
-      <!-- 小计划图标 -->
-      <div>
-        <!-- 添加计划 -->
+      <!-- 计划列表 -->
+      <div class="planList" :style="{'display':temp_sw}">
+        <!-- 添加计划按钮 -->
         <div class="btnPlan">
-          +
+          <div title="添加计划">+</div>
         </div>
-        <!-- 计划列表 -->
-        <ul>
-        <li class="havePlan">
-          <div>PLAN1</div>
-          <!-- 计划图标1 -->
-          <!-- <div class="plan-1">
-            <div class="fontPlan">计划</div>
-            <div class="cil">1</div>
-            <spot-lamp text='plan1' font-size='1em' back-text-color="#fff"></spot-lamp>
-          </div> -->
-        </li>
-        <li class="havePlan">
-          <div>PLAN2</div>
-        </li>
-        <li class="havePlan">
-          <div>PLAN3</div>
-        </li>
-        <li class="havePlan">
-          <div>PLAN4</div>
-        </li>
-        <li class="havePlan">
-          <div>PLAN5</div>
-        </li>
-        <li class="havePlan">
-          <div>PLAN6</div>
-        </li>
-        <!-- <li class="havePlan">
-          <div>PLAN7</div>
-        </li> -->
+        <!-- 计划列表内的计划 -->
+        <ul class="ulPlan" >
+          <li class="havePlan" v-for="(item,index) in currentPlans" :style="{'top': 5 + (index * 15) + 'vh','width':getWidth(index)}" :key="item"  >
+            <div class="planDel" title="删除计划" @click="deleteItem(index)">x</div>
+            <div @mouseenter="activeItem(index)" @mouseout="sleepItem(index)">PLAN{{index+1}}</div>
+          </li>
       </ul>
       </div>
-      
   </div>
 </template>
 <script>
@@ -99,6 +75,7 @@
     },
     data(){
       return{
+        temp_sw:'none',
         week:["日","一","二","三","四","五","六"],
         days:["1","2"],
         year:"",
@@ -113,7 +90,127 @@
         sec:"",
         time:"",
         timer:"",
-        counterPause:false
+        counterPause:false,
+        prefixPlantDays:0,
+        plans:[
+          [
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球"
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球"
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球"
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球"
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球"
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球"
+            }
+          ],
+          []
+          ,[
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球"
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球"
+            }         
+          ],
+          [
+          {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球"
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球"
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球"
+            }
+
+          ],
+          []
+          ,[
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球"
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球"
+            }
+          ]
+        ],
+        currentPlans:[],
+        activePlanIndex:-2
       }
     },
     components:{
@@ -165,9 +262,9 @@
         // console.log(e.currentTarget.previousElementSibling);
         //改变初始当前选中日期
         this.changeDay(parseInt(this.year)+1,this.yearNow);
-        this.setBgcNum();
         // console.log(this.day);
         this.year=parseInt(this.year)+1;
+        this.setBgcNum();
         e.currentTarget.previousElementSibling.innerText=this.year;
         this.addDays();
       },
@@ -176,9 +273,9 @@
         // console.log(e.currentTarget.parentElement,1)
         //改变初始当前选中日期
         this.changeDay(parseInt(this.year)-1,this.yearNow);
-        this.setBgcNum();
         // console.log(this.day);
         this.year=parseInt(this.year)-1;
+        this.setBgcNum();
         e.currentTarget.parentElement.childNodes[0].innerText=this.year;
         this.addDays();
       },
@@ -187,9 +284,9 @@
         // console.log(e.currentTarget.previousElementSibling);
         //改变初始当前选中日期
         this.changeDay(parseInt(this.month)+1,this.monthNow);
-        this.setBgcNum();
         // console.log(this.month);
         this.month=(parseInt(this.month)+1)>12?"01":((parseInt(this.month)+1)<10?("0"+(parseInt(this.month)+1)):(parseInt(this.month)+1));
+        this.setBgcNum();
         e.currentTarget.previousElementSibling.innerText=this.month;
         this.addDays();
       },
@@ -198,8 +295,8 @@
         // console.log(e.currentTarget.parentElement,1)
         //改变初始当前选中日期
         this.changeDay(parseInt(this.month)-1,this.monthNow)
-        this.setBgcNum();
         this.month=(parseInt(this.month)-1)<1?"12":((parseInt(this.month)-1)<10?("0"+(parseInt(this.month)-1)):(parseInt(this.month)-1))
+        this.setBgcNum();
         e.currentTarget.parentElement.childNodes[0].innerText=this.month;
         this.addDays();
       },
@@ -225,6 +322,7 @@
         // let firstDayWek=firstDayWeek.getDate();
         //console.log( firstDayWeek.getFullYear(),firstDayWeek.getMonth()+1,firstDayWeek.getDate(), firstDayWeek.getDay(),this.dayNow)
         this.days.length=0;
+        this.prefixPlantDays=firstDayWeek;
         for(let i=0;i<firstDayWeek;i++){
           this.days.push("");
         }
@@ -238,11 +336,39 @@
         }
         // console.log(this.days);
       },
-      changeAndOpen(e){
-        //改变背景数字
-        let dayNum=e.currentTarget.previousElementSibling.innerText;
-        parseInt(dayNum)<10?this.day="0"+dayNum:this.day=dayNum;
+      // 查看计划
+      seePlan(index,item){
+        parseInt(item)<10?this.day="0"+item:this.day=item;
         this.setBgcNum();
+
+        this.temp_sw='none'
+        this.currentPlans = this.plans[index - this.prefixPlantDays]
+        setTimeout(()=>{
+            this.temp_sw='block'
+        },200)
+      },
+      // 改变计划列表内的计划的宽度
+      getWidth(index){
+
+         let diff = Math.abs(this.activePlanIndex - index)
+        if(diff == 0){
+          return '12vw'
+        }
+        else if(diff == 1){
+          return '8vw'
+        }
+        else{
+          return '6vw'
+        }
+      },
+      activeItem(index){
+       this.activePlanIndex = index
+      },
+      sleepItem(index){
+        this.activePlanIndex = -2
+      },
+      deleteItem(index){
+        this.currentPlans.splice(index,1)
       }
     },
     mounted(){
@@ -269,12 +395,6 @@
       }, 1000);
     //  clearInterval(timer);
       this.addDays();
-      
-
-      
-      
-      
-      
     }
   }
 </script>
