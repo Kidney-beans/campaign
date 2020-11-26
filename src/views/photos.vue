@@ -27,37 +27,37 @@ export default {
   props: {},
   data() {
     return {
-      currentImg: "http://pic.netbian.com/uploads/allimg/201022/222149-16033765090dc7.jpg",
+      currentImg: "http://dark.y-j-x.work/public/imgs/1.jpg",
       photosArr: [
         {
           date: "1月1日",
           photos: [
             {
-              src: "http://pic.netbian.com/uploads/allimg/201022/222149-16033765090dc7.jpg",
+              src: "http://dark.y-j-x.work/public/imgs/1.jpg",
             },
             {
-              src: "http://pic.netbian.com/uploads/allimg/190207/201425-1549541665f301.jpg",
+              src: "http://dark.y-j-x.work/public/imgs/2.jpg",
             },
             {
-              src: "http://pic.netbian.com/uploads/allimg/200923/225226-160087274631cb.jpg",
+              src: "http://dark.y-j-x.work/public/imgs/3.jpg",
             },
             {
-              src: "http://pic.netbian.com/uploads/allimg/200729/221519-1596032119fab8.jpg",
+              src: "http://dark.y-j-x.work/public/imgs/4.jpg",
             },
             {
-              src: "http://pic.netbian.com/uploads/allimg/201022/222149-16033765090dc7.jpg",
+              src: "http://dark.y-j-x.work/public/imgs/5.jpg",
             },
             {
-              src: "http://pic.netbian.com/uploads/allimg/190207/201425-1549541665f301.jpg",
+              src: "http://dark.y-j-x.work/public/imgs/6.jpg",
             },
             {
-              src: "http://pic.netbian.com/uploads/allimg/200923/225226-160087274631cb.jpg",
+              src: "http://dark.y-j-x.work/public/imgs/7.jpg",
             },
             {
-              src: "http://pic.netbian.com/uploads/allimg/200729/221519-1596032119fab8.jpg",
+              src: "http://dark.y-j-x.work/public/imgs/8.jpg",
             },
             {
-              src: "http://pic.netbian.com/uploads/allimg/201022/222149-16033765090dc7.jpg",
+              src: "http://dark.y-j-x.work/public/imgs/9.jpg",
             },
           ],
         },
