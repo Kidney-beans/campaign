@@ -7,12 +7,15 @@
 
     <h1 class="photos-title">Photos</h1>
     <div class="photosBox">
+      <!-- 图片显示区 -->
       <div class="photos-show">
         <img :src="currentImg" class="photos-show-imgstyle" />
-        <img src="~assets/photos/photosBtn.png" class="photos-btn-right photos-btn" @click="hd" />
-        <img src="~assets/photos/photosBtn.png" class="photos-btn-left photos-btn" />
+          <!-- 图片切换按钮 -->
+        <img src="~assets/photos/photosBtn.png" class="photos-btn-right photos-btn" @click="photosRightBtn" v-show="rightImgIsShow"/>
+        <img src="~assets/photos/photosBtn.png" class="photos-btn-left photos-btn" @click="photosLeftBtn" v-show="leftImgIsShow"/>
         <p></p>
       </div>
+      <!-- 小图片列表 -->
       <div class="photos-list">
         <ul v-for="item in photosArr" :key="item.date">
           <!-- <dt>{{ year + "年" + month + "月" + day + "日" + h + "时" + m + "分" + s + "秒" }}</dt> -->
@@ -76,6 +79,9 @@ export default {
           ],
         },
       ],
+      indexImg:0,
+      rightImgIsShow:true,
+      leftImgIsShow:false,
       year: "",
       month: "",
       day: "",
@@ -112,15 +118,35 @@ export default {
     showImg(src) {
       this.currentImg = src;
     },
-    meteorSetTimeout() {
-      //   let meteor=document.getElementById("met");
-      //   setTimeout(function(){
-      //     let a=Math.ceil((Math.random()*100))
-      //     console.log(a)
-      //   },3000);
+    // 图片却换按钮
+    photosRightBtn: function () {
+      this.indexImg++
+      if(this.indexImg==this.photosArr[0].photos.length){
+       let countImg= this.photosArr[0].photos.length-1
+        this.indexImg=countImg
+        this.rightImgIsShow=false
+      }else{
+        if(this.indexImg==(this.photosArr[0].photos.length-1)){
+        this.rightImgIsShow=false
+        }else{
+        this.leftImgIsShow=true
+        this.rightImgIsShow=true
+        }
+        // this.leftImgIsShow=true
+        // this.rightImgIsShow=true
+      }
+      this.currentImg=this.photosArr[0].photos[this.indexImg].src
     },
-    hd: function () {
-      console.log();
+    photosLeftBtn: function(){
+       this.indexImg--
+       if(this.indexImg<=0){
+         this.indexImg=0
+         this.leftImgIsShow=false
+       }else{
+         this.rightImgIsShow=true
+         this.leftImgIsShow=true
+       }
+       this.currentImg=this.photosArr[0].photos[this.indexImg].src
     },
     meteorRun() {
       setInterval(() => {
@@ -141,7 +167,7 @@ export default {
   components: {},
   mounted() {
     this.getdate();
-    this.meteorSetTimeout();
+    // this.meteorSetTimeout();
     this.meteorRun();
   },
 };

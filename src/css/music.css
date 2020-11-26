@@ -45,8 +45,8 @@
 
 }
 .musicbartext li{
-display: none;
-animation: showtxt 2s ;
+/* display: none; */
+    animation: showtxt 2s ;
 }
 .showbar {
     position: absolute;

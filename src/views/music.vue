@@ -1,7 +1,6 @@
 <template>
   <div id="music">
     <h1 class="title-h1">music</h1>
-    
     <audio controls @timeupdate="timeUpdate" id="audio" >
     <source src="../assets/music/临安初雨.mp3" type="audio/mpeg">
     </audio>
@@ -9,12 +8,11 @@
       <div class="music-bar"></div>
      <div class="showbar musicbartext">
      <ul class="music-bar-text">
-       <!-- 注意注意 -->
-       <li>lailll</li>
+       <li>歌手</li>
+       <li>歌曲名</li>
      </ul>
      </div>
       <input type="text" class="music-seek" value=""/>
-      
       <div class="music-log"></div>
       <div class="min-box">
         <div class="minlog1"></div>
@@ -33,7 +31,7 @@
       </span>
       <span><img src="../assets/music/last.png" class="some-btns music-btn-next"></span>
 
-      <volumn-control side-length="4vh" top="1.5vh" left="15%" top-offset="-16.5vh" bar-height="134px" @change="changeV"></volumn-control>
+      <volumn-control side-length="4vh" top="1.5vh" left="15%" top-offset="-15.6vh" bar-height="134px" @change="changeV"></volumn-control>
         <!-- <span><img src="../assets/music/音量.png"></span> -->
       <div class="music-porgre-border" @click="adaptMusicTime" real="p">
          <span class="music-porgre-solid" real="s" :style="{'left':-100+((currentMusicTime / currentDuration) * 100) + '%'}"></span>
@@ -64,6 +62,9 @@ export default {
       let srcEle = e.srcElement;
       this.currentMusicTime = srcEle.currentTime
       this.currentDuration = srcEle.duration
+       if((srcEle.duration-srcEle.currentTime)<=0){
+        this.pause = true
+      }
       console.log("已更改：")
       console.log(srcEle)
       console.log(this.currentMusicTime,this.currentDuration)
