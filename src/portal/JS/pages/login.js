@@ -103,7 +103,7 @@ $(function () {
 					$("#prompt-block").attr({"tex":`登录成功！欢迎您,${res.result.name}`})
 					setTimeout(()=>{
 						$("#prompt-block-container").css("display","none")
-						window.location.href=`http://localhost:8099/gate&SSK=${res.result.ssk}`
+						window.location.href=`http://localhost:8099/gate?ssk=${res.result.ssk}`
 					},3000)
 				}
 				else{

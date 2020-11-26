@@ -29,38 +29,50 @@ export default {
   props: {},
   data() {
     return {
-      currentImg: "http://dark.y-j-x.work/public/imgs/1.jpg",
+      currentImg: "http://118.25.144.69/public/imgs/1.jpg",
       photosArr: [
         {
           date: "1月1日",
           photos: [
             {
-              src: "http://dark.y-j-x.work/public/imgs/1.jpg",
+              src: "http://118.25.144.69/public/imgs/1.jpg",
             },
             {
-              src: "http://dark.y-j-x.work/public/imgs/2.jpg",
+              src: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://dark.y-j-x.work/public/imgs/3.jpg",
+              src: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://dark.y-j-x.work/public/imgs/4.jpg",
+              src: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://dark.y-j-x.work/public/imgs/5.jpg",
+              src: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://dark.y-j-x.work/public/imgs/6.jpg",
+              src: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://dark.y-j-x.work/public/imgs/7.jpg",
+              src: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://dark.y-j-x.work/public/imgs/8.jpg",
+              src: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://dark.y-j-x.work/public/imgs/9.jpg",
+              src: "http://118.25.144.69/public/imgs/9.jpg",
             },
+            {
+              src: "http://118.25.144.69/public/imgs/10.jpg",
+            },
+            {
+              src: "http://118.25.144.69/public/imgs/11.jpg",
+            },
+            {
+              src: "http://118.25.144.69/public/imgs/12.jpg",
+            },
+            {
+              src: "http://118.25.144.69/public/imgs/13.jpg",
+            }
           ],
         },
       ],
