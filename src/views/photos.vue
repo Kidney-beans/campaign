@@ -11,9 +11,9 @@
       <div class="photos-show">
         <img :src="currentImg" class="photos-show-imgstyle" />
           <!-- 图片切换按钮 -->
-        <img src="~assets/photos/photosBtn.png" class="photos-btn-right photos-btn" @click="photosRightBtn" v-show="rightImgIsShow"/>
-        <img src="~assets/photos/photosBtn.png" class="photos-btn-left photos-btn" @click="photosLeftBtn" v-show="leftImgIsShow"/>
-        <p></p>
+        <img src="~assets/photos/photosBtn.png" class="photos-btn-left photos-btn" @click="photosLeftBtn" v-show="indexImg != 0"/>
+        <img src="~assets/photos/photosBtn.png" class="photos-btn-right photos-btn" @click="photosRightBtn" v-show="indexImg != photosArr[0].photos.length-1"/>
+         <p></p>
       </div>
       <!-- 小图片列表 -->
       <div class="photos-list">
@@ -26,9 +26,14 @@
         <div class="right-bound-block bound-block" @mouseenter="rightMove" @mouseleave="rightMoveStop"> 》 </div>
       </div>
     </div>
+    <div class="switch-btn-container">
+      <photos-menu-btn u-key="btn1"></photos-menu-btn>
+    </div>
   </div>
 </template>
 <script>
+import PhotosMenuBtn from 'components/own/photos-menu-btn.vue'
+
 export default {
   name: "",
   props: {},
@@ -106,8 +111,6 @@ export default {
         },
       ],
       indexImg:0,
-      rightImgIsShow:true,
-      leftImgIsShow:false,
       year: "",
       month: "",
       day: "",
@@ -134,6 +137,9 @@ export default {
       rightInterval:null
     };
   },
+  components:{
+    PhotosMenuBtn
+  },
   methods: {
     getdate() {
       let date = new Date();
@@ -151,32 +157,13 @@ export default {
     // 图片却换按钮
     photosRightBtn: function () {
       this.indexImg++
-      if(this.indexImg==this.photosArr[0].photos.length){
-       let countImg= this.photosArr[0].photos.length-1
-        this.indexImg=countImg
-        this.rightImgIsShow=false
-      }else{
-        if(this.indexImg==(this.photosArr[0].photos.length-1)){
-        this.rightImgIsShow=false
-        }else{
-        this.leftImgIsShow=true
-        this.rightImgIsShow=true
-        }
-        // this.leftImgIsShow=true
-        // this.rightImgIsShow=true
-      }
+      
       this.currentImg=this.photosArr[0].photos[this.indexImg].src
       this.adaptOffset()
     },
     photosLeftBtn: function(){
        this.indexImg--
-       if(this.indexImg<=0){
-         this.indexImg=0
-         this.leftImgIsShow=false
-       }else{
-         this.rightImgIsShow=true
-         this.leftImgIsShow=true
-       }
+       
        this.currentImg=this.photosArr[0].photos[this.indexImg].src
        this.adaptOffset()
     },
@@ -199,14 +186,7 @@ export default {
     },
     leftMoveStop(){
       clearInterval(this.leftInterval)
-      if(this.left_offset > 0){
-        let ul = document.getElementById('photos-ul')
-        ul.style.transition = "0.4s all"
-        this.left_offset = 0
-        setTimeout(()=>{
-          ul.style.transition = ""
-        },400)
-      }
+      this.adaptOffset()
     },
     rightMove(e){
       this.rightInterval = setInterval(()=>{
@@ -217,18 +197,7 @@ export default {
     rightMoveStop(){
       
       clearInterval(this.rightInterval)
-      let ul = document.getElementById('photos-ul')
-      
-      let widthPx = ul.offsetWidth
-      let screenWidthPx = screen.availWidth
-      let diff = widthPx - screenWidthPx
-      if(-this.left_offset > diff){
-        ul.style.transition = "0.4s all"
-        this.left_offset = -diff
-        setTimeout(()=>{
-          ul.style.transition = ""
-        },400)
-      }
+      this.adaptOffset()
     },
     adaptOffset(){
       setTimeout(()=>{
@@ -253,8 +222,6 @@ export default {
       },100)
     }
   },
-  computed: {},
-  components: {},
   mounted() {
     this.getdate();
     // this.meteorSetTimeout();

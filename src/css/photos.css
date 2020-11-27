@@ -203,3 +203,11 @@ from{
     background-image: inherit;
     filter: blur(7px);
 }
+
+.switch-btn-container{
+    position: absolute;
+    top:40vh;
+    right: 3vw;
+    width:20vh;
+    height: 20vh;
+}
