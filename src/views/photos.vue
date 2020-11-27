@@ -136,7 +136,7 @@ export default {
       leftInterval:null,
       rightInterval:null
     };
-  },
+  }, 
   components:{
     PhotosMenuBtn
   },
