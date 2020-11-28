@@ -2,7 +2,6 @@
   <div id='plan'>
     <!-- 背景 -->
     <div class="bgc">
-      <div class="number"></div>
       <h2 class="mask" :testStr="bgcNum"></h2>
     </div>
       <!-- 日历 -->
@@ -12,7 +11,6 @@
           <!-- 当前年份 -->
           <div class="year">
             <div></div>
-            
             <!-- 增加年份 -->
             <div class="plus" @click="plusYear">+</div>
             <!-- 减少年份 -->
@@ -51,23 +49,72 @@
         </div>
       </div>
       <!-- 计划列表 -->
-      <div class="planList" :style="{'display':temp_sw}">
+      <div class="planList" :class="{'planList-hidden':!listShow}" @mouseleave="hiddenPlan">
         <!-- 添加计划按钮 -->
         <div class="btnPlan">
-          <div title="添加计划">+</div>
+          <div title="添加计划" @click="planPageDisplay">+</div>
         </div>
         <!-- 计划列表内的计划 -->
-        <ul class="ulPlan" >
+        <ul class="ulPlan" :style="{'display':temp_sw}">
           <li class="havePlan" v-for="(item,index) in currentPlans" :style="{'top': 5 + (index * 15) + 'vh','width':getWidth(index)}" :key="item"  >
             <div class="planDel" title="删除计划" @click="deleteItem(index)">x</div>
             <div @mouseenter="activeItem(index)" @mouseout="sleepItem(index)">PLAN{{index+1}}</div>
           </li>
       </ul>
       </div>
+      <!-- 添加计划页 -->
+      <div class="addPlanPage PlanPageAn" :style="{'display':pageDisplay}">
+          <div class="formPlan">
+            <el-form ref="form" :model="form" label-width="80px">
+              <el-form-item label="标题">
+                <el-input v-model="form.name"></el-input>
+              </el-form-item>
+              <el-form-item label="地点">
+                <el-input v-model="form.position"></el-input>
+              </el-form-item>
+              <el-form-item label="计划时间">
+                <el-col :span="11">
+                  <el-time-select
+                    placeholder="起始时间"
+                    v-model="form.startTime"
+                    :picker-options="{
+                      start: '08:30',
+                      step: '00:15',
+                      end: '18:30'
+                    }">
+                  </el-time-select>
+                </el-col>
+                <el-col class="line" :span="2">-</el-col>
+                <el-col :span="11">
+                  <el-time-select
+                    placeholder="结束时间"
+                    v-model="form.endTime"
+                    :picker-options="{
+                      start: '08:30',
+                      step: '00:15',
+                      end: '18:30',
+                      minTime: startTime
+                    }">
+                  </el-time-select>
+                </el-col>
+              </el-form-item>
+              <el-form-item label="具体计划">
+                <el-input type="textarea" v-model="form.desc" :autosize="{ minRows: 2, maxRows: 4}"></el-input>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" @click="onSubmit">添加</el-button>
+                <el-button>取消</el-button>
+              </el-form-item>
+            </el-form>
+          </div>
+      </div>
+      <!-- 显示详细计划 -->
+      <div class="showDetailedPlan">
+        <div></div>
+      </div>
   </div>
 </template>
 <script>
-  import SpotLamp from 'components/common/spot-lamp.vue'
   export default {
     name:'',
     props:{
@@ -75,6 +122,15 @@
     },
     data(){
       return{
+        form: {
+          name: '',
+          position:'',
+          startTime: '',
+          endTime: '',
+          desc: ''
+        },
+        listShow:false,
+        pageDisplay:'none',
         temp_sw:'none',
         week:["日","一","二","三","四","五","六"],
         days:["1","2"],
@@ -214,7 +270,7 @@
       }
     },
     components:{
-      SpotLamp
+     
     },
     methods:{
       //设置年份
@@ -256,6 +312,8 @@
       //设置背景数字
       setBgcNum(){
         this.bgcNum=this.month+"."+this.day;
+        this.currentPlans = this.plans[this.day-1];
+        console.log(this.currentPlans)
       },
       //增加年份
       plusYear(e){
@@ -340,16 +398,20 @@
       seePlan(index,item){
         parseInt(item)<10?this.day="0"+item:this.day=item;
         this.setBgcNum();
-
         this.temp_sw='none'
+        this.listShow = true
         this.currentPlans = this.plans[index - this.prefixPlantDays]
         setTimeout(()=>{
             this.temp_sw='block'
         },200)
       },
+      //隐藏计划
+      hiddenPlan(e){
+        this.temp_sw='none';
+        this.listShow = false
+      },
       // 改变计划列表内的计划的宽度
       getWidth(index){
-
          let diff = Math.abs(this.activePlanIndex - index)
         if(diff == 0){
           return '12vw'
@@ -369,6 +431,12 @@
       },
       deleteItem(index){
         this.currentPlans.splice(index,1)
+      },
+      onSubmit() {
+        console.log('submit!');
+      },
+      planPageDisplay(){
+        this.pageDisplay="block";
       }
     },
     mounted(){
@@ -378,8 +446,9 @@
       this.yearNow=this.year;
       this.month=date.getMonth()+1;
       this.monthNow=this.month;
-      this.dayNow=date.getDate();
-      this.day=this.dayNow;
+      this.day=date.getDate();
+      this.dayNow=this.day;
+      this.currentPlans = this.plans[this.day-1];
       this.setBgcNum();
       this.setYear(".year",this.year);
       this.setMonth(".month",this.month);
