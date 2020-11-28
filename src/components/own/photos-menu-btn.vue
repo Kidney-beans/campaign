@@ -2,8 +2,9 @@
   <div class='photos-menu-btn' :u-key="UKey">
     <colorful-circle-frame :side-length="SideLength" :side-width="SideWidth">
       <colorful-circle-frame :side-length="SideLength-50" :reverse="true" :side-width="SideWidth">
-        <img src="~assets/photos/switch-1.png" v-show="status" class="switch-img"/>
-        <img src="~assets/photos/switch-2.png" v-show="!status" class="switch-img"/>
+        <!-- <img src="~assets/photos/switch-1.png" v-show="status" class="switch-img"/> -->
+        <!-- <img src="~assets/photos/switch-2.png" v-show="!status" class="switch-img"/> -->
+        <img src="~assets/photos/up.png" v-show="!Status" class="switch-img" @click="btnClick"/>
       </colorful-circle-frame>
     </colorful-circle-frame>
   </div>
@@ -14,7 +15,10 @@ import ColorfulCircleFrame from 'components/common/colorful-circle-frame.vue'
     name:'PhotosMenuBtn',
     props:{
       UKey:String,
-      Status:Boolean
+      Status:{
+        type:Boolean,
+        default:false
+      }
     },
     data(){
       return{
@@ -27,6 +31,11 @@ import ColorfulCircleFrame from 'components/common/colorful-circle-frame.vue'
     },
     components:{
       ColorfulCircleFrame
+    },
+    methods:{
+      btnClick(){
+        this.$emit('btn-click')
+      }
     },
     mounted(){
         console.log("[u-key=" + this.UKey + "]")
@@ -44,10 +53,23 @@ import ColorfulCircleFrame from 'components/common/colorful-circle-frame.vue'
   }
 
   .photos-menu-btn .switch-img{
-    width:75%;
-    height: 75%;
-    opacity: 0.5;
-    
-    /* filter: brightness(1.4); */
+    width:60%;
+    height: 60%;
+    border-radius: 50%;
+    cursor: pointer;
+    animation: upup 1s infinite;
+  }
+
+  .photos-menu-btn .switch-img:hover{
+    animation-play-state: paused;
+  }
+
+  @keyframes upup {
+    0%{
+      transform: translateY(10px) scaleX(1.1) scaleY(0.8);
+    }
+    100%{
+      transform: translateY(-6px) ;
+    }
   }
 </style>

@@ -53,8 +53,13 @@
     top: 78vh;
     border: 2px solid rgb(67,180,255);
     background-color: rgba(140, 219, 255, 0.2);
+    transition: 0.8s all;
     /* overflow: hidden; */
     /* display: none; */
+}
+
+.photos-list-hidden{
+    transform: translateY(11vh);
 }
 
 .bound-block{
@@ -133,11 +138,18 @@ ul li .active{
     position: absolute;
     width: 60vw;
     height: 74vh;
-    left: 19vw;
+    left: 20vw;
     background-color: transparent;
     flex-direction: row;
     display:flex;
     list-style: none;
+    transition: 0.8s all;
+    z-index: 100;
+}
+
+.photos-show-hidden{
+    transform: translateY(-100vh);
+    opacity: 0;
 }
 
 .photos-show .photos-show-imgstyle{
@@ -172,9 +184,14 @@ ul li .active{
     opacity: .5;
     
 }
+
+.photos-show .photos-btn{
+    transition: 0.4s all;
+    cursor: pointer;
+}
 .photos-show .photos-btn:hover{
     opacity: 1;
-    filter:contrast(160%) ;
+    filter:brightness(2);
 }
 
 .meteor{
@@ -188,11 +205,12 @@ ul li .active{
     animation: met 5s infinite linear;
 }
 @keyframes met {
-from{
-    transform: translateX(0) translateY(0) rotate(-30deg);
-}to{
-    transform: translateX(-260vh) translateY(150vh) rotate(-30deg);
-}
+    from{
+        transform: translateX(0) translateY(0) rotate(-30deg);
+    }
+    to{
+        transform: translateX(-260vh) translateY(150vh) rotate(-30deg);
+    }
 }
 .meteor::before,
 .meteor::after{
@@ -207,7 +225,138 @@ from{
 .switch-btn-container{
     position: absolute;
     top:40vh;
-    right: 3vw;
-    width:20vh;
-    height: 20vh;
+    right: 5vw;
+    width:16vh;
+    height: 16vh;
+}
+
+.photo-album-list-container{
+    height: 70vh;
+    width: 70vw;
+    position: absolute;
+    top: 15vh;
+    left: 15vw;
+    z-index: 99;
+    background-color: transparent;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.photo-album-container{
+    width:70vw;
+    height: 50vh;
+    transform: translateZ(-800px);
+    transition: transform 0.8s;
+}
+
+.photo-album-container-appear{
+    transform: translateZ(-200px);
+}
+
+#photos .el-carousel__item h3 {
+    color: #475669;
+    font-size: 14px;
+    opacity: 0.75;
+    line-height: 200px;
+    margin: 0;
+  }
+  
+#photos .el-carousel__item:nth-child(2n) {
+    background-color: transparent;
+}
+
+#photos .el-carousel__item:nth-child(2n+1) {
+    background-color: transparent;
+}
+
+#photos .el-carousel__indicators{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.el-carousel__item{
+    
+}
+
+.el-carousel__mask{
+    background-color: transparent !important;
+}
+
+.album-item-container{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    box-sizing: border-box;
+    padding: 10%;
+}
+
+.album-item-container .date-show{
+    position: absolute;
+    top:0;
+    left: 0;
+    color: white;
+    font-size: 1.5em;
+    text-shadow: 1px 1px black;
+    box-sizing: border-box;
+    padding: 12%;
+}
+
+.album-item-container img{
+    display: block;
+    width: 100%;
+    border: 2px solid rgb(67,180,255);
+    box-sizing: border-box;
+    border-radius: 5px;
+    position: relative;
+    opacity: 0.6;
+    transition: 0.4s all;
+    transform: scale(1);
+}
+
+.album-item-container img:hover{
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+.add-photos-btn-container{
+    transform: translateZ(-800px);
+    position: absolute;
+    bottom: 5vh;
+    transition: 0.8s;
+    opacity: 0.9;
+}
+
+.add-photos-btn-container-appear{
+    transform: translateZ(-200px);
+}
+
+.remark-bar{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 101;
+    height: 15%;
+    width:100%;
+    background-color: rgba(0,0,0,0.4);
+    color: white;
+    text-shadow: 1px 1px black;
+    text-align: center;
+    box-sizing: border-box;
+    padding: 2em;
+    animation: remark-bar-show 0.4s forwards;
+}
+
+@keyframes remark-bar-show{
+    0%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 1;
+    }
 }
