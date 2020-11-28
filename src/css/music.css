@@ -11,8 +11,9 @@
     top:0;
     left:0;
     overflow: hidden;
+    perspective: 1000px;
+    transform-style: preserve-3d;
 }
-
 #audio{
     display: none;
 }
@@ -40,29 +41,122 @@
     background-color: rgba(196, 253, 251, 0.2);
     box-shadow: 10px 10px 20px #4a36ff ,-10px -10px 20px #ff2378,-10px 10px 20px #4a36ff ,10px -10px 20px #ff2378;
     overflow: hidden;
+    transition: all .4s;
+    transform: translateZ(50px);
+    z-index: 50;
 }
-.mubarstop{
-
+.music-box-far{
+    transform: translateZ(-50px);
 }
-.musicbartext li{
-/* display: none; */
-    animation: showtxt 2s ;
-}
-.showbar {
+/* 音乐列表模拟盒子 */
+.music-bar{
     position: absolute;
     top: 7vh;
     height: 75%;
     width: 30vh;
-    background-color: skyblue;
-    border-radius: 5px;
-    transition: all .3s;
+    background-color:transparent;
     opacity: .7;
-    transform: translateX(-20vw);
+    border-radius: 5px;
+    z-index: 30;
 }
 
-.music-bar:hover~.showbar{
-    transform: translateX(0.5vw);
+.showbar {
+    position: absolute;
+    
+    top: 7vh;
+    height: 60vh;
+    width: 30vh;
+    background-color: rgba(251, 251, 251, 0.596);
+    border-radius: 5px;
+    transition: all .3s;
+    opacity: 1;
+    transform: translateX(2px);
+    z-index: 60;
+
 }
+
+.showbar-hidden{
+    transform: translateX(-20vw);
+    z-index: 61;
+}
+ul li{
+    margin-top: 20px;
+
+}
+ul{
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    
+}
+/* .h3 {
+    top: .2vh;
+    position: relative;
+    display: inline;
+    margin-right: 2.5vw;
+    padding-left: 1.5vw;
+} */
+/* .music-bar-list li{
+    position: relative;
+    display: inline;
+    margin-left: 1vw;
+} */
+
+.bulletScreen{
+    position: relative;
+    width: 50px;
+    left: 16vw;
+    top: 3.5vh;
+}
+.bulletText{
+    position: absolute;
+    top: .9vh;
+    left: 16.2vw;
+    color:#892cdc;
+    font-size: 1em;
+}
+
+/*在这调弹幕输入容器样式*/
+.bulletInput{
+    position: absolute;
+    left:0;
+    width:100vw;
+    justify-content: center;
+    bottom: 10px;
+    transition: all .4s;
+    z-index: 51;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.bulletInput-hidden{
+    transform: translateY(10vh);
+
+}
+
+/*在这调输入框整体样式*/
+.el-input{
+    width:20vw;
+}
+
+/*在这调输入框文本框样式*/
+.el-input input{
+    color: white;
+    background-color:rgba(0, 0, 0, 0.561);
+}
+
+/*弹幕文字输出样式设置*/
+.bulletTextContent{
+    position: absolute;
+    left: 40%;
+    list-style: none;
+    font-size: 1.2em;
+    color: white;
+
+}
+
 .music-btn-last{
     position: absolute;
     height: 45px;
@@ -80,8 +174,6 @@
     top: 1vh;
     background-size: 100%;
     user-select: none;
-    
-    
 }
 
 .music-btn-next{
@@ -94,6 +186,7 @@
     transform: rotateZ(-180deg);
     user-select: none;
 }
+/* 两个小log的动画 */
 .some-btns{
     cursor: pointer;
     display: block;
@@ -108,9 +201,9 @@
     position: absolute;
     border: 1px solid rgb(17, 255, 255);
     height: 1.5vh;
-    width: 58vw;
+    width: 55vw;
     top: 2.75vh;
-    left: 22%;
+    left: 25%;
     overflow: hidden;
     cursor: pointer;
     border-radius: 0.75vh;
@@ -148,16 +241,6 @@
     }
 }
 
-.music-bar{
-    position: absolute;
-    top: 7vh;
-    height: 75%;
-    width: 30vh;
-    background-color: rgba(0, 242, 250, 0);
-    opacity: .7;
-    border-radius: 5px;
-    z-index: 999;
-}
 .progress-bar{
     position: absolute;
     height: 7vh;
@@ -173,10 +256,12 @@
     position: absolute;
     border: none;
     outline: none;
-    width: 25vw;
-    height: 5vh;
-    left: 50vh;
+    width: 23vw;
+    height: 4vh;
+    left: 52vh;
     top: 1vh;
+    font-size: 1.5em;
+    color: cornsilk;
     background-color:rgba(255, 255, 255, 0.1);
     border-color:rgb(169, 22, 182);
     border-radius: 1vh;
@@ -187,19 +272,17 @@
     width: 8vw;
     height: 40vh;
     left: 35vw;
-    top:20vh;
+    top:16vh;
     background-image: url(~assets/music/music_log2.png);
     background-repeat: no-repeat;
     background-size: 100%;
     animation: boun 3s infinite;
     filter: brightness(1);
-
     /* transition: all .3s linear 300ms; */
-   
 }
 .min-box{
     position: absolute;
-    top: 12vh;
+    top: 11vh;
     left: 41vw;
     filter: brightness(1);
     animation: minlog 3s infinite;
@@ -210,12 +293,10 @@
     width: 3vw;
     height: 6vh;
     left: 4vw;
-    top:40vh;
+    top:39vh;
     background-size: 100%;
     background-image: url(~assets/music/music_log3.png);
     background-repeat: no-repeat;
-    
-
 }
 .minlog2{
     position: fixed;
@@ -230,25 +311,25 @@
 }
 @keyframes boun{
     0%,100%{
-        top:20vh;
+        top:16vh;
         
     }
     50%{
 
-        top:23vh;
+        top:19vh;
       
     }
 }
 @keyframes minlog{
 0%,99%{
-    top: 12vh;
+    top: 11vh;
    
 }50%{
-    top: 10vh;
+    top: 9vh;
 }
 
 }
-@keyframes showtxt  {
+/* @keyframes showtxt  {
     from{
         opacity: 0;
         
@@ -256,4 +337,4 @@
         opacity: .7;
         display: block;
     }
-}
+} */

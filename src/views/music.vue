@@ -4,15 +4,42 @@
     <audio controls @timeupdate="timeUpdate" id="audio" >
     <source src="../assets/music/临安初雨.mp3" type="audio/mpeg">
     </audio>
-    <div class="music-box">
-      <div class="music-bar"></div>
-     <div class="showbar musicbartext">
-     <ul class="music-bar-text">
-       <li>歌手</li>
-       <li>歌曲名</li>
-     </ul>
-     </div>
-      <input type="text" class="music-seek" value=""/>
+
+    <div :class="{'bulletInput':true,'bulletInput-hidden':!bullet}">
+    <!-- Width:String,
+      Height:String,
+      Text:String,
+      BorderRadius:String,
+      FontSize:String-->
+      <el-input  
+      v-model="bulletInputText"
+      placeholder="请输入内容">
+      </el-input>
+      <cool-button width="100px" height="35px" Text="发送" BorderRadius="3px"  font-size="0.8em" ></cool-button>
+    </div>
+    <div :class="{'music-box':true,'music-box-far':bullet}">
+     <div class="music-bar" @mouseenter="shouldShowBar = true" ></div>
+     <div @mouseleave="shouldShowBar = false" :class="{'showbar':true,'showbar-hidden':!shouldShowBar}">
+        <!-- 音乐列表组件 -->
+       <el-table
+    :data="musicData"
+    height="60vh"
+    border
+    style="width: 100%">
+    <el-table-column
+      prop="singer"
+      label="歌手"
+      width="100">
+    </el-table-column>
+    <el-table-column
+      prop="song"
+      label="歌曲"
+      width="280">
+      </el-table-column>
+  </el-table>
+    </div>
+   
+      <input type="text" class="music-seek" value="  "/>
       <div class="music-log"></div>
       <div class="min-box">
         <div class="minlog1"></div>
@@ -36,14 +63,27 @@
       <div class="music-porgre-border" @click="adaptMusicTime" real="p">
          <span class="music-porgre-solid" real="s" :style="{'left':-100+((currentMusicTime / currentDuration) * 100) + '%'}"></span>
         </div>
-      
+        <span class="bulletText">弹幕</span>
+      <div class="bulletScreen">
+          <el-switch
+          v-model="bullet"
+          active-color="#892cdc"
+          inactive-color="#ff4949">
+        </el-switch>
       </div>
+     
+      </div>
+       <ul class="bulletTextContent">
+        <li>{{bulletInputText}}</li>
+      </ul>
     </div>
+    
   </div>
 </template>
 <script>
 
 import VolumnControl from 'components/own/volumn-control.vue'
+import CoolButton from 'components/common/cool-button.vue'
 
 export default {
   
@@ -52,9 +92,60 @@ export default {
   },
   data() {
     return { 
+      value: true,
         currentMusicTime:0,
         currentDuration:1000000,
-        pause:true
+        pause:true,
+        bullet:false,
+        bulletInputText:" ",
+        shouldShowBar:false,
+        musicData: [{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },{
+                    singer: '谢安琪',
+                      song: '喜帖街'
+                    },
+                  ],
     };
   },
   methods: {
@@ -110,12 +201,14 @@ export default {
         va = 0.95
       }
       document.getElementById('audio').volume = va
-    }
+    },
+
 
   },
   computed: {},
   components: {
-    VolumnControl
+    VolumnControl,
+    CoolButton
   },
   mounted() {
     
