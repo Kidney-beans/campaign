@@ -136,30 +136,49 @@
           <img :src="currentAdd.currentUploadURL" class="img-preview" v-show="currentAdd.currentUploadURL != ''" />
         </div>
         <div class="photo-auto-msg-container">
-          <div class="update-date"></div>
-          <div class="img-name"></div>
-          <div class="img-size"></div>
+          <div class="img-indate msg-container">
+            <div v-show="currentAdd.indate">上传日期: </div>
+            <div>{{currentAdd.indate}}</div>
+          </div>
+          <div class="img-name msg-container">
+            <div v-show="currentAdd.name">图片名: </div>
+            <div>{{currentAdd.name}}</div>
+          </div>
+          <div class="img-size msg-container">
+            <div v-show="currentAdd.size">图片大小:</div>
+            <div v-show="currentAdd.size">{{currentAdd.size}}B</div>
+          </div>
         </div>
         <div class="photo-remark-input-container">
           <el-input
             type="textarea"
             :rows="2"
             placeholder="请输入图片备注(选填)"
-            v-model="currentAdd.currentUploadRemark">
+            v-model="currentAdd.remark">
           </el-input>
         </div>
         <div class="photo-remark-btn-container">
-          <el-button type="primary" plain>加入上传</el-button>
-          <el-button type="danger" plain>清空此项</el-button>
+          <el-button type="primary" plain @click="pushCurrentAdd">加入上传</el-button>
+          <el-button type="danger" plain @click="clearCurrentAdd">清空此项</el-button>
         </div>
       </div>
     </el-dialog>
-    <div class="photos-upload-list-show" v-show="addingListShow"></div>
+    <div class="photos-upload-list-show" v-show="addingListShow">
+      <div class="header">
+
+      </div>
+      <div class="upload-list">
+        <div class="upload-item" v-for="(item,index) in currentAdd.photosToUpload" :key="item.size">{{index}}</div>
+      </div>
+      
+    </div>
   </div>
 </template>
 <script>
 import PhotosMenuBtn from "components/own/photos-menu-btn.vue";
 import CoolButton from "components/common/cool-button.vue";
+import dateFormat from 'js/transfer/dateFormat.js';
+
 export default {
   name: "",
   props: {},
@@ -168,17 +187,21 @@ export default {
       return this.photosArr[this.currentAlbum].photos[this.indexImg].remark;
     },
     addingListShow(){
-      // return this.currentAdd.photosToUpload.length
-      return false
+      return this.currentAdd.photosToUpload.length
+      // return false
     }
   },
   data() {
     return {
       mode: "location",
       currentAdd:{
-        currentUploadRemark:'',
+        remark:'',
         currentUploadURL:'',
         photosToUpload:[],
+        name:'',
+        indate:dateFormat('%yyyy-%MM-%DD',new Date()),
+        size:0,
+        realfile:null
       },
       
       currentAlbum: 0,
@@ -1296,8 +1319,27 @@ export default {
       e.preventDefault()
       let upfile = e.dataTransfer.files[0]
       this.currentAdd.currentUploadURL = URL.createObjectURL(upfile)
-
-      console.log(upfile)
+      this.currentAdd.realfile = upfile
+      this.currentAdd.size = upfile.size
+      this.currentAdd.name = upfile.name
+      this.currentAdd.remark = ''
+    },
+    pushCurrentAdd(){
+      let item = {
+        'size':this.currentAdd.size,
+        'name':this.currentAdd.name,
+        'indate':this.currentAdd.indate,
+        'remark':this.currentAdd.remark,
+        'file':this.currentAdd.realfile,
+        'masterId':this.$store.state.id 
+      }
+      this.currentAdd.photosToUpload.push(item)
+    },
+    clearCurrentAdd(){
+      this.currentAdd.size = 0
+      this.currentAdd.name = ''
+      this.currentAdd.remark = ''
+      this.currentAdd.currentUploadURL = ''
     }
   },
   mounted() {

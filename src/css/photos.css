@@ -400,6 +400,30 @@ ul li .active{
     transition: 0.4s all;
 }
 
+.photos-upload-list-show .header{
+    width: 100%;
+    height: 10vh;
+    background-color: blue;
+}
+
+.photos-upload-list-show .upload-list{
+    width: 100%;
+    height: 90vh;
+    transition: all 0.4s;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.photos-upload-list-show .upload-list .upload-item{
+    width: 90%;
+    height: 12vh;
+    background-color: tomato;
+    margin: auto;
+    margin-top:2vh;
+    animation: upload-item-appear 0.5s forwards;
+}
+
+
 @keyframes photos-upload-list-show-appear{
     0%{
         transform: translateX(20vw);
@@ -408,6 +432,17 @@ ul li .active{
         transform: translateX(0vw);
     }
 
+}
+
+@keyframes upload-item-appear{
+    0%{
+        opacity: 0;
+        transform: scale(0);
+    }
+    100%{
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 .img-reversation{
@@ -446,11 +481,25 @@ ul li .active{
 
 .photo-auto-msg-container{
     position: absolute;
-    width: 25vh;
+    width: 20vh;
     height: 45vh;
-    border: 1px solid white;
+    /* border: 1px solid white; */
     top: 2vh;
     right: 2vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 1.2em;
+}
+
+.photo-auto-msg-container .msg-container{
+    height: 5vh;
+    color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.4s;
 }
 
 .photo-remark-input-container{
@@ -485,3 +534,4 @@ ul li .active{
 .photo-remark-btn-container .el-button{
     background-color: transparent;
 }
+
