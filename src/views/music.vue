@@ -2,7 +2,7 @@
   <div id="music">
     <h1 class="title-h1">music</h1>
     <audio controls @timeupdate="timeUpdate" id="audio">
-      <source src="../assets/music/临安初雨.mp3" type="audio/mpeg" />
+      <source src="~assets/music/临安初雨.mp3" type="audio/mpeg" />
     </audio>
 
     <div :class="{ bulletInput: true, 'bulletInput-hidden': !bullet }">
@@ -19,8 +19,10 @@
       <div @mouseleave="shouldShowBar = false" :class="{ showbar: true, 'showbar-hidden': !shouldShowBar }">
         <!-- 音乐列表组件 -->
         <el-table :data="musicData" height="60vh" border style="width: 100%">
-          <el-table-column prop="singer" label="歌手" width="100"> </el-table-column>
-          <el-table-column prop="song" label="歌曲" width="280"> </el-table-column>
+          <el-table-column prop="author" label="歌手" width="100"></el-table-column>
+          <el-table-column prop="name" label="歌曲" width="280"></el-table-column>
+          <el-table-column><img src="../assets/music/play1.png"></el-table-column>
+
         </el-table>
       </div>
       <!-- 音乐搜索输入框 -->
@@ -47,7 +49,6 @@
           <!-- 注意！注意！播放完歌后按钮没变暂停 -->
         </span>
         <span><img src="~assets/music/last.png" class="some-btns music-btn-next" /></span>
-
         <volumn-control side-length="4vh" top="1.5vh" left="15%" top-offset="-15.6vh" bar-height="134px" @change="changeV"></volumn-control>
         <!-- <span><img src="../assets/music/音量.png"></span> -->
         <div class="music-porgre-border" @click="adaptMusicTime" real="p">
@@ -58,21 +59,27 @@
           <el-switch v-model="bullet" active-color="#892cdc" inactive-color="#ff4949"> </el-switch>
         </div>
       </div>
+        <!-- 渲染到屏幕弹幕标签 -->
       <ul class="bulletTextContent">
         <li>{{ bulletInputText }}</li>
       </ul>
     </div>
     <div class="supplement-components">
-      <el-dialog title="搜索结果" :modal="false" :visible.sync="searchDialogShow" width="50%" custom-class="search-result-container">
+      <el-dialog title="搜索结果" :modal="false" :visible.sync="searchDialogShow" width="50%" top="17vh" custom-class="search-result-container">
         <div class="cuntent-container">
+                      <!-- 搜索音乐结果 -->     
             <div class="musicPhotoMaxBox" v-for="(item, index)  in musicSeekArr" :key="item.musicphoto">
-              <div class="musicPhotoBox"><img src="item.musicphoto" @mouseenter="PhotoShadeShow(index)" ></div>
+              <div class="musicPhotoBox"><img :src="item.photourl" @mouseenter="PhotoShadeShow(index)" ></div>
               <div class="musicPhotoBox-Shade" v-show="index == currentPhotoIndex" @mouseleave="PhotoShadeHidden(index)">
-              <img src="~assets/music/add.png" >
-              </div>q 
-              <span>{{item.musicname}}</span>---<span>{{item.singer}}</span>
+                      <!-- 搜索音乐播放 -->
+                <img src="~assets/music/play1.png"  @click="seekMusicPlay()">
+                      <!-- 搜索音乐添加 -->
+                <img src="~assets/music/add.png" @click="addMusic(item.author,item.name)">
+              </div>
+              <span>{{item.name}}</span>---<span>{{item.author}}</span>
             </div>
         </div>
+        <!--  -->
       </el-dialog>
     </div>
   </div>
@@ -87,7 +94,6 @@ export default {
   },
   data() {
     return {
-      
       currentPhotoIndex:-1,
       value: true,
       currentMusicTime: 0,
@@ -100,83 +106,121 @@ export default {
       SeekListShow: false,
       showPhoto:false,
       searchDialogShow:false,
+      temp:4,
       musicData: [
         {
-          singer: "谢安琪",
-          song: "喜帖街",
+          author: "谢安琪",
+          name: "喜帖街",
+          url:'http://118.25.144.69/public/music/170.mp3'
         },
         {
-          singer: "谢安琪",
-          song: "钟无艳",
+          author: "谢安琪",
+          name: "钟无艳",
+          url:'http://118.25.144.69/public/music/171.mp3'
         },
         {
-          singer: "陈奕迅",
-          song: "明年今日",
+          author: "陈奕迅",
+          name: "明年今日",
+          url:'http://118.25.144.69/public/music/172.mp3'
         },
         {
-          singer: "陈奕迅",
-          song: "浮夸",
+          author: "陈奕迅",
+          name: "浮夸",
+          url:'http://118.25.144.69/public/music/173.mp3'
         },
         {
-          singer: "陈奕迅",
-          song: "遥远的她",
+          author: "陈奕迅",
+          name: "遥远的她",
+          url:'http://118.25.144.69/public/music/174.mp3'
         },
         {
-          singer: "Twins",
-          song: "风筝与风",
+          author: "Twins",
+          name: "风筝与风",
+          url:'http://118.25.144.69/public/music/175.mp3'
         },
         {
-          singer: "Twins",
-          song: "死性不改",
+          author: "Twins",
+          name: "死性不改",
+          url:'http://118.25.144.69/public/music/176.mp3'
         },
         {
-          singer: "容祖儿",
-          song: "心淡",
+          author: "容祖儿",
+          name: "心淡",
+          url:'http://118.25.144.69/public/music/177.mp3'
         },
         {
-          singer: "容祖儿",
-          song: "痛爱",
+          author: "容祖儿",
+          name: "痛爱",
+          url:'http://118.25.144.69/public/music/178.mp3'
         },
         {
-          singer: "张国荣",
-          song: "风继续吹",
+          author: "张国荣",
+          name: "风继续吹",
+          url:'http://118.25.144.69/public/music/179.mp3'
         }
       ],
       
       musicSeekArr:[
-        { 
-          musicphoto:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606627385724&di=2137073b950e808ad97ae95c01680a28&imgtype=0&src=http%3A%2F%2Fimage.biaobaiju.com%2Fuploads%2F20181007%2F21%2F1538917773-qYZvswSKpH.jpg",
-          singer:"啊三",
-          musicname:"哈哈哈"
+        {
+         photourl:"http://118.25.144.69/public/imgs/8.jpg",
+          author:"容祖儿",
+          name:"傻女",
+          url:'http://118.25.144.69/public/music/150.mp3'
         },{
-         musicphoto:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=175648922,396406171&fm=26&gp=0.jpg",
-          singer:"啊三",
-          musicname:"哈哈哈"
+         photourl:"http://118.25.144.69/public/imgs/8.jpg",
+          author:"容祖儿",
+          name:"傻女",
+          url:'http://118.25.144.69/public/music/151.mp3'
         },{
-          musicphoto:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=175648922,396406171&fm=26&gp=0.jpg",
-          singer:"啊三",
-          musicname:"哈哈哈"
-        }, {
-          musicphoto:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=175648922,396406171&fm=26&gp=0.jpg",
-          singer:"啊三",
-          musicname:"哈哈哈"
-        },
-        { 
-          musicphoto:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=175648922,396406171&fm=26&gp=0.jpg",
-          singer:"啊三",
-          musicname:"哈哈哈"
+         photourl:"http://118.25.144.69/public/imgs/8.jpg",
+          author:"容祖儿",
+          name:"傻女",
+          url:'http://118.25.144.69/public/music/152.mp3'
         },{
-         musicphoto:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=175648922,396406171&fm=26&gp=0.jpg",
-          singer:"啊三",
-          musicname:"哈哈哈"
+         photourl:"http://118.25.144.69/public/imgs/8.jpg",
+          author:"容祖儿",
+          name:"傻女",
+          url:'http://118.25.144.69/public/music/153.mp3'
         },{
-          musicphoto:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=175648922,396406171&fm=26&gp=0.jpg",
-          singer:"啊三",
-          musicname:"哈哈哈"
-        }, {
-          musicphoto:"https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=175648922,396406171&fm=26&gp=0.jpg",
-          singer:"啊三",
-          musicname:"哈哈哈"
+         photourl:"http://118.25.144.69/public/imgs/8.jpg",
+          author:"容祖儿",
+          name:"傻女",
+          url:'http://118.25.144.69/public/music/154.mp3'
+        },{
+         photourl:"http://118.25.144.69/public/imgs/8.jpg",
+          author:"容祖儿",
+          name:"傻女",
+          url:'http://118.25.144.69/public/music/155.mp3'
+        },{
+         photourl:"http://118.25.144.69/public/imgs/8.jpg",
+          author:"容祖儿",
+          name:"傻女",
+          url:'http://118.25.144.69/public/music/156.mp3'
+        },{
+         photourl:"http://118.25.144.69/public/imgs/8.jpg",
+          author:"容祖儿",
+          name:"傻女",
+          url:'http://118.25.144.69/public/music/157.mp3'
+        },{
+         photourl:"http://118.25.144.69/public/imgs/8.jpg",
+          author:"容祖儿",
+          name:"傻女",
+          url:'http://118.25.144.69/public/music/158.mp3'
+        },{
+         photourl:"http://118.25.144.69/public/imgs/8.jpg",
+          author:"容祖儿",
+          name:"傻女",
+          url:'http://118.25.144.69/public/music/159.mp3'
+        },{
+         photourl:"http://118.25.144.69/public/imgs/8.jpg",
+          author:"容祖儿",
+          name:"傻女",
+          url:'http://118.25.144.69/public/music/160.mp3'
+        },{
+         photourl:"http://118.25.144.69/public/imgs/8.jpg",
+          author:"容祖儿",
+          name:"傻女",
+          url:'http://118.25.144.69/public/music/161.mp3'
         },
       ]
     };
@@ -242,12 +286,23 @@ export default {
       // }
       this.searchDialogShow = true
     },
-  PhotoShadeShow(index){
-      this.currentPhotoIndex = index
-  },
-  PhotoShadeHidden(index){
-    this.currentPhotoIndex = -1
-  }
+    PhotoShadeShow(index){
+        this.currentPhotoIndex = index
+    },
+    PhotoShadeHidden(index){
+      this.currentPhotoIndex = -1
+    },
+    //添加音乐
+    addMusic(author,name){
+      this.temp=this.musicData.length
+          this.musicData[this.temp]=author
+          console.log(this.musicData[this.temp])
+    },
+    seekMusicPlay(){
+
+
+    },
+
   },
   computed: {},
   components: {

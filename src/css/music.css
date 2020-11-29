@@ -163,9 +163,12 @@
     list-style: none;
     font-size: 1.2em;
     color: white;
-
 }
-
+.cell img{
+    height: 1vh;
+    position: relative;
+    left: 0;
+}
 #music .music-btn-last{
     position: absolute;
     height: 45px;
@@ -209,17 +212,20 @@
     width: 100%;
     flex-wrap: wrap;
 }
-/* 音乐写真 */
+/* 音搜索音乐结果一个单元 */
 .musicPhotoMaxBox{
     position: relative;
     width: 9vw;
     margin: 1vh;
 }
+
 .musicPhotoBox{
     height: 18vh;
     width: 9vw;
-    background-color: #4a36ff;
+    
+   
 }
+        /* 搜索音乐遮罩 */
 .musicPhotoMaxBox .musicPhotoBox-Shade{
     position: absolute;
     background-color: rgba(0, 0, 0, 0.363);
@@ -229,9 +235,16 @@
     left: 0;
     /* display: none; */
 }
-musicPhotoBox-Shade{
-    widows: 4px;
-    height: 2vh;
+.musicPhotoBox-Shade img{
+    position: relative;
+    top: 3.5vw;
+    height: 4vh;
+    margin-left: 1.5vw;
+    opacity: .7;
+
+}
+.musicPhotoBox-Shade img:hover{
+    opacity: 1;
 }
 .musicPhotoBox img{
     
@@ -241,6 +254,7 @@ musicPhotoBox-Shade{
 }
 .search-result-container{
     height: 70vh;
+    overflow-y: scroll;
 }
 /* 音乐下一首歌按钮 */
 #music .music-btn-next{
