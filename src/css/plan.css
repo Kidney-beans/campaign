@@ -244,15 +244,31 @@ body{
     line-height: 9vh;
     color: #02d4f0;
     /* text-shadow: -2px 0 red; */
-    box-shadow:  inset 3px 3px 8px rgb(3 255 194 / 41%), 
+    box-shadow:  inset 3px 3px 8px rgb(3,255,194,41%), 
                  1px 5px 7px #08fff47a, 
-                 5px 0px 5px 0px rgb(156 48 48 / 25%), 
-                 -2px 1px 17px 3px rgb(218 50 59 / 27%);
+                 5px 0px 5px 0px rgb(156,48,48,25%), 
+                 -2px 1px 17px 3px rgb(218,50,59,27%);
     
     font-weight: 700;
     font-size: 1.5vw;
     text-shadow: -2px 0 #eeff01,
                  0 3px #ff0000;
+}
+
+
+#plan .calendar .day .days .dayNowBgc{
+    color: orange;
+    box-sizing: border-box;
+    background-color: rgb(45,16,10,60%);
+    /* box-shadow: -3px 0px 5px 0 red, 
+                0px -3px 5px 0 #00ffad; */
+    text-shadow: -2px 0 #02d4f0,
+                 0 3px #ff0000;
+    /* border-top: 0.1vw solid #f2f9fd;
+    border-left: 0.1vw solid #ec3858;
+    border-bottom: 0.1vw solid #fbb5fa;
+    border-right:0.1vw solid #fb984f; */
+    animation: dayNowBgc 2s linear reverse infinite;
 }
 
 /* 当天日期 动画 */
@@ -478,17 +494,14 @@ body{
     position: absolute;
     left: 26vw;
     top: 25vh;
-    background-color: #303133;
+    background-color: #000000;
     width: 30vw;
     height: 50vh;
     z-index: 3;
     /* display: none; */
-    transition: 1s all;
-}
-
-#plan .PlanPageAn{
     transform-origin: left;
-    transform: scaleX(1);
+    animation: planPageDisplay 0.3s linear;
+
 }
 
 /* 计划页选择时间样式 */
@@ -528,10 +541,169 @@ body{
 
 .el-button--primary{
     margin-left: 2vw;
+    background-color: #7ad3da6e;
 }
 
 .el-button+.el-button{
     margin-left: 5vw;
+    background-color: rgb(255, 255, 255);
+}
+
+#plan .showDetailedPlan{
+    position: absolute;
+    left: 1vw;
+    top: 12vw;
+    width: 28vw;
+    height: 40vh;
+    background-color: rgb(0, 0, 0);
+    z-index: 2;
+    /* overflow:scroll; */
+    transition: 5s all;
+    /* perspective: 5vw; */
+}
+
+#plan .showDetailedPlan:hover{
+    transform: rotateY(180deg);
+}
+
+
+#plan .showDetailedPlan .timeLine{
+    position: absolute;
+    left: 1vw;
+    top: 1vh;
+    width: 5px;
+    /* height: 30vh; */
+    background-color: rgba(177, 112, 112, 0.39);
+    /* padding-left: 0.3vw; */
+    /* float: left; */
+    border-radius: 50px;
+    transform: translateZ(-2vw);
+}
+
+#plan .showDetailedPlan .timeLine .pointOne{
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: -2px;
+    /* top:-9px; */
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+#plan .showDetailedPlan .timeLine .pointTwo{
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    left: -2px;
+    /* top:9px; */
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+#plan .showDetailedPlan .timeLine .yMD{
+    position: absolute;
+    left: 1vw;
+    top: -5px;
+    width: 20vw;
+    height: 3vh;
+    color: rgba(216, 201, 173, 0.658);
+    font-size: 1vw;
+    
+}
+
+#plan .showDetailedPlan .timeLine .block{
+    /* position: absolute;
+    left: 1vw;
+    top:1vh; */
+    width: 18vw;
+    /* height: 31vh; */
+    /* background-color: rgba(26, 187, 152, 0.514); */
+    /* border-radius: 25px; */
+    padding: 1vh 2vw 1vh 2vw;
+    box-sizing: border-box;
+
+}
+
+#plan .showDetailedPlan .timeLine .block .line{
+    position: absolute;
+    left: 0vw;
+    top:0;
+    width: 1vw;
+    /* height: 100%; */
+    background-color: #fff;
+}
+
+
+#plan .showDetailedPlan .timeLine .block .titleD{
+    /* position: absolute;
+    left: 1vw;
+    top: 3vh; */
+    width: 15vw;
+    height: 7vh;
+    /* background-color: rgba(131, 55, 55, 0.479); */
+    line-height: 8vh;
+    font-size: 1vw;
+    font-weight: 700;
+    color: wheat;
+    
+}
+
+#plan .showDetailedPlan .timeLine .block .plan-T{
+    /* position: absolute;
+    left: 1vw;
+    top: 8vh; */
+    width: 16vw;
+    /* height: 16vh; */
+    /* background-color: rgba(177, 194, 30, 0.233); */
+    box-sizing: border-box;
+    overflow-y: auto;
+    color: rgb(167, 150, 120);
+    
+}
+
+#plan .showDetailedPlan .timeLine .block .plan-D{
+    /* position: absolute;
+    top: 24vh;
+    left: 1vw; */
+    width: 16vw;
+    height: 5vh;
+    /* background-color: #fff; */
+    
+}
+
+#plan .showDetailedPlan .timeLine .block .plan-D .timeD,
+#plan .showDetailedPlan .timeLine .block .plan-D .positionD{
+    display: inline-block;
+    /* background-color: rgba(177, 194, 30, 0.233); */
+    height: 5vh;
+    line-height: 5vh;
+    text-align: left;
+}
+
+#plan .showDetailedPlan .timeLine .block .plan-D .positionD{
+    font-size: 1vw;
+    font-weight: 700;
+    float: left;
+    color: wheat;
+}
+
+/* #plan .showDetailedPlan .block .plan-D .sD{
+    display: inline-block;
+    margin-left: 0.4vw;
+    margin-right: 0.4vw;
+    font-size: 0.7vw;
+    font-weight: 700;
+    height: 5vh;
+    width: 1vw;
+    line-height: 5vh;
+    background-color: #fff;
+} */
+
+#plan .showDetailedPlan .timeLine .block .plan-D .timeD{
+    width: 7vw;
+    color: #ffffff;
+    float:right;
+    font-size: 0.7vw;
 }
 
 /* 背景图片动画 */
@@ -745,4 +917,57 @@ body{
     }
 }
 
+/*计划页展示动画*/
+@keyframes planPageDisplay{
+    0%{transform: scaleX(0); opacity: 0;}
+    100%{transform: scaleX(1); opacity: 1;}
+}
+
+@keyframes dayNowBgc{
+    0%{
+        border-top: 0.1vw solid #f2f9fd;
+        border-left: 0.1vw solid #ec3858;
+        border-bottom: 0.1vw solid #fbb5fa;
+        border-right:0.1vw solid #fb984f;
+
+        box-shadow: -3px 0px 5px 0 red, 
+                0px -3px 5px 0 #00ffad;
+    }
+    25%{
+        border-right: 0.1vw solid #f2f9fd;
+        border-top: 0.1vw solid #ec3858;
+        border-left: 0.1vw solid #fbb5fa;
+        border-bottom:0.1vw solid #fb984f;
+
+        box-shadow: 0px 3px 5px 0 red, 
+                -3px 0px 5px 0 #00ffad;
+    }
+    50%{
+        border-bottom: 0.1vw solid #f2f9fd;
+        border-right: 0.1vw solid #ec3858;
+        border-top: 0.1vw solid #fbb5fa;
+        border-left:0.1vw solid #fb984f;
+
+        box-shadow: 3px 0px 5px 0 red, 
+                0px 3px 5px 0 #00ffad;
+    }
+    75%{
+        border-left: 0.1vw solid #f2f9fd;
+        border-bottom: 0.1vw solid #ec3858;
+        border-right: 0.1vw solid #fbb5fa;
+        border-top:0.1vw solid #fb984f;
+
+        box-shadow: 0px -3px 5px 0 red, 
+                3px 0px 5px 0 #00ffad;
+    }
+    100%{
+        border-top: 0.1vw solid #f2f9fd;
+        border-left: 0.1vw solid #ec3858;
+        border-bottom: 0.1vw solid #fbb5fa;
+        border-right:0.1vw solid #fb984f;
+
+        box-shadow: -3px 0px 5px 0 red, 
+                0px -3px 5px 0 #00ffad;
+    }
+}
 

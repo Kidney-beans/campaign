@@ -40,7 +40,7 @@
             </div>
             <!-- 所有 -->
             <div v-for="(item,index) in days" class="days" :key="item" >
-              <div :class='{week:true, weekAn:item!=""}' >{{item}}</div>
+              <div :class='{week:true, weekAn:item!="",dayNowBgc:isDayNow(item)}' >{{item}}</div>
               <div class="addPlan" v-if="item!=''" @click="seePlan(index,item)" title="查看计划">...</div>
             </div>
           </div>
@@ -80,7 +80,8 @@
                     :picker-options="{
                       start: '08:30',
                       step: '00:15',
-                      end: '18:30'
+                      end: '18:30',
+                      maxTime: form.endTime
                     }">
                   </el-time-select>
                 </el-col>
@@ -93,7 +94,7 @@
                       start: '08:30',
                       step: '00:15',
                       end: '18:30',
-                      minTime: startTime
+                      minTime: form.startTime
                     }">
                   </el-time-select>
                 </el-col>
@@ -103,14 +104,33 @@
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="onSubmit">添加</el-button>
-                <el-button>取消</el-button>
+                <el-button @click="pagePlanHidden" >取消</el-button>
               </el-form-item>
             </el-form>
           </div>
       </div>
       <!-- 显示详细计划 -->
       <div class="showDetailedPlan">
-        <div></div>
+          <div class="timeLine">
+            <div class="pointOne"></div>
+            <div class="yMD">
+              <span>2010</span>
+              <span>-</span>
+              <span>01</span>
+              <span>-</span>
+              <span>01</span>
+            </div>
+            <div class="block">
+              <div class="titleD">办活动</div>
+              <div class="plan-T">款了附近的萨拉开房记录卡德加激发动力会计分录建档立卡
+                解放路卡接待来访</div>
+            <div class="plan-D">
+              <div class="positionD">建档立卡是</div>
+              <div class="timeD">11：00-12：00</div>
+            </div>
+            </div>
+            <div class="pointTwo"></div>
+        </div>
       </div>
   </div>
 </template>
@@ -156,7 +176,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球"
+              plan:"今天要去打篮球",
+              title:''
             },
             {
               year:"2020",
@@ -164,7 +185,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球"
+              plan:"今天要去打篮球",
+              title:''
             },
             {
               year:"2020",
@@ -172,7 +194,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球"
+              plan:"今天要去打篮球",
+              title:''
             },
             {
               year:"2020",
@@ -180,7 +203,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球"
+              plan:"今天要去打篮球",
+              title:''
             },
             {
               year:"2020",
@@ -188,7 +212,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球"
+              plan:"今天要去打篮球",
+              title:''
             },
             {
               year:"2020",
@@ -196,7 +221,80 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球"
+              plan:"今天要去打篮球",
+              title:''
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球",
+              title:''
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球",
+              title:''
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球",
+              title:''
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球",
+              title:''
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球",
+              title:''
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球",
+              title:''
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球",
+              title:''
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去打篮球",
+              title:''
             }
           ],
           []
@@ -266,6 +364,7 @@
           ]
         ],
         currentPlans:[],
+        planIndex:0,
         activePlanIndex:-2
       }
     },
@@ -394,6 +493,13 @@
         }
         // console.log(this.days);
       },
+      isDayNow(item){
+        if(item==this.day){
+          return true;
+        }else{
+          return false;
+        }
+      },
       // 查看计划
       seePlan(index,item){
         parseInt(item)<10?this.day="0"+item:this.day=item;
@@ -409,6 +515,7 @@
       hiddenPlan(e){
         this.temp_sw='none';
         this.listShow = false
+        
       },
       // 改变计划列表内的计划的宽度
       getWidth(index){
@@ -425,6 +532,8 @@
       },
       activeItem(index){
        this.activePlanIndex = index
+       this.planIndex=index
+
       },
       sleepItem(index){
         this.activePlanIndex = -2
@@ -437,6 +546,9 @@
       },
       planPageDisplay(){
         this.pageDisplay="block";
+      },
+      pagePlanHidden(){
+        this.pageDisplay='none';
       }
     },
     mounted(){
