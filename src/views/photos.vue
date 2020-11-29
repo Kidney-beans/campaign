@@ -79,6 +79,11 @@
       <photos-menu-btn u-key="btn1" @btn-click="switchMode"></photos-menu-btn>
     </div>
     <div class="photo-album-list-container">
+      <div class="search-by-date-container">
+        <!-- <span class="input-title">选择日期</span> -->
+        <el-date-picker v-model="currentChooseDate" type="month" placeholder="选择月份">
+        </el-date-picker>
+      </div>
       <div
         :class="{
           'photo-album-container': true,
@@ -106,9 +111,50 @@
           text="Add Photos"
           border-radius="6vh"
           font-size="1.5em"
+          @btn-click="adding = true"
         ></cool-button>
       </div>
     </div>
+    <el-dialog
+      title=""
+      :visible.sync="adding"
+      top="10vh"
+      :width="'60vw'"
+      :custom-class="'add-photos-dialog' + ((addingListShow)?' add-photos-dialog-leftoff':'')"
+      :show-close="false"
+      :center="true"
+      >
+      <div class="add-photos-block">
+        <div class="img-reversation" 
+            @dragenter="dragEnter"
+            @dragover="dragOver"
+            @dragleave="dragLeave"
+            @drop="drop"
+            >
+          <img src="~assets/photos/img-reversation.png" class="empty-img" v-show="currentAdd.currentUploadURL == ''"/>
+          <span v-show="currentAdd.currentUploadURL == ''">请将图片拖拽到这~</span>
+          <img :src="currentAdd.currentUploadURL" class="img-preview" v-show="currentAdd.currentUploadURL != ''" />
+        </div>
+        <div class="photo-auto-msg-container">
+          <div class="update-date"></div>
+          <div class="img-name"></div>
+          <div class="img-size"></div>
+        </div>
+        <div class="photo-remark-input-container">
+          <el-input
+            type="textarea"
+            :rows="2"
+            placeholder="请输入图片备注(选填)"
+            v-model="currentAdd.currentUploadRemark">
+          </el-input>
+        </div>
+        <div class="photo-remark-btn-container">
+          <el-button type="primary" plain>加入上传</el-button>
+          <el-button type="danger" plain>清空此项</el-button>
+        </div>
+      </div>
+    </el-dialog>
+    <div class="photos-upload-list-show" v-show="addingListShow"></div>
   </div>
 </template>
 <script>
@@ -121,11 +167,22 @@ export default {
     currentRemark() {
       return this.photosArr[this.currentAlbum].photos[this.indexImg].remark;
     },
+    addingListShow(){
+      // return this.currentAdd.photosToUpload.length
+      return false
+    }
   },
   data() {
     return {
       mode: "location",
+      currentAdd:{
+        currentUploadRemark:'',
+        currentUploadURL:'',
+        photosToUpload:[],
+      },
+      
       currentAlbum: 0,
+      currentChooseDate:new Date(),
       photosArr: [
         {
           date: "1月1日",
@@ -1126,6 +1183,7 @@ export default {
       left_offset: 0,
       leftInterval: null,
       rightInterval: null,
+      adding:true
     };
   },
   components: {
@@ -1225,6 +1283,22 @@ export default {
       this.left_offset = 0;
       this.adaptOffset();
     },
+    dragEnter(e){
+      e.preventDefault()
+    },
+    dragOver(e){
+      e.preventDefault()
+    },
+    dragLeave(e){
+      e.preventDefault() 
+    },
+    drop(e){
+      e.preventDefault()
+      let upfile = e.dataTransfer.files[0]
+      this.currentAdd.currentUploadURL = URL.createObjectURL(upfile)
+
+      console.log(upfile)
+    }
   },
   mounted() {
     this.getdate();
