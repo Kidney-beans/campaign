@@ -1,6 +1,9 @@
 <template>
-  <div class='relation'>
+  <div id='relation'>
       <h1>relation</h1>
+      <div class="relationBox">
+      
+      </div>
   </div>
 </template>
 <script>
