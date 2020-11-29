@@ -558,14 +558,10 @@ body{
     background-color: rgb(0, 0, 0);
     z-index: 2;
     /* overflow:scroll; */
-    transition: 5s all;
+    transform-origin: left;
+    animation: showPlanAn 0.2s linear;
     /* perspective: 5vw; */
 }
-
-#plan .showDetailedPlan:hover{
-    transform: rotateY(180deg);
-}
-
 
 #plan .showDetailedPlan .timeLine{
     position: absolute;
@@ -577,7 +573,7 @@ body{
     /* padding-left: 0.3vw; */
     /* float: left; */
     border-radius: 50px;
-    transform: translateZ(-2vw);
+    /* transform: translateZ(-2vw); */
 }
 
 #plan .showDetailedPlan .timeLine .pointOne{
@@ -968,6 +964,17 @@ body{
 
         box-shadow: -3px 0px 5px 0 red, 
                 0px -3px 5px 0 #00ffad;
+    }
+}
+
+@keyframes showPlanAn{
+    0%{
+        transform: scaleX(0);
+        opacity: 0;
+    }
+    100%{
+        transform: scaleX(1);
+        opacity: 1;
     }
 }
 

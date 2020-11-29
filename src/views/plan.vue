@@ -10,7 +10,7 @@
         <div class="date">
           <!-- 当前年份 -->
           <div class="year">
-            <div></div>
+            <div>{{this.year}}</div>
             <!-- 增加年份 -->
             <div class="plus" @click="plusYear">+</div>
             <!-- 减少年份 -->
@@ -18,7 +18,7 @@
           </div>
           <!-- 当前月份 -->
           <div class="month">
-            <div></div>
+            <div>{{this.month}}</div>
             <!-- 增加月份 -->
             <div class="plus" @click="plusMonth">+</div>
             <!-- 增加月份 -->
@@ -26,7 +26,7 @@
           </div>
           <!-- 时间 -->
           <div class="time" :time="time">
-            <div></div>
+            <div>{{this.time}}</div>
             <div @click="stopTime" class="stop">{{!counterPause?'STOP':'START'}}</div>
           </div>
         </div>
@@ -67,21 +67,21 @@
           <div class="formPlan">
             <el-form ref="form" :model="form" label-width="80px">
               <el-form-item label="标题">
-                <el-input v-model="form.name"></el-input>
+                <el-input v-model="title"></el-input>
               </el-form-item>
               <el-form-item label="地点">
-                <el-input v-model="form.position"></el-input>
+                <el-input v-model="position"></el-input>
               </el-form-item>
               <el-form-item label="计划时间">
                 <el-col :span="11">
                   <el-time-select
                     placeholder="起始时间"
-                    v-model="form.startTime"
+                    v-model="startTime"
                     :picker-options="{
                       start: '08:30',
                       step: '00:15',
                       end: '18:30',
-                      maxTime: form.endTime
+                      maxTime: endTime
                     }">
                   </el-time-select>
                 </el-col>
@@ -89,18 +89,18 @@
                 <el-col :span="11">
                   <el-time-select
                     placeholder="结束时间"
-                    v-model="form.endTime"
+                    v-model="endTime"
                     :picker-options="{
                       start: '08:30',
                       step: '00:15',
                       end: '18:30',
-                      minTime: form.startTime
+                      minTime: startTime
                     }">
                   </el-time-select>
                 </el-col>
               </el-form-item>
               <el-form-item label="具体计划">
-                <el-input type="textarea" v-model="form.desc" :autosize="{ minRows: 2, maxRows: 4}"></el-input>
+                <el-input type="textarea" v-model="plan" :autosize="{ minRows: 2, maxRows: 4}"></el-input>
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="onSubmit">添加</el-button>
@@ -110,23 +110,22 @@
           </div>
       </div>
       <!-- 显示详细计划 -->
-      <div class="showDetailedPlan">
-          <div class="timeLine">
+      <div class="showDetailedPlan showPlanAn" :style="{'display':showPlan}">
+          <div class="timeLine" v-if="this.currentPlans.length>0">
             <div class="pointOne"></div>
             <div class="yMD">
-              <span>2010</span>
+              <span>{{currentPlans[planIndex].year}}</span>
               <span>-</span>
-              <span>01</span>
+              <span>{{currentPlans[planIndex].month}}</span>
               <span>-</span>
-              <span>01</span>
+              <span>{{currentPlans[planIndex].day}}</span>
             </div>
             <div class="block">
-              <div class="titleD">办活动</div>
-              <div class="plan-T">款了附近的萨拉开房记录卡德加激发动力会计分录建档立卡
-                解放路卡接待来访</div>
+              <div class="titleD">{{currentPlans[planIndex].title}}</div>
+              <div class="plan-T">{{currentPlans[planIndex].plan}}</div>
             <div class="plan-D">
-              <div class="positionD">建档立卡是</div>
-              <div class="timeD">11：00-12：00</div>
+              <div class="positionD">{{currentPlans[planIndex].position}}</div>
+              <div class="timeD">{{currentPlans[planIndex].time}}</div>
             </div>
             </div>
             <div class="pointTwo"></div>
@@ -142,13 +141,15 @@
     },
     data(){
       return{
-        form: {
-          name: '',
-          position:'',
-          startTime: '',
-          endTime: '',
-          desc: ''
+        form:{
+
         },
+        title: '',
+        position:'',
+        startTime: '',
+        endTime: '',
+        plan: '',
+        showPlan:'none',
         listShow:false,
         pageDisplay:'none',
         temp_sw:'none',
@@ -165,7 +166,6 @@
         min:"",
         sec:"",
         time:"",
-        timer:"",
         counterPause:false,
         prefixPlantDays:0,
         plans:[
@@ -176,8 +176,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球",
-              title:''
+              plan:"今天要fadfdas去打篮球",
+              title:'今天要去打篮球'
             },
             {
               year:"2020",
@@ -185,8 +185,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球",
-              title:''
+              plan:"今天要fasdfadf去打篮球",
+              title:'今天要去打篮球'
             },
             {
               year:"2020",
@@ -194,8 +194,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球",
-              title:''
+              plan:"今天要去dsfadfasdf打篮球",
+              title:'今天要去打篮球'
             },
             {
               year:"2020",
@@ -203,8 +203,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球",
-              title:''
+              plan:"今天要dsafagagfaf去打篮球",
+              title:'今天要去打篮球'
             },
             {
               year:"2020",
@@ -212,8 +212,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球",
-              title:''
+              plan:"今天要去dsadasd打篮球",
+              title:'今天要去打篮球'
             },
             {
               year:"2020",
@@ -221,8 +221,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球",
-              title:''
+              plan:"今天要去dasdsad打篮球",
+              title:'今天要去打篮球'
             },
             {
               year:"2020",
@@ -230,62 +230,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球",
-              title:''
-            },
-            {
-              year:"2020",
-              month:"11",
-              day:"25",
-              time:"11:00-13:00",
-              position:"运动场",
-              plan:"今天要去打篮球",
-              title:''
-            },
-            {
-              year:"2020",
-              month:"11",
-              day:"25",
-              time:"11:00-13:00",
-              position:"运动场",
-              plan:"今天要去打篮球",
-              title:''
-            },
-            {
-              year:"2020",
-              month:"11",
-              day:"25",
-              time:"11:00-13:00",
-              position:"运动场",
-              plan:"今天要去打篮球",
-              title:''
-            },
-            {
-              year:"2020",
-              month:"11",
-              day:"25",
-              time:"11:00-13:00",
-              position:"运动场",
-              plan:"今天要去打篮球",
-              title:''
-            },
-            {
-              year:"2020",
-              month:"11",
-              day:"25",
-              time:"11:00-13:00",
-              position:"运动场",
-              plan:"今天要去打篮球",
-              title:''
-            },
-            {
-              year:"2020",
-              month:"11",
-              day:"25",
-              time:"11:00-13:00",
-              position:"运动场",
-              plan:"今天要去打篮球",
-              title:''
+              plan:"今天要去sd打篮球",
+              title:'今天要去打篮球'
             },
             {
               year:"2020",
@@ -305,7 +251,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球"
+              plan:"今天要去打篮球",
+              title:''
             },
             {
               year:"2020",
@@ -313,53 +260,8 @@
               day:"25",
               time:"11:00-13:00",
               position:"运动场",
-              plan:"今天要去打篮球"
-            }         
-          ],
-          [
-          {
-              year:"2020",
-              month:"11",
-              day:"25",
-              time:"11:00-13:00",
-              position:"运动场",
-              plan:"今天要去打篮球"
-            },
-            {
-              year:"2020",
-              month:"11",
-              day:"25",
-              time:"11:00-13:00",
-              position:"运动场",
-              plan:"今天要去打篮球"
-            },
-            {
-              year:"2020",
-              month:"11",
-              day:"25",
-              time:"11:00-13:00",
-              position:"运动场",
-              plan:"今天要去打篮球"
-            }
-
-          ],
-          []
-          ,[
-            {
-              year:"2020",
-              month:"11",
-              day:"25",
-              time:"11:00-13:00",
-              position:"运动场",
-              plan:"今天要去打篮球"
-            },
-            {
-              year:"2020",
-              month:"11",
-              day:"25",
-              time:"11:00-13:00",
-              position:"运动场",
-              plan:"今天要去打篮球"
+              plan:"今天要去打篮球",
+              title:''
             }
           ]
         ],
@@ -372,28 +274,12 @@
      
     },
     methods:{
-      //设置年份
-      setYear(yearClass,year) {
-        let yearDiv=document.querySelector(yearClass);
-        yearDiv.childNodes[0].innerText=year;
-      },
-      //设置月份
-      setMonth(monthClass,month){
-        let monthDiv=document.querySelector(monthClass);
-        monthDiv.childNodes[0].innerText=month;
-      },
-      //设置时间
-      setTime(timeClass,time){
-        let timeDiv=document.querySelector(timeClass);
-        timeDiv.childNodes[0].innerText=time;
-      },
       //拼接时间
       connectTime(hour,min,sec){
         this.hour=hour<10?"0"+hour:hour;
         this.min=min<10?"0"+min:min;
         this.sec=sec<10?"0"+sec:sec;
-        // this.time=this.hour+":"+this.min+":"+this.sec;
-        return this.hour+":"+this.min+":"+this.sec;
+        this.time=this.hour+":"+this.min+":"+this.sec;
       },
       //停止或开始时间
       stopTime(){
@@ -411,50 +297,39 @@
       //设置背景数字
       setBgcNum(){
         this.bgcNum=this.month+"."+this.day;
-        this.currentPlans = this.plans[this.day-1];
+        this.currentPlans = this.plans[this.day-1]?this.plans[this.day-1]:[];
         console.log(this.currentPlans)
       },
       //增加年份
       plusYear(e){
-        // console.log(e.currentTarget.previousElementSibling);
         //改变初始当前选中日期
         this.changeDay(parseInt(this.year)+1,this.yearNow);
-        // console.log(this.day);
         this.year=parseInt(this.year)+1;
         this.setBgcNum();
-        e.currentTarget.previousElementSibling.innerText=this.year;
         this.addDays();
       },
       //减少年份
       subtractYear(e){
-        // console.log(e.currentTarget.parentElement,1)
         //改变初始当前选中日期
         this.changeDay(parseInt(this.year)-1,this.yearNow);
-        // console.log(this.day);
         this.year=parseInt(this.year)-1;
         this.setBgcNum();
-        e.currentTarget.parentElement.childNodes[0].innerText=this.year;
         this.addDays();
       },
       //增加月份
       plusMonth(e){
-        // console.log(e.currentTarget.previousElementSibling);
         //改变初始当前选中日期
         this.changeDay(parseInt(this.month)+1,this.monthNow);
-        // console.log(this.month);
         this.month=(parseInt(this.month)+1)>12?"01":((parseInt(this.month)+1)<10?("0"+(parseInt(this.month)+1)):(parseInt(this.month)+1));
         this.setBgcNum();
-        e.currentTarget.previousElementSibling.innerText=this.month;
         this.addDays();
       },
       //减少月份
       subtractMonth(e){
-        // console.log(e.currentTarget.parentElement,1)
         //改变初始当前选中日期
         this.changeDay(parseInt(this.month)-1,this.monthNow)
         this.month=(parseInt(this.month)-1)<1?"12":((parseInt(this.month)-1)<10?("0"+(parseInt(this.month)-1)):(parseInt(this.month)-1))
         this.setBgcNum();
-        e.currentTarget.parentElement.childNodes[0].innerText=this.month;
         this.addDays();
       },
       //获取当月天数
@@ -534,21 +409,35 @@
        this.activePlanIndex = index
        this.planIndex=index
 
+       this.showPlan='block'
+
       },
       sleepItem(index){
         this.activePlanIndex = -2
+
+        this.showPlan='none'
       },
       deleteItem(index){
         this.currentPlans.splice(index,1)
-      },
-      onSubmit() {
-        console.log('submit!');
       },
       planPageDisplay(){
         this.pageDisplay="block";
       },
       pagePlanHidden(){
         this.pageDisplay='none';
+      },
+      onSubmit() {
+        let plan={
+          year:this.yearNow,
+          month:this.monthNow,
+          day:this.day,
+          title:this.title,
+          position:this.position,
+          startTime:this.startTime,
+          endTime:this.endTime,
+          plan:this.plan
+        }
+        console.log(plan);
       }
     },
     mounted(){
@@ -560,10 +449,11 @@
       this.monthNow=this.month;
       this.day=date.getDate();
       this.dayNow=this.day;
-      this.currentPlans = this.plans[this.day-1];
+      this.currentPlans = this.plans[this.day-1]?this.plans[this.day-1]:[];
+      console.log(this.planIndex)
+      // console.log(this.currentPlans[this.planIndex])
+      console.log(this.currentPlans)
       this.setBgcNum();
-      this.setYear(".year",this.year);
-      this.setMonth(".month",this.month);
       this.timer=setInterval(() => {
         if(this.counterPause){
           return
@@ -572,9 +462,8 @@
         let hour=date.getHours();
         let min=date.getMinutes();
         let sec=date.getSeconds();
-        this.setTime(".time",this.connectTime(hour,min,sec));
+        this.connectTime(hour,min,sec)
       }, 1000);
-    //  clearInterval(timer);
       this.addDays();
     }
   }
