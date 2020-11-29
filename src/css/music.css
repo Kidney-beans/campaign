@@ -18,7 +18,7 @@
     display: none;
 }
 
-.title-h1{
+#music .title-h1{
     position: absolute;
     font-family:'Agnes-Bold';
     font-size:5em;
@@ -30,7 +30,7 @@
     user-select: none;
 }
 
-.music-box{
+#music .music-box{
     position: absolute;
     height: 80vh;
     width: 80vw;
@@ -45,11 +45,11 @@
     transform: translateZ(50px);
     z-index: 50;
 }
-.music-box-far{
+#music .music-box-far{
     transform: translateZ(-50px);
 }
 /* 音乐列表模拟盒子 */
-.music-bar{
+#music .music-bar{
     position: absolute;
     top: 7vh;
     height: 75%;
@@ -59,8 +59,8 @@
     border-radius: 5px;
     z-index: 30;
 }
-
-.showbar {
+/* 音乐列表显示框 */
+#music .showbar {
     position: absolute;
     
     top: 7vh;
@@ -75,41 +75,47 @@
 
 }
 
-.showbar-hidden{
+#music .showbar-hidden{
     transform: translateX(-20vw);
     z-index: 61;
 }
-ul li{
-    margin-top: 20px;
-
-}
-ul{
+.music-seek-list{
     position: absolute;
-    height: 100%;
-    width: 100%;
-    overflow: auto;
+    top: 5vh;
+    left: 25vw;
+    z-index: 10;
     
 }
-/* .h3 {
-    top: .2vh;
-    position: relative;
-    display: inline;
-    margin-right: 2.5vw;
-    padding-left: 1.5vw;
-} */
-/* .music-bar-list li{
-    position: relative;
-    display: inline;
-    margin-left: 1vw;
-} */
+.music-seek-list th{
+    width: 10vw;
+    height: 5vh;
+    text-align: center;
+    line-height: 5vh;
+    font-size: 1.1em;
+    border-bottom: 1px solid black;
+}
+.music-seek-list ul{
+    list-style: none;
+    display:inline-block;
+    width: 10vw;
+    text-align: center;
+    font-size: 1.2em;
+    background-color: #ffffff;
+}
+.music-seek-list li{
+    height: 4vh;
+    text-align: center;
+    line-height: 4vh;
+    border-bottom: 1px solid rgb(133, 133, 133);
+}
 
-.bulletScreen{
+#music .bulletScreen{
     position: relative;
     width: 50px;
     left: 16vw;
     top: 3.5vh;
 }
-.bulletText{
+#music .bulletText{
     position: absolute;
     top: .9vh;
     left: 16.2vw;
@@ -118,7 +124,7 @@ ul{
 }
 
 /*在这调弹幕输入容器样式*/
-.bulletInput{
+#music .bulletInput{
     position: absolute;
     left:0;
     width:100vw;
@@ -131,7 +137,7 @@ ul{
     align-items: center;
 }
 
-.bulletInput-hidden{
+#music .bulletInput-hidden{
     transform: translateY(10vh);
 
 }
@@ -146,9 +152,12 @@ ul{
     color: white;
     background-color:rgba(0, 0, 0, 0.561);
 }
+#music .el-table__body-wrapper{
+    overflow-x: hidden !important;
+}
 
 /*弹幕文字输出样式设置*/
-.bulletTextContent{
+#music .bulletTextContent{
     position: absolute;
     left: 40%;
     list-style: none;
@@ -157,7 +166,7 @@ ul{
 
 }
 
-.music-btn-last{
+#music .music-btn-last{
     position: absolute;
     height: 45px;
     width: 45px;
@@ -166,7 +175,7 @@ ul{
     background-size: 100%;
     user-select: none;
 }
-.music-btn-position{
+#music .music-btn-position{
     position: absolute;
     height: 50px;
     width: 50px;
@@ -175,8 +184,66 @@ ul{
     background-size: 100%;
     user-select: none;
 }
+/* 搜索按钮属性控制 */
+#music .music-seek-img img{
+    position:absolute;
+    border-top-right-radius: 12px;
+    border-bottom-right-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.075);
+    opacity: .6;
+    left: 47vw;
+    top: 1vh;
+    width: 2vw;
+    height: 4.1vh;
+    z-index: 1;
+}
+#music .music-seek-img img:hover{
+    opacity: 1;
+  
+}
 
-.music-btn-next{
+.cuntent-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    flex-wrap: wrap;
+}
+/* 音乐写真 */
+.musicPhotoMaxBox{
+    position: relative;
+    width: 9vw;
+    margin: 1vh;
+}
+.musicPhotoBox{
+    height: 18vh;
+    width: 9vw;
+    background-color: #4a36ff;
+}
+.musicPhotoMaxBox .musicPhotoBox-Shade{
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.363);
+    height: 18vh;
+    width: 9vw;
+    top:0;
+    left: 0;
+    /* display: none; */
+}
+musicPhotoBox-Shade{
+    widows: 4px;
+    height: 2vh;
+}
+.musicPhotoBox img{
+    
+    width: 100%;
+    height: 100%;
+    box-sizing: 100% 100;
+}
+.search-result-container{
+    height: 70vh;
+}
+/* 音乐下一首歌按钮 */
+#music .music-btn-next{
     position: absolute;
     height: 45px;
     width: 45px;
@@ -187,17 +254,17 @@ ul{
     user-select: none;
 }
 /* 两个小log的动画 */
-.some-btns{
+#music .some-btns{
     cursor: pointer;
     display: block;
     transition: all 0.4s;
 }
 
-.some-btns:hover{
+#music .some-btns:hover{
     filter: brightness(2);
     box-shadow: 0 0 10px 5px solid white;
 }
-.music-porgre-border{
+#music .music-porgre-border{
     position: absolute;
     border: 1px solid rgb(17, 255, 255);
     height: 1.5vh;
@@ -212,11 +279,11 @@ ul{
     transition: filter 0.4s;
 }
 
-.music-porgre-border:hover{
+#music .music-porgre-border:hover{
     filter: brightness(1.6);
 }
-
-.music-porgre-solid{
+/* 音乐进度条 */
+#music .music-porgre-solid{
     position: absolute;
     height:1.5vh;
     width: 100%;
@@ -241,7 +308,7 @@ ul{
     }
 }
 
-.progress-bar{
+#music .progress-bar{
     position: absolute;
     height: 7vh;
     width: 80vw;
@@ -249,14 +316,15 @@ ul{
     top:91%;
     background-color: rgba(0, 0, 0, .6);
 }
-.music-porgre{
+#music .music-porgre{
 
 }
-.music-seek{
+/* 音乐搜索输入框 */
+#music .music-seek{
     position: absolute;
     border: none;
     outline: none;
-    width: 23vw;
+    width: 21vw;
     height: 4vh;
     left: 52vh;
     top: 1vh;
@@ -266,8 +334,8 @@ ul{
     border-color:rgb(169, 22, 182);
     border-radius: 1vh;
 }
-
-.music-log{
+/* 音乐大log */
+#music .music-log{
     position: absolute;
     width: 8vw;
     height: 40vh;
@@ -280,14 +348,15 @@ ul{
     filter: brightness(1);
     /* transition: all .3s linear 300ms; */
 }
-.min-box{
+/* 两个小log的盒子 */
+#music .min-box{
     position: absolute;
     top: 11vh;
     left: 41vw;
     filter: brightness(1);
     animation: minlog 3s infinite;
 }
-
+/* 小log1 */
 .minlog1{
     position: fixed;
     width: 3vw;
@@ -298,6 +367,7 @@ ul{
     background-image: url(~assets/music/music_log3.png);
     background-repeat: no-repeat;
 }
+/* 小log2 */
 .minlog2{
     position: fixed;
     width: 3vw;
@@ -329,12 +399,4 @@ ul{
 }
 
 }
-/* @keyframes showtxt  {
-    from{
-        opacity: 0;
-        
-    }to{
-        opacity: .7;
-        display: block;
-    }
-} */
+
