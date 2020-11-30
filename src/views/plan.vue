@@ -39,7 +39,7 @@
               <div class="week dAn" :week="item">{{item}}</div>
             </div>
             <!-- 所有 -->
-            <div v-for="(item,index) in days" class="days" :key="item" >
+            <div v-for="(item,index) in days" class="days" :key="index" >
               <div :class='{week:true, weekAn:item!="",dayNowBgc:isDayNow(item)}' >{{item}}</div>
               <div class="addPlan" v-if="item!=''" @click="seePlan(index,item)" title="查看计划">...</div>
             </div>
@@ -56,7 +56,7 @@
         </div>
         <!-- 计划列表内的计划 -->
         <ul class="ulPlan" :style="{'display':temp_sw}">
-          <li class="havePlan" v-for="(item,index) in currentPlans" :style="{'top': 5 + (index * 15) + 'vh','width':getWidth(index)}" :key="item"  >
+          <li class="havePlan" v-for="(item,index) in currentPlans" :style="{'top': 5 + (index * 15) + 'vh','width':getWidth(index)}" :key="index"  >
             <div class="planDel" title="删除计划" @click="deleteItem(index)">x</div>
             <div @mouseenter="activeItem(index)" @mouseout="sleepItem(index)">PLAN{{index+1}}</div>
           </li>
@@ -64,8 +64,14 @@
       </div>
       <!-- 添加计划页 -->
       <div class="addPlanPage PlanPageAn" :style="{'display':pageDisplay}">
+          <div class="clearPlanPage" @click="clearAddPlan">
+            <img src="../assets/plan/clearPage.png" alt="清空"> 
+          </div>
+          <div class="addPlanAccessAn" :style="{'display':addAccess}">
+            <div class="addPlanAccess">{{this.AccessF}}</div>
+          </div>
           <div class="formPlan">
-            <el-form ref="form" :model="form" label-width="80px">
+            <el-form ref="form" label-width="80px">
               <el-form-item label="标题">
                 <el-input v-model="title"></el-input>
               </el-form-item>
@@ -99,12 +105,12 @@
                   </el-time-select>
                 </el-col>
               </el-form-item>
-              <el-form-item label="具体计划">
+              <el-form-item label="具体计划" maxlength="150">
                 <el-input type="textarea" v-model="plan" :autosize="{ minRows: 2, maxRows: 4}"></el-input>
               </el-form-item>
               <el-form-item>
                 <el-button type="primary" @click="onSubmit">添加</el-button>
-                <el-button @click="pagePlanHidden" >取消</el-button>
+                <el-button @click="pagePlanHidden" >关闭</el-button>
               </el-form-item>
             </el-form>
           </div>
@@ -141,9 +147,8 @@
     },
     data(){
       return{
-        form:{
-
-        },
+        addAccess:'none',
+        AccessF:"添加成功",
         title: '',
         position:'',
         startTime: '',
@@ -263,6 +268,60 @@
               plan:"今天要去打篮球",
               title:''
             }
+          ],[
+
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
+          ],[
+            
           ]
         ],
         currentPlans:[],
@@ -423,8 +482,24 @@
       planPageDisplay(){
         this.pageDisplay="block";
       },
+      clearAddPlan(){
+        this.title=''
+        this.position=''
+        this.endTime=''
+        this.startTime=''
+        this.plan=''
+      },
       pagePlanHidden(){
         this.pageDisplay='none';
+        this.clearAddPlan()
+      },
+      axiosGet(){
+        // axios.get('',{
+        //   year:this.year,
+        //   month:this.month
+        // }).then(function(ret){
+        //   this.plans=ret.data;
+        // })
       },
       onSubmit() {
         let plan={
@@ -437,7 +512,24 @@
           endTime:this.endTime,
           plan:this.plan
         }
-        console.log(plan);
+        this.AccessF='添加成功'
+        this.addAccess='block'
+        setTimeout(()=>{
+          this.addAccess='none'
+        },4000)
+        // axios.post('',plan).then(function(response){
+        //   this.AccessF='添加成功'
+        //   this.addAccess='block'
+        //   setTimeout(()=>{
+        //     this.addAccess='none'
+        //   },4000)
+        // }).catch(function(error){
+        //   this.AccessF='添加失败'
+        //   this.addAccess='block'
+        //   setTimeout(()=>{
+        //     this.addAccess='none'
+        //   },4000)
+        // })
       }
     },
     mounted(){
@@ -449,10 +541,10 @@
       this.monthNow=this.month;
       this.day=date.getDate();
       this.dayNow=this.day;
-      this.currentPlans = this.plans[this.day-1]?this.plans[this.day-1]:[];
-      console.log(this.planIndex)
-      // console.log(this.currentPlans[this.planIndex])
-      console.log(this.currentPlans)
+      // this.currentPlans = this.plans[this.day-1]?this.plans[this.day-1]:[];
+      // console.log(this.planIndex)
+      // // console.log(this.currentPlans[this.planIndex])
+      // console.log(this.currentPlans)
       this.setBgcNum();
       this.timer=setInterval(() => {
         if(this.counterPause){

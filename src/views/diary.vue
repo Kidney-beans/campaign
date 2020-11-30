@@ -1,21 +1,29 @@
 <template>
-  <div class='diary'>
-      <h1>diary</h1>
-      <div style="overflow:hidden;color:#333333">
-      <spot-lamp text="Surprise" font-size="8em" back-text-color="#333"></spot-lamp>
-      <h1>aaa</h1>
+  <div id='diary'>
+    <div class="cardBox">
+      <div class="img">
+      </div>
+      <div class="card">
+        <div class="mind">手机打开发链接</div>
+      </div>
+      <div class="time">
+      </div>
+      <div class="samllImg">
+      </div>
+      <div>
+        
+      </div>
     </div>
   </div>
 </template>
 <script>
-import SpotLamp from 'components/common/spot-lamp.vue'
   export default {
     name:'',
     props:{
       
     },
     components:{
-      SpotLamp
+      
     }
   }
 </script>

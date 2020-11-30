@@ -1,1 +1,69 @@
 @import './general.css';
+body{
+    background-color: #000;
+    color: white;
+}
+
+#diary .cardBox{
+    position: absolute;
+    left: 22vw;
+    top: 27vh;
+    background-color: rgba(97, 187, 187, 0.24);
+    width: 48vw;
+    height: 60vh;
+}
+
+#diary .cardBox .card{
+    position: absolute;
+    width: 40vw;
+    height: 40vh;
+    background: rgba(127, 151, 139, 0.445);
+    border-radius: 25px;
+}
+
+#diary .cardBox .img{
+    position: absolute;
+    left: 17vw;
+    top: -15vh;
+    width: 43vw;
+    height: 54vh;
+    background-color: rgba(57, 43, 138, 0.726);
+    border-radius: 10px;
+}
+
+#diary .cardBox .img img{
+    width: 100%;
+    height: 100%;
+}
+
+#diary .cardBox .card .mind{
+    position: absolute;
+    left: 6vw;
+    top: 0vh;
+    width: 20vw;
+    height: 20vh;
+    background-color: rgba(26, 15, 15, 0.281);
+    padding: 1vh 1vw 1vh 1vw;
+    border-radius: 10px;
+    text-align: center;
+    line-height: 20vh;
+    font-size: 1vw;
+}
+
+#diary .cardBox .time{
+    width: 30vw;
+    height: 20vh;
+    position:absolute;
+    left: 0;
+    top: 40vh;
+    background-color: rgba(112, 49, 49, 0.507);
+}
+
+#diary .cardBox .samllImg{
+    width: 13vw;
+    height: 26vh;
+    position: absolute;
+    left: 30vw;
+    bottom: 0;
+    background-color: rgba(143, 38, 87, 0.514);
+}

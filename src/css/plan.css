@@ -504,14 +504,48 @@ body{
 
 }
 
+#plan .addPlanPage .clearPlanPage{
+    width: 2vw;
+    height: 4vh;
+    position: absolute;
+    right: 1vw;
+    top:1vh;
+    cursor: pointer;
+}
+
+#plan .addPlanPage .clearPlanPage img{
+    width: 2vw;
+}
+
 /* 计划页选择时间样式 */
 #plan .addPlanPage .formPlan{
     position: absolute;
     left: 2vw;
-    top:5vh ;
+    top:6vh ;
     width: 26vw;
     height: 42vh;
     /* background-color: rgba(255, 38, 38, 0.699); */
+}
+
+#plan .addPlanPage .addPlanAccessAn .addPlanAccess{
+    
+    width: 10vw;
+    height: 12vh;
+    background-color: black;
+    color: white;
+    text-align: center;
+    line-height: 12vh;
+    /* z-index: -1; */
+    animation: dayNowBgc 1s linear reverse infinite;
+}
+
+#plan .addPlanPage .addPlanAccessAn{
+    position: absolute;
+    right: -15vw;
+    top:15vh;
+    animation: addAccessAn 4s linear;
+    /* width: 10vw;
+    height: 12vh; */
 }
 
 /*计划表单 文字颜色*/
@@ -975,6 +1009,27 @@ body{
     100%{
         transform: scaleX(1);
         opacity: 1;
+    }
+}
+
+@keyframes addAccessAn{
+    0%{
+        right: 0;
+        opacity: 0;
+    }
+    25%{
+        right: -15vw;
+        opacity: 1;
+    }
+    75%{
+        right: -15vw;
+        top:15vh;
+        opacity: 1;
+    }
+    100%{
+        right: -15vw;
+        top:5vh;
+        opacity: 0;
     }
 }
 
