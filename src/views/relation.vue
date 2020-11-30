@@ -2,8 +2,10 @@
   <div id='relation'>
       <h1>relation</h1>
       <div class="relationBox">
-      
-      </div>
+        <div class="contentBox">
+        gggggg
+        </div>
+        </div>
   </div>
 </template>
 <script>
