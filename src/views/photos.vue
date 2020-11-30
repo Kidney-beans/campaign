@@ -81,7 +81,7 @@
     <div class="photo-album-list-container">
       <div class="search-by-date-container">
         <!-- <span class="input-title">选择日期</span> -->
-        <el-date-picker v-model="currentChooseDate" type="month" placeholder="选择月份">
+        <el-date-picker v-model="currentChooseDate" type="month" placeholder="选择月份" @change="changeDate">
         </el-date-picker>
       </div>
       <div
@@ -123,6 +123,7 @@
       :custom-class="'add-photos-dialog' + ((addingListShow)?' add-photos-dialog-leftoff':'')"
       :show-close="false"
       :center="true"
+      :modal="false"
       >
       <div class="add-photos-block">
         <div class="img-reversation" 
@@ -158,19 +159,27 @@
           </el-input>
         </div>
         <div class="photo-remark-btn-container">
-          <el-button type="primary" plain @click="pushCurrentAdd">加入上传</el-button>
+          <el-button type="primary" plain @click="pushCurrentAdd" :disabled="!(currentAdd.size) || !allowAdd">加入上传</el-button>
           <el-button type="danger" plain @click="clearCurrentAdd">清空此项</el-button>
         </div>
       </div>
     </el-dialog>
-    <div class="photos-upload-list-show" v-show="addingListShow">
+    <div :class="{'photos-upload-list-show':true,'photos-upload-list-show-show':addingListShow}">
       <div class="header">
-
+        <h2>Upload List</h2>
+        <el-button type="primary" plain @click="startUpload" :disabled="uploadLock">确认上传</el-button>
       </div>
       <div class="upload-list">
-        <div class="upload-item" v-for="(item,index) in currentAdd.photosToUpload" :key="item.size">{{index}}</div>
+        <div class="upload-item" v-for="(item,index) in currentAdd.photosToUpload" :key="item.size">
+          <el-tooltip :content="item.remark" placement="top" effect="light">
+            <img :src="item.tempurl"/>
+          </el-tooltip>
+          <el-button type="danger" plain @click="deleteTempPhoto(index)" v-show="!(item.isUploading)">{{item.buttonContent}}</el-button>
+          <div style="cursor:pointer" @click="deleteAfterUpLoadPhoto(index)" v-show="item.isUploading">
+            <el-progress type="circle" :percentage="item.procession" :status="item.status" :width="90" ></el-progress>
+          </div>
+        </div>
       </div>
-      
     </div>
   </div>
 </template>
@@ -178,6 +187,7 @@
 import PhotosMenuBtn from "components/own/photos-menu-btn.vue";
 import CoolButton from "components/common/cool-button.vue";
 import dateFormat from 'js/transfer/dateFormat.js';
+import {post,get} from 'js/request/request.js';
 
 export default {
   name: "",
@@ -189,21 +199,32 @@ export default {
     addingListShow(){
       return this.currentAdd.photosToUpload.length
       // return false
+    },
+    allowAdd(){
+      let result = true
+      for(let i = 0;i < this.currentAdd.photosToUpload.length;++i){
+        if(this.currentAdd.photosToUpload[i].isUploading){
+          result = false
+          break;
+        }
+      }
+      return result;
     }
   },
   data() {
     return {
       mode: "location",
       currentAdd:{
+        uploadLock:false,
         remark:'',
         currentUploadURL:'',
         photosToUpload:[],
         name:'',
         indate:dateFormat('%yyyy-%MM-%DD',new Date()),
         size:0,
-        realfile:null
+        realfile:null,
       },
-      
+      isUploading:false,
       currentAlbum: 0,
       currentChooseDate:new Date(),
       photosArr: [
@@ -1206,7 +1227,7 @@ export default {
       left_offset: 0,
       leftInterval: null,
       rightInterval: null,
-      adding:true
+      adding:false
     };
   },
   components: {
@@ -1328,10 +1349,15 @@ export default {
       let item = {
         'size':this.currentAdd.size,
         'name':this.currentAdd.name,
-        'indate':this.currentAdd.indate,
         'remark':this.currentAdd.remark,
-        'file':this.currentAdd.realfile,
-        'masterId':this.$store.state.id 
+        // 'masteraccount':this.$store.state.account,
+        'masteraccount':'353162063',
+        'upfile':this.currentAdd.realfile,
+        'tempurl':this.currentAdd.currentUploadURL,
+        'procession':0,
+        'status':'',
+        'buttonContent':'删除',
+        'isUploading':false
       }
       this.currentAdd.photosToUpload.push(item)
     },
@@ -1340,6 +1366,70 @@ export default {
       this.currentAdd.name = ''
       this.currentAdd.remark = ''
       this.currentAdd.currentUploadURL = ''
+    },
+    deleteTempPhoto(index){
+      this.currentAdd.photosToUpload.splice(index,1)
+    },
+    finishConvince(index){
+      this.currentAdd.photosToUpload.splice(index,1)
+    },
+    startUpload(){
+      this.isUploading = true
+      this.uploadLock = true
+      let total_count = 0
+      this.currentAdd.photosToUpload.forEach((element)=>{
+        if(element.status != ''){
+          return
+        }
+        total_count++
+      })
+      this.currentAdd.photosToUpload.forEach((element,index) => {
+        if(element.status != ''){
+          return
+        }
+        let formdata = new FormData()
+        for(let item in element){
+          console.log(item,":",element[item])
+          formdata.append(item,element[item])
+        }
+        console.log(formdata)
+        element.isUploading = true
+        post('/photo/upload',formdata,(e)=>{
+          element.procession = Math.floor((e.loaded/e.total) * 99)
+        }).then(result=>{
+          let data = result.data;
+          
+          if(data.success){
+            element.status = 'success'
+            element.buttonContent = "完成"
+          }
+          else{
+            element.status = 'exception'
+            element.buttonContent = "失败"
+          }
+          element.isUploading = false
+          total_count--
+          if(total_count == 0){
+            setTimeout(()=>{
+              this.uploadLock = false
+            },1000)
+          }
+        })
+      });
+    },
+    changeDate(){
+      let dateFormat = new FormData()
+      dateFormat.append("date",this.currentChooseDate)
+      post('/photo/month',dateFormat).then(result=>{
+        console.log("按月份请求将结果:")
+        console.log(result)
+      })
+    },
+    deleteAfterUpLoadPhoto(index){
+      if(this.isUploading){
+        return
+      }
+      this.deleteTempPhoto(index)
     }
   },
   mounted() {

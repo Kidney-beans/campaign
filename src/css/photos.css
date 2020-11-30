@@ -8,6 +8,7 @@
     background-clip: text;
     color: transparent;
     user-select: none;
+    font-family:'Agnes-Bold';
 }
 .photosBox{
 
@@ -370,7 +371,7 @@ ul li .active{
 
 .add-photos-dialog{
     /* background-color: #70a1ff; */
-    border: rgb(23, 72, 235) 2px solid;
+    border: rgb(23, 72, 235) 1px solid;
     transition: all 0.4s;
     background-color: #000;
     min-width: 800px;
@@ -395,15 +396,39 @@ ul li .active{
     right: 0;
     width: 20vw;
     height: 100vh;
-    background-color: white;
+    /* background-color: white; */
+    background-color: #000;
     z-index: 2002;
+    transform: translateX(20vw);
     transition: 0.4s all;
+    border-left: rgb(114, 32, 114) 1px solid;
+}
+
+.photos-upload-list-show-show{
+    transform: translateX(0);
 }
 
 .photos-upload-list-show .header{
     width: 100%;
     height: 10vh;
-    background-color: blue;
+    /* background-color: blue; */
+    border-bottom:  rgb(114, 32, 114) 1px solid;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.photos-upload-list-show .header h2{
+    color: transparent;
+    background:linear-gradient(180deg,rgb(209, 21, 200) 0,rgb(209, 21, 200) 50%,rgb(46, 93, 221) 50%,rgb(39, 92, 238) 100%);
+    background-clip: text;
+    
+}
+
+.photos-upload-list-show .header .el-button{
+    background-color: transparent;
+
 }
 
 .photos-upload-list-show .upload-list{
@@ -417,12 +442,41 @@ ul li .active{
 .photos-upload-list-show .upload-list .upload-item{
     width: 90%;
     height: 12vh;
-    background-color: tomato;
     margin: auto;
     margin-top:2vh;
     animation: upload-item-appear 0.5s forwards;
+    transition: all 0.4s;
+    position: relative;
+    box-shadow: 0 0 10px 2px rgb(29, 111, 204);
 }
 
+.photos-upload-list-show .upload-list .upload-item img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 12vh;
+    width: 10vw;
+    display: block;
+    /* background-color: rgba(24, 221, 211, 0.2); */
+    /* box-shadow: 0 0 10px 2px rgb(234,234,234); */
+    border: 10px solid transparent;
+    box-sizing: border-box;
+    opacity: 0.9;
+}
+
+.photos-upload-list-show .upload-list .upload-item .el-button,.el-progress{
+    position: absolute;
+    right: 10%;
+    top:50%;
+    transform: translateY(-50%);    
+    background-color: transparent;
+    /* color: rgb(114, 32, 114); */
+    /* top: 0; */
+}
+
+.photos-upload-list-show .upload-list .upload-item .el-button,.el-progress .el-progress__text{
+    color: white;
+}
 
 @keyframes photos-upload-list-show-appear{
     0%{

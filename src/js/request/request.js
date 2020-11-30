@@ -1,23 +1,26 @@
-const { default: Axios } = require('axios')
-let request = require('axios')
+let axios = require('axios')
 
 let baseURL = "http://localhost:8099"
 
-export function get(requestUrl,params){
+export function get(requestUrl,params,progressCallback){
     return axios({
         method:'get',
         baseURL:baseURL,
         url: requestUrl,
-        params
+        params,
+        onUploadProgress:progressCallback?progressCallback:(()=>{console.log("no bind progress!")})
     })
 }
 
-
-export function post(requestUrl,data){
+export function post(requestUrl,data,progressCallback){
     return axios({
         method:'post',
         baseURL:baseURL,
         url: requestUrl,
-        data
+        data,
+        headers: { 'Content-Type': 'multipart/form-data' },
+        onUploadProgress:(e)=>{
+            progressCallback(e)
+        }
     })
 }
