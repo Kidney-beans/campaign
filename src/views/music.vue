@@ -2,7 +2,7 @@
   <div id="music">
     <h1 class="title-h1">music</h1>
     <audio controls @timeupdate="timeUpdate" id="audio">
-      <source src="~assets/music/临安初雨.mp3" type="audio/mpeg" />
+      <source :src="currentMusicSrc" type="audio/mpeg" />
     </audio>
 
     <div :class="{ bulletInput: true, 'bulletInput-hidden': !bullet }">
@@ -17,13 +17,21 @@
     <div :class="{ 'music-box': true, 'music-box-far': bullet }">
       <div class="music-bar" @mouseenter="shouldShowBar = true"></div>
       <div @mouseleave="shouldShowBar = false" :class="{ showbar: true, 'showbar-hidden': !shouldShowBar }">
-        <!-- 音乐列表组件 -->
-        <el-table :data="musicData" height="60vh" border style="width: 100%">
-          <el-table-column prop="author" label="歌手" width="100"></el-table-column>
-          <el-table-column prop="name" label="歌曲" width="280"></el-table-column>
-          <el-table-column><img src="../assets/music/play1.png"></el-table-column>
-
-        </el-table>
+        <!-- 音乐列表 -->
+         <div class="music-List-box">
+            <div class="list-Head">
+              <div>歌手</div>
+              <div>歌名</div>
+              <div>操作</div>
+            </div>
+            <div class="space-to-split"></div>
+            <div class="music-List" v-for="(item ,index) in musicData" :key="item.url">
+              <div>{{item.author}}</div>
+              <div>{{item.name}}</div>
+              <img src="~assets/music/play1.png" @click="musPlay(item.url)">
+              <img src="~assets/music/delete.png" @click="deleteMusic(index)">
+            </div>
+         </div>
       </div>
       <!-- 音乐搜索输入框 -->
       <input type="text" class="music-seek" v-model="musicSeekValue" value="{musicSeekValue}" />
@@ -40,7 +48,7 @@
       <div class="progress-bar">
         <div class="music-porgre"></div>
 
-        <span><img src="~assets/music/last.png" class="music-btn-last some-btns" /></span>
+        <span><img src="~assets/music/last.png" class="music-btn-last some-btns"  @click="lastMusic"/></span>
         <span id="musicPause" v-show="!pause" @click="musicPause">
           <img src="~assets/music/pause.png" class="some-btns music-btn-position music-btn-play" id="music-play" />
         </span>
@@ -48,7 +56,7 @@
           <img src="~assets/music/play.png" class="some-btns music-btn-position music-btn-pause" id="music-pause" />
           <!-- 注意！注意！播放完歌后按钮没变暂停 -->
         </span>
-        <span><img src="~assets/music/last.png" class="some-btns music-btn-next" /></span>
+        <span><img src="~assets/music/last.png" class="some-btns music-btn-next"  @click="nextMusic"/></span>
         <volumn-control side-length="4vh" top="1.5vh" left="15%" top-offset="-15.6vh" bar-height="134px" @change="changeV"></volumn-control>
         <!-- <span><img src="../assets/music/音量.png"></span> -->
         <div class="music-porgre-border" @click="adaptMusicTime" real="p">
@@ -68,13 +76,13 @@
       <el-dialog title="搜索结果" :modal="false" :visible.sync="searchDialogShow" width="50%" top="17vh" custom-class="search-result-container">
         <div class="cuntent-container">
                       <!-- 搜索音乐结果 -->     
-            <div class="musicPhotoMaxBox" v-for="(item, index)  in musicSeekArr" :key="item.musicphoto">
+            <div class="musicPhotoMaxBox" v-for="(item, index)  in musicSeekArr" :key="item.url">
               <div class="musicPhotoBox"><img :src="item.photourl" @mouseenter="PhotoShadeShow(index)" ></div>
               <div class="musicPhotoBox-Shade" v-show="index == currentPhotoIndex" @mouseleave="PhotoShadeHidden(index)">
                       <!-- 搜索音乐播放 -->
-                <img src="~assets/music/play1.png"  @click="seekMusicPlay()">
+                <img src="~assets/music/play1.png"  @click="seekMusicPlay(item)">
                       <!-- 搜索音乐添加 -->
-                <img src="~assets/music/add.png" @click="addMusic(item.author,item.name)">
+                <img src="~assets/music/add.png" @click="addMusic(item)">
               </div>
               <span>{{item.name}}</span>---<span>{{item.author}}</span>
             </div>
@@ -94,6 +102,7 @@ export default {
   },
   data() {
     return {
+      currentMusicSrc:"http://118.25.144.69/public/music/172.mp3",
       currentPhotoIndex:-1,
       value: true,
       currentMusicTime: 0,
@@ -109,13 +118,13 @@ export default {
       temp:4,
       musicData: [
         {
-          author: "谢安琪",
-          name: "喜帖街",
+          author: "容祖儿",
+          name: "怯",
           url:'http://118.25.144.69/public/music/170.mp3'
         },
         {
-          author: "谢安琪",
-          name: "钟无艳",
+          author: "杨千嬅",
+          name: "勇",
           url:'http://118.25.144.69/public/music/171.mp3'
         },
         {
@@ -129,8 +138,8 @@ export default {
           url:'http://118.25.144.69/public/music/173.mp3'
         },
         {
-          author: "陈奕迅",
-          name: "遥远的她",
+          author: "卢巧音&王力宏",
+          name: "好心分手",
           url:'http://118.25.144.69/public/music/174.mp3'
         },
         {
@@ -146,7 +155,7 @@ export default {
         {
           author: "容祖儿",
           name: "心淡",
-          url:'http://118.25.144.69/public/music/177.mp3'
+          url:'http://m7.music.126.net/20201129220005/51015f9bc6e39c6b0d0a4df7d07c440f/ymusic/e056/1f4c/9434/a1e451b55726a79905c28d90a892a7d9.mp3'
         },
         {
           author: "容祖儿",
@@ -154,20 +163,30 @@ export default {
           url:'http://118.25.144.69/public/music/178.mp3'
         },
         {
+          author: "陈奕迅",
+          name: "遥远的她",
+          url:'http://118.25.144.69/public/music/179.mp3'
+        },
+        {
+          author: "谢安琪",
+          name: "钟无艳",
+          url:'http://118.25.144.69/public/music/180.mp3'
+        },
+        {
           author: "张国荣",
           name: "风继续吹",
-          url:'http://118.25.144.69/public/music/179.mp3'
+          url:'http://118.25.144.69/public/music/181.mp3'
         }
       ],
       
       musicSeekArr:[
         {
-         photourl:"http://118.25.144.69/public/imgs/8.jpg",
-          author:"容祖儿",
-          name:"傻女",
+         photourl:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606665580394&di=b9f72d368d4e74097429ee373b6aa530&imgtype=0&src=http%3A%2F%2Fi1.hdslb.com%2Fbfs%2Farchive%2F6d44a33ef2ba96351a310bc33f9bffe4fbecdeda.jpg",
+          author:"谢安琪",
+          name:"喜帖街",
           url:'http://118.25.144.69/public/music/150.mp3'
         },{
-         photourl:"http://118.25.144.69/public/imgs/8.jpg",
+         photourl:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1606666362258&di=6efab5420325693fa38e07b0f86e2f4d&imgtype=0&src=http%3A%2F%2Fpic.qqtn.com%2Fup%2F2017-5%2F2017531014305530.png",
           author:"容祖儿",
           name:"傻女",
           url:'http://118.25.144.69/public/music/151.mp3'
@@ -222,6 +241,14 @@ export default {
           name:"傻女",
           url:'http://118.25.144.69/public/music/161.mp3'
         },
+      ],
+      musicInn:[
+            {
+              author: " ",
+              name: " ",
+              url:''
+            }
+
       ]
     };
   },
@@ -233,9 +260,9 @@ export default {
       if (srcEle.duration - srcEle.currentTime <= 0) {
         this.pause = true;
       }
-      console.log("已更改：");
-      console.log(srcEle);
-      console.log(this.currentMusicTime, this.currentDuration);
+      // console.log("已更改：");
+      // console.log(srcEle);
+      // console.log(this.currentMusicTime, this.currentDuration);
     },
     musicPlay() {
       document.getElementById("audio").play();
@@ -251,16 +278,16 @@ export default {
       if (real == "p") {
         let positionX = e.offsetX;
         let parentWidth = e.srcElement.offsetWidth;
-        console.log("parentWidth:", parentWidth);
+        // console.log("parentWidth:", parentWidth);
         this.currentMusicTime = (positionX / parentWidth) * this.currentDuration;
         this.musicPlay();
         this.setMusicTime();
       } else {
         let hiddenLength = -(-1 + this.currentMusicTime / this.currentDuration) * e.srcElement.offsetWidth;
         let positionX = e.offsetX - hiddenLength;
-        console.log("hiddenLength:", hiddenLength);
+        // console.log("hiddenLength:", hiddenLength);
         let parentWidth = e.srcElement.offsetWidth;
-        console.log("parentWidth:", parentWidth);
+        // console.log("parentWidth:", parentWidth);
         this.currentMusicTime = (positionX / parentWidth) * this.currentDuration;
         this.musicPlay();
         this.setMusicTime();
@@ -293,23 +320,47 @@ export default {
       this.currentPhotoIndex = -1
     },
     //添加音乐
-    addMusic(author,name){
-      this.temp=this.musicData.length
-          this.musicData[this.temp]=author
-          console.log(this.musicData[this.temp])
+    addMusic(music){
+     this.musicData.splice(0,0,music)
+     console.log()
+          // console.log(this.musicData[this.temp])
     },
-    seekMusicPlay(){
-
-
+    seekMusicPlay(music){
+      this.musicData.splice(0,0,music)
+      this.musPlay(music.url)
     },
-
+    musPlay(url){
+        document.getElementById("audio").load()
+        this.musicPause()
+        this.currentMusicSrc=url
+        this.currentMusicTime = 0
+        this.setMusicTime()
+        this.musicPlay()
+        // console.log(this.currentMusicSrc)
+    },
+    deleteMusic(i){
+        // console.log(i)
+        this.musicData.splice(i,1)
+    },
+    countPlayMusic(){
+        let a =this.currentMusicSrc
+        
+        
+    },
+    lastMusic(){
+        console.log("上一首音乐")
+    },
+    nextMusic(){
+        console.log("下一首音乐")
+    },
   },
   computed: {},
   components: {
     VolumnControl,
     CoolButton,
   },
-  mounted() {},
+  mounted(){
+  },
 };
 </script>
 <style scoped>

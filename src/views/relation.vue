@@ -1,6 +1,11 @@
 <template>
-  <div class='relation'>
+  <div id='relation'>
       <h1>relation</h1>
+      <div class="relationBox">
+        <div class="contentBox">
+        gggggg
+        </div>
+        </div>
   </div>
 </template>
 <script>

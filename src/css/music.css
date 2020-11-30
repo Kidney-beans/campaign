@@ -62,11 +62,10 @@
 /* 音乐列表显示框 */
 #music .showbar {
     position: absolute;
-    
     top: 7vh;
     height: 60vh;
     width: 30vh;
-    background-color: rgba(251, 251, 251, 0.596);
+   
     border-radius: 5px;
     transition: all .3s;
     opacity: 1;
@@ -74,19 +73,83 @@
     z-index: 60;
 
 }
-
+#music .music-List-box{
+    position: absolute;
+    height: 60vh;
+    width: 100%;
+    flex-wrap: wrap;
+    overflow-y: scroll;
+}
+#music .list-Head{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: 2.5em;
+    flex-wrap: wrap;
+    font-size: 1.2em;
+    position: fixed;
+    background-color: #000000d8;
+    z-index: 3;
+    
+}
+#music .music-List-box .list-Head div{
+    color: #ffffff;
+    /* text-align: center; */
+    width: 7vh;
+    line-height: 2.5em;
+}
+#music .space-to-split{
+    height: 2.5em;
+}
+#music .music-List-box .music-List div{
+    width: 9vh;
+}
+#music .music-List{
+    background-color: rgba(0, 0, 0, 0.609);
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    color: #ffffff;
+    flex-wrap: wrap;
+   align-items: center;
+}
+#music .music-List div{
+    position: relative;
+    /* margin: 1vw 0 1vw 0; */
+    height: 7vh;
+    font-size: 1em;
+    line-height: 7vh;
+}
+#music .music-List:hover{
+    background-color: rgba(0, 0, 0, 0.4);
+}
+#music .music-List img{
+    /* position: absolute;
+    left: 1.5vw; */
+    height: 2vh;
+    opacity: .7;
+}
+#music .music-List img:hover{
+    opacity: 1;
+    cursor: pointer;
+}
+#music .music-List img:nth-child(2){
+    left: 3vw;
+}
 #music .showbar-hidden{
     transform: translateX(-20vw);
     z-index: 61;
 }
-.music-seek-list{
+#music .music-seek-list{
     position: absolute;
     top: 5vh;
     left: 25vw;
     z-index: 10;
     
 }
-.music-seek-list th{
+#music .music-seek-list th{
     width: 10vw;
     height: 5vh;
     text-align: center;
@@ -94,7 +157,7 @@
     font-size: 1.1em;
     border-bottom: 1px solid black;
 }
-.music-seek-list ul{
+#music .music-seek-list ul{
     list-style: none;
     display:inline-block;
     width: 10vw;
@@ -102,7 +165,7 @@
     font-size: 1.2em;
     background-color: #ffffff;
 }
-.music-seek-list li{
+#music .music-seek-list li{
     height: 4vh;
     text-align: center;
     line-height: 4vh;
@@ -143,12 +206,12 @@
 }
 
 /*在这调输入框整体样式*/
-.el-input{
+#music .el-input{
     width:20vw;
 }
 
 /*在这调输入框文本框样式*/
-.el-input input{
+#music .el-input input{
     color: white;
     background-color:rgba(0, 0, 0, 0.561);
 }
@@ -164,7 +227,7 @@
     font-size: 1.2em;
     color: white;
 }
-.cell img{
+#music .cell img{
     height: 1vh;
     position: relative;
     left: 0;
@@ -205,7 +268,7 @@
   
 }
 
-.cuntent-container{
+#music .cuntent-container{
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -213,20 +276,20 @@
     flex-wrap: wrap;
 }
 /* 音搜索音乐结果一个单元 */
-.musicPhotoMaxBox{
+#music .musicPhotoMaxBox{
     position: relative;
     width: 9vw;
     margin: 1vh;
 }
 
-.musicPhotoBox{
+#music .musicPhotoBox{
     height: 18vh;
     width: 9vw;
     
    
 }
         /* 搜索音乐遮罩 */
-.musicPhotoMaxBox .musicPhotoBox-Shade{
+#music .musicPhotoMaxBox .musicPhotoBox-Shade{
     position: absolute;
     background-color: rgba(0, 0, 0, 0.363);
     height: 18vh;
@@ -235,7 +298,7 @@
     left: 0;
     /* display: none; */
 }
-.musicPhotoBox-Shade img{
+#music .musicPhotoBox-Shade img{
     position: relative;
     top: 3.5vw;
     height: 4vh;
@@ -243,16 +306,16 @@
     opacity: .7;
 
 }
-.musicPhotoBox-Shade img:hover{
+#music .musicPhotoBox-Shade img:hover{
     opacity: 1;
 }
-.musicPhotoBox img{
-    
+#music .musicPhotoBox img{ 
+
     width: 100%;
     height: 100%;
     box-sizing: 100% 100;
 }
-.search-result-container{
+#music .search-result-container{
     height: 70vh;
     overflow-y: scroll;
 }
@@ -371,7 +434,7 @@
     animation: minlog 3s infinite;
 }
 /* 小log1 */
-.minlog1{
+#music .minlog1{
     position: fixed;
     width: 3vw;
     height: 6vh;
@@ -382,7 +445,7 @@
     background-repeat: no-repeat;
 }
 /* 小log2 */
-.minlog2{
+#music .minlog2{
     position: fixed;
     width: 3vw;
     height: 6vh;
@@ -391,23 +454,18 @@
     background-size: 100%;
     background-image: url(~assets/music/music_log4.png);
     background-repeat: no-repeat;
-
 }
 @keyframes boun{
     0%,100%{
         top:16vh;
-        
     }
     50%{
-
         top:19vh;
-      
     }
 }
 @keyframes minlog{
 0%,99%{
     top: 11vh;
-   
 }50%{
     top: 9vh;
 }
