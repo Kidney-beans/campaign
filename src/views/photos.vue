@@ -181,14 +181,13 @@
         </div>
       </div>
     </div>
-  </div>
+    </div>
 </template>
 <script>
 import PhotosMenuBtn from "components/own/photos-menu-btn.vue";
 import CoolButton from "components/common/cool-button.vue";
 import dateFormat from 'js/transfer/dateFormat.js';
 import {post,get} from 'js/request/request.js';
-
 export default {
   name: "",
   props: {},
@@ -213,6 +212,7 @@ export default {
   },
   data() {
     return {
+      circle_h:true,
       mode: "location",
       currentAdd:{
         uploadLock:false,
@@ -1232,7 +1232,7 @@ export default {
   },
   components: {
     PhotosMenuBtn,
-    CoolButton,
+    CoolButton
   },
   methods: {
     switchMode() {
