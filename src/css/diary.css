@@ -2,6 +2,32 @@
 body{
     background-color: #000;
     color: white;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+#diary .cardImgBgc{
+    position: absolute;
+    left: 22vw;
+    top:12vh;
+    background: url(../assets/plan/img-2.jpg) no-repeat;
+    background-size: 60vw auto;
+    background-position: top right;
+    width: 60vw;
+    height: 75vh;
+    /* overflow: hidden; */
+    /* opacity: 0.2; */
+    filter: blur(2px);
+}
+
+#diary .cardImgBgc .mask{
+    position: absolute;
+    left: 0;
+    top:0;
+    width: 60vw;
+    height: 75vh;
+    border-radius: 15px;
+    /* background:linear-gradient(rgb(109, 80, 80),rgba(30, 113, 128, 0.966),rgba(240, 233, 233, 0.479)); */
 }
 
 #diary .cardBox{
@@ -11,24 +37,38 @@ body{
     background-color: rgba(97, 187, 187, 0.24);
     width: 48vw;
     height: 60vh;
+    border-radius: 15px;
+   
 }
+/* 
+#diary .cardBox:hover{
+    transform-origin: left;
+    transform: rotateY(45deg);
+} */
 
 #diary .cardBox .card{
     position: absolute;
     width: 40vw;
     height: 40vh;
-    background: rgba(127, 151, 139, 0.445);
+    /* background: rgba(127, 151, 139, 0.445); */
     border-radius: 25px;
+    perspective:200px
 }
 
 #diary .cardBox .img{
     position: absolute;
-    left: 17vw;
+    left: 20vw;
     top: -15vh;
-    width: 43vw;
-    height: 54vh;
-    background-color: rgba(57, 43, 138, 0.726);
-    border-radius: 10px;
+    width: 40vw;
+    height: 50vh;
+    /* background-color: rgba(57, 43, 138, 0.726); */
+    border-radius: 15px;
+    background: url(../assets/plan/img-2.jpg) no-repeat;
+    background-position: top right;
+    background-size: 60vw auto;
+    z-index: 2;
+    /* background-position: right; */
+    perspective:400px
 }
 
 #diary .cardBox .img img{
@@ -36,34 +76,124 @@ body{
     height: 100%;
 }
 
-#diary .cardBox .card .mind{
+#diary .cardBox .card .title{
     position: absolute;
-    left: 6vw;
+    left:11vw;
     top: 0vh;
-    width: 20vw;
-    height: 20vh;
-    background-color: rgba(26, 15, 15, 0.281);
+    width: 16vw;
+    height: 12vh;
+    background: linear-gradient(90deg,rgba(134, 11, 83, 0.555) 50%,rgba(100, 17, 148, 0.548) 50%);
     padding: 1vh 1vw 1vh 1vw;
     border-radius: 10px;
     text-align: center;
-    line-height: 20vh;
-    font-size: 1vw;
+    line-height: 12vh;
+    font-size: 1.5vw;
+    font-weight: 700;
+    z-index: 3;
 }
+/* 
+#diary .cardBox .card .mind{
+    position: absolute;
+    left: 6vw;
+    top: 20vh;
+    width: 22vw;
+    height: 20vh;
+    background-color: rgba(255, 251, 0, 0.288);
+} */
 
 #diary .cardBox .time{
     width: 30vw;
     height: 20vh;
     position:absolute;
     left: 0;
-    top: 40vh;
+    bottom: 0;
     background-color: rgba(112, 49, 49, 0.507);
 }
 
 #diary .cardBox .samllImg{
     width: 13vw;
-    height: 26vh;
+    height: 25vh;
     position: absolute;
     left: 30vw;
     bottom: 0;
     background-color: rgba(143, 38, 87, 0.514);
+    font-size: 6vw;
+    text-align: center;
+    line-height: 25vh;
+    font-weight: 700;
+    /* background: url(../assets/photos/photos-bj.jpg); */
+    /* background-position: center; */
+    /* z-index: 4; */
+}
+
+#diary .cardBox .img .see{
+    position: absolute;
+    left: 0;
+    top: 40vh;
+    width: 8vw;
+    height: 10vh;
+    border-radius: 15px;
+    line-height: 10vh;
+    text-align: center;
+    font-size: 2vw;
+    background-color: rgba(165, 29, 29, 0.76);
+    z-index: 2;
+    cursor: pointer;
+}
+
+#diary .cardBox .img .see:hover{
+    animation: seeAn 1s linear;
+    color: aqua;
+    text-shadow: -2px 4px 2px #000, 
+                -4px 6px 1px #1c87a5,
+                -6px 8px 1px #dfb709;
+}
+
+#diary .cardBox .bottom{
+    position: absolute;
+    right: 0;
+    bottom:0 ;
+    width: 5vw;
+    height: 13vh;
+    background-color: rgba(0, 0, 0, 0.603);
+    /* background: url(../assets/diary/img-1.jpg); */
+    /* background-color: #fff; */
+}
+
+#diary .cardBox .bottom img{
+    width: 3vw;
+    position: absolute;
+    left: 1vw;
+    top: 5vh;
+    transform: rotate(180deg);
+    opacity: 0.5;
+    
+}
+
+#diary .cardBox .top{
+    position: absolute;
+    right: 0;
+    bottom:13vh;
+    width: 5vw;
+    height: 13vh;
+    background-color: rgba(0, 0, 0, 0.603);
+    /* background: url(../assets/diary/img-1.jpg); */
+    /* background-color: #fff; */
+}
+
+#diary .cardBox .top img{
+    width: 3vw;
+    position: absolute;
+    left: 1vw;
+    top:5vh;
+    opacity: 0.5;
+}
+
+@keyframes seeAn{
+    0%{text-shadow: 0px 0px 0px #000, 
+                    0px 0px 0px #1c87a5,
+                    0px 0px 0px #dfb709;}
+    100%{text-shadow: -2px 4px 2px #000, 
+                    -4px 6px 1px #1c87a5,
+                    -6px 8px 1px #dfb709;}
 }

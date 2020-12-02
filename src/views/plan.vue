@@ -63,7 +63,8 @@
       </ul>
       </div>
       <!-- 添加计划页 -->
-      <div class="addPlanPage PlanPageAn" :style="{'display':pageDisplay}">
+      <circle-drawer-form outter-background="#000" inner-background="rgba(255,0,0,1)" :hidden="add_dialog_hidden">
+        <div class="addPlanPage PlanPageAn">
           <div class="clearPlanPage" @click="clearAddPlan">
             <img src="../assets/plan/clearPage.png" alt="清空"> 
           </div>
@@ -115,6 +116,7 @@
             </el-form>
           </div>
       </div>
+      </circle-drawer-form>
       <!-- 显示详细计划 -->
       <div class="showDetailedPlan showPlanAn" :style="{'display':showPlan}">
           <div class="timeLine" v-if="this.currentPlans.length>0">
@@ -140,6 +142,7 @@
   </div>
 </template>
 <script>
+  import circleDrawerForm from "components/common/circle-drawer-form.vue";
   export default {
     name:'',
     props:{
@@ -156,7 +159,7 @@
         plan: '',
         showPlan:'none',
         listShow:false,
-        pageDisplay:'none',
+        add_dialog_hidden:true,
         temp_sw:'none',
         week:["日","一","二","三","四","五","六"],
         days:["1","2"],
@@ -330,7 +333,7 @@
       }
     },
     components:{
-     
+     circleDrawerForm
     },
     methods:{
       //拼接时间
@@ -346,18 +349,17 @@
       },
       //改变选中日期
       changeDay(Option,optionNow){
-        console.log(Option,optionNow)
+        // console.log(Option,optionNow)
         if(Option!=optionNow){
           this.day="01";
         }else{
-          this.day=this.dayNow
+          this.day=parseInt(this.dayNow)>10?this.dayNow:"0"+this.dayNow
         }
       },
       //设置背景数字
       setBgcNum(){
         this.bgcNum=this.month+"."+this.day;
         this.currentPlans = this.plans[this.day-1]?this.plans[this.day-1]:[];
-        console.log(this.currentPlans)
       },
       //增加年份
       plusYear(e){
@@ -480,7 +482,7 @@
         this.currentPlans.splice(index,1)
       },
       planPageDisplay(){
-        this.pageDisplay="block";
+        this.add_dialog_hidden=false;
       },
       clearAddPlan(){
         this.title=''
@@ -490,7 +492,7 @@
         this.plan=''
       },
       pagePlanHidden(){
-        this.pageDisplay='none';
+        this.add_dialog_hidden=true;
         this.clearAddPlan()
       },
       axiosGet(){

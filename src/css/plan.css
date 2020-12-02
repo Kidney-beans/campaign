@@ -492,12 +492,12 @@ body{
 /* 添加计划页样式 */
 #plan .addPlanPage{
     position: absolute;
-    left: 26vw;
-    top: 25vh;
+    left: 0vw;
+    top: 0vh;
     background-color: #000000;
     width: 30vw;
     height: 50vh;
-    z-index: 3;
+    z-index: 999;
     /* display: none; */
     transform-origin: left;
     animation: planPageDisplay 0.3s linear;
@@ -581,6 +581,10 @@ body{
 .el-button+.el-button{
     margin-left: 5vw;
     background-color: rgb(255, 255, 255);
+}
+
+.el-picker-panel{
+    z-index: 3001 !important;
 }
 
 #plan .showDetailedPlan{
@@ -1014,20 +1018,20 @@ body{
 
 @keyframes addAccessAn{
     0%{
-        right: 0;
+        left: 0;
         opacity: 0;
     }
     25%{
-        right: -15vw;
+        left: -15vw;
         opacity: 1;
     }
     75%{
-        right: -15vw;
+        left: -15vw;
         top:15vh;
         opacity: 1;
     }
     100%{
-        right: -15vw;
+        left: -15vw;
         top:5vh;
         opacity: 0;
     }

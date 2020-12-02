@@ -3,7 +3,7 @@
       <div class="content-container" :style="{'background':InnerBackground}">
             <slot></slot>
       </div>
-      
+
   </div>
 </template>
 <script>
@@ -39,6 +39,6 @@
       height:50vh;
       position: absolute;
       top:0;
-      right: 0;
+      right: 12vh;
   }
 </style>
