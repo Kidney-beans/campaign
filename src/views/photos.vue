@@ -1,6 +1,6 @@
 <template>
   <div id="photos">
-    <!-- <div class="Bj-show"><img :src="currentImg"></div> -->
+    <!-- <div class="Bj-show"><img :path="currentImg"></div> -->
     <span
       class="meteor"
       :style="{ left: p[0].left + 'vw', top: p[0].top + 'vh' }"
@@ -21,7 +21,7 @@
         :class="{ 'photos-show': true, 'photos-show-hidden': mode == 'global' }"
       >
         <img
-          :src="photosArr[currentAlbum].photos[indexImg].src"
+          :src="photosArr[currentAlbum].photos[indexImg].path"
           class="photos-show-imgstyle"
         />
         <!-- 图片切换按钮 -->
@@ -49,11 +49,11 @@
           <!-- <dt>{{ year + "年" + month + "月" + day + "日" + h + "时" + m + "分" + s + "秒" }}</dt> -->
           <li
             v-for="(item, index) in photosArr[currentAlbum].photos"
-            :key="item.src"
-            @click="showImg(item.src, index)"
+            :key="item.path"
+            @click="showImg(item.path, index)"
           >
             <img
-              :src="item.src"
+              :src="item.path"
               class="imgtt"
               :class="{ active: index == indexImg }"
             />
@@ -93,7 +93,7 @@
         <el-carousel :interval="4000" type="card" height="50vh">
           <el-carousel-item v-for="(item, index) in photosArr" :key="item.date">
             <div class="album-item-container">
-              <img :src="item.photos[0].src" @click="changeAlbum(index)" />
+              <img :src="item.photos[0].path" @click="changeAlbum(index)" />
               <div class="date-show">{{ item.date }}</div>
             </div>
           </el-carousel-item>
@@ -232,87 +232,87 @@ export default {
           date: "1月1日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/1.jpg",
+              path: "http://118.25.144.69/public/imgs/1.jpg",
               remark: "第一张图",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
               remark: "第二张图",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
               remark: "",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
               remark: "哈哈哈我也不知道我在说啥子",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
               remark: "",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
               remark: "hahahha",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
               remark: "",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
               remark: "23r23e2e2323r23e23e2r32e2r23r23reweeger",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
               remark: "",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
               remark: "",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
               remark: "sdjfsldfjsldf",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
               remark: "23423e23r",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
               remark: "",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
               remark: "23r2334t32y5yerfejergewgrerfewgre",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
               remark: "",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
               remark: "",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
               remark: "34t34trwrefqerfsdfwdvw4h3y",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
               remark: "",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
               remark: "wpoejflskdmflskmdvlskmdvlsdmk",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
               remark: "we;ofkapbndflmv/;slmc;/lmvs/dvlm",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
               remark: "a;dojf/ldmfv/xmvlkdmfg;lkskth;sdlf;khs.dfkdl",
             },
           ],
@@ -321,67 +321,67 @@ export default {
           date: "1月2日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/1.jpg",
+              path: "http://118.25.144.69/public/imgs/1.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
             },
           ],
         },
@@ -389,67 +389,67 @@ export default {
           date: "1月3日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/img-15.jpg",
+              path: "http://118.25.144.69/public/imgs/img-15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
             },
           ],
         },
@@ -457,67 +457,67 @@ export default {
           date: "1月4日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/img-13.jpg",
+              path: "http://118.25.144.69/public/imgs/img-13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
             },
           ],
         },
@@ -525,67 +525,67 @@ export default {
           date: "1月5日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/img-12.jpg",
+              path: "http://118.25.144.69/public/imgs/img-12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
             },
           ],
         },
@@ -593,67 +593,67 @@ export default {
           date: "1月6日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/img-11.jpg",
+              path: "http://118.25.144.69/public/imgs/img-11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
             },
           ],
         },
@@ -661,67 +661,67 @@ export default {
           date: "1月7日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/img-10.jpg",
+              path: "http://118.25.144.69/public/imgs/img-10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
             },
           ],
         },
@@ -729,67 +729,67 @@ export default {
           date: "2月1日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/img-9.jpg",
+              path: "http://118.25.144.69/public/imgs/img-9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
             },
           ],
         },
@@ -797,67 +797,67 @@ export default {
           date: "2月2日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/img-8.jpg",
+              path: "http://118.25.144.69/public/imgs/img-8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
             },
           ],
         },
@@ -865,67 +865,67 @@ export default {
           date: "2月3日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/img-7.jpg",
+              path: "http://118.25.144.69/public/imgs/img-7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
             },
           ],
         },
@@ -933,67 +933,67 @@ export default {
           date: "2月4日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/img-5.jpg",
+              path: "http://118.25.144.69/public/imgs/img-5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
             },
           ],
         },
@@ -1001,67 +1001,67 @@ export default {
           date: "2月5日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/img-4.jpg",
+              path: "http://118.25.144.69/public/imgs/img-4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
             },
           ],
         },
@@ -1069,67 +1069,67 @@ export default {
           date: "2月6日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/img-3.jpg",
+              path: "http://118.25.144.69/public/imgs/img-3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
             },
           ],
         },
@@ -1137,67 +1137,67 @@ export default {
           date: "2月7日",
           photos: [
             {
-              src: "http://118.25.144.69/public/imgs/img-2.jpg",
+              path: "http://118.25.144.69/public/imgs/img-2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/2.jpg",
+              path: "http://118.25.144.69/public/imgs/2.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/3.jpg",
+              path: "http://118.25.144.69/public/imgs/3.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/4.jpg",
+              path: "http://118.25.144.69/public/imgs/4.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/5.jpg",
+              path: "http://118.25.144.69/public/imgs/5.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/6.jpg",
+              path: "http://118.25.144.69/public/imgs/6.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/7.jpg",
+              path: "http://118.25.144.69/public/imgs/7.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/8.jpg",
+              path: "http://118.25.144.69/public/imgs/8.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/9.jpg",
+              path: "http://118.25.144.69/public/imgs/9.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/10.jpg",
+              path: "http://118.25.144.69/public/imgs/10.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/11.jpg",
+              path: "http://118.25.144.69/public/imgs/11.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/12.jpg",
+              path: "http://118.25.144.69/public/imgs/12.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/13.jpg",
+              path: "http://118.25.144.69/public/imgs/13.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/14.jpg",
+              path: "http://118.25.144.69/public/imgs/14.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/15.jpg",
+              path: "http://118.25.144.69/public/imgs/15.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/16.jpg",
+              path: "http://118.25.144.69/public/imgs/16.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/17.jpg",
+              path: "http://118.25.144.69/public/imgs/17.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/18.jpg",
+              path: "http://118.25.144.69/public/imgs/18.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/19.jpg",
+              path: "http://118.25.144.69/public/imgs/19.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/20.jpg",
+              path: "http://118.25.144.69/public/imgs/20.jpg",
             },
             {
-              src: "http://118.25.144.69/public/imgs/21.jpg",
+              path: "http://118.25.144.69/public/imgs/21.jpg",
             },
           ],
         },
@@ -1247,21 +1247,21 @@ export default {
       this.m = date.getMinutes();
       this.s = date.getSeconds();
     },
-    showImg(src, index) {
-      this.currentImg = src;
+    showImg(path, index) {
+      this.currentImg = path;
       this.indexImg = index;
     },
     // 图片却换按钮
     photosRightBtn: function () {
       this.indexImg++;
 
-      this.currentImg = this.photosArr[0].photos[this.indexImg].src;
+      this.currentImg = this.photosArr[0].photos[this.indexImg].path;
       this.adaptOffset();
     },
     photosLeftBtn: function () {
       this.indexImg--;
 
-      this.currentImg = this.photosArr[0].photos[this.indexImg].src;
+      this.currentImg = this.photosArr[0].photos[this.indexImg].path;
       this.adaptOffset();
     },
     meteorRun() {
@@ -1350,8 +1350,7 @@ export default {
         'size':this.currentAdd.size,
         'name':this.currentAdd.name,
         'remark':this.currentAdd.remark,
-        // 'masteraccount':this.$store.state.account,
-        'masteraccount':'353162063',
+        'masteraccount':this.$store.state.account,
         'upfile':this.currentAdd.realfile,
         'tempurl':this.currentAdd.currentUploadURL,
         'procession':0,
@@ -1418,11 +1417,37 @@ export default {
       });
     },
     changeDate(){
-      let dateFormat = new FormData()
-      dateFormat.append("date",this.currentChooseDate)
-      post('/photo/month',dateFormat).then(result=>{
-        console.log("按月份请求将结果:")
-        console.log(result)
+      let dataFormat = new FormData()
+      dataFormat.append("date",this.currentChooseDate)
+      post('/photo/month',dataFormat,()=>{console.log("请求发送!")}).then(result=>{
+        let response = result.data
+        if(response.success){
+          let all_photos = response.result
+          let temp_arr = []
+          for(let i = 0;i < 31;++i){
+            let obj = {
+              date:dateFormat("%yyyy-%MM",this.currentChooseDate) + "-" + ((i+1>=10)?(i+1):('0'+(i+1))),
+              photos:[]
+            }
+            temp_arr.push(obj)
+          }
+          all_photos.forEach((element,index)=>{
+            let day = new Date(element.indate).getDate()
+            element.indate = new Date(element.indate)
+            element.path = 'http://localhost:8099/' + element.path
+            temp_arr[day-1].photos.push(element)
+          })
+          this.photosArr = temp_arr.filter(element=>{
+              console.log(element)
+              return (element.photos.length > 0)
+          })
+          this.currentAlbum = 0
+          this.indexImg = 0
+          console.log(this.photosArr)
+        }
+        else{
+          this.$message.error("请求失败，请检查网络设置")
+        }
       })
     },
     deleteAfterUpLoadPhoto(index){

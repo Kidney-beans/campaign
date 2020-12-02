@@ -14,5 +14,7 @@ module.exports = {
       .set('css',resolve('src/css'))
       .set('js',resolve('src/js'))
       .set('components',resolve('src/components'))
+      .set('store',resolve('src/store'))
+      .set('router',resolve('src/router'))
   }
 };

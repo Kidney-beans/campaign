@@ -1,3 +1,4 @@
+import store from 'store/index.js'
 let axios = require('axios')
 
 let baseURL = "http://localhost:8099"
