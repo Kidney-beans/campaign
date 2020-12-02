@@ -4,10 +4,10 @@
     height: 100vh;
     padding: 0;
     margin: 0;
+    position: absolute;
+    background-color: rgba(128, 229, 255, 0.534);
     overflow: hidden;
-    background-color: white;
-    background-image: url(//s2.hdslb.com/bfs/static/blive/blfe-message-web/static/img/infocenterbg.a1a0d152.jpg);
-    background-size: 100% 100%;
+    /* background-size: 100% 100%; */
 }
 .relation-title-h1{
     position: absolute;
@@ -58,7 +58,7 @@
     /* 内容板块移动 */
     top: 0vh;
     width: 42.8VW;
-    height: 500vh;
+    height: 400vh;
     right: 0;
     /* background-color: rgba(147, 108, 253, 0.459); */
     /* border: 1.5px solid black ; */
@@ -67,45 +67,24 @@
     border-bottom-right-radius: .7;
     /* display: none; */
 }
-.titleContent div{
+
+.myWorld{
     position: relative;
     width: 60vw;
     height: 100vh;
-    
-    /* display: none; */
-     
-}
-.titleContent div:nth-child(1){
-    
-    /* background-color: rgb(119, 117, 0); */
-    display: block;  
-}
-.titleContent div:nth-child(2){
 
-    background-color: aqua;
-    display: block;  
 }
-.titleContent div:nth-child(3){
-   
-    background-color: blue;
-    display: block;  
-}
-.titleContent div:nth-child(4){
-    
-    background-color: cadetblue;
-    display: block;  
-}
-.titleContent div:nth-child(5){
-    background-color: rgb(196, 14, 212);
-    display: block;  
-}
-.myWorld{
+.release{
     position: relative;
-    /* width: 30vw;
-    height: 90vh;
-    background-color: red; */
-
+    width: 60vw;
+    height: 100vh;
 }
+.getPraise{
+    position: relative;
+    width: 60vw;
+    height: 100vh;
+}
+
 .myWorld-Content-box{
 
     position: absolute;
@@ -139,11 +118,9 @@
     /* background-color: blanchedalmond; */
 }
 .myWorld-Content-ico img{
-    /* position: absolute; */
     width: 25px;
     height: 25px;
-    /* width: 50px; */
-    /* box-sizing: 50px 50px; */
+
 }
 .myWorld-Content-ico img:nth-child(1){
     position: absolute;
@@ -162,7 +139,7 @@
     line-height: 4vh;
 }
 
-.myWorld-Content-box input{
+/* .myWorld-Content-box input{
     position: absolute;
     top: 30vh;
     width: 20vw;
@@ -170,19 +147,60 @@
     border: none;
     outline: none;
     font-size: 1.4em;
-}
-.myWorld-Content-box button{
+    background-color: rgba(12, 12, 12, 0.123);
+} */
+.myWorld-Content-box .iptBox{
     position: absolute;
-    top: 30vh;
-    right: 4vw;
-    width: 3vw;
+    top: 28vh;
+    right: 2vw;
+    width: 43vw;
     height: 4vh;
+    background-color: rgba(12, 12, 12, 0.123);
+    transition: all .3s;
 }
+.animation{
+    top: 28vh;
+}
+.iptBox input{
+    left: 2vw;
+    top: .5vh;
+    position: absolute;
+    /* top: 30vh; */
+    width: 30vw;
+    height: 3vh;
+    border: none;
+    outline: none;
+    font-size: 1.4em;
+    background-color: rgba(255, 255, 255, 0.664);
 
+}
+.iptBox button{
+    border: none;
+    outline: none;
+    position: absolute;
+    top: .5vh;
+    height: 3vh;
+    width: 5vw;
+    right: 2vw;
+    background-color: skyblue;
+    box-shadow: 1px 1px 4px #000;
+}
+.pingLunBox{
+    position: absolute;
+    right: -25vw;
+    height: 100vh;
+    width: 24.5vw;
+    color: orchid;
+    /* background-color: rgba(255, 255, 255, 0.712); */
+    transition: all .4s;
+}
+#relation .pingLunBox.active{
+    right: 0vw;
+    background-color: rgb(255, 255, 255);
+}
 ul{
     list-style: none; 
 }
-
 /* 组件 */
 .relation-supplement-components{
     position: absolute;
@@ -194,4 +212,49 @@ ul{
     /* left: 20vw; */
     /* top: 5vh; */
 }
+.custom-class{
+/* background-color: ; */
+height: 10vh;
+}
+.el-textarea__inner{
+    font-size: 1.7em;
+    width: 71%;
+    height: 30vh;
+    background-color: rgb(255, 255, 255);
+}
+.releaseBox{
+    font-size: 4em;
+    position: absolute;
+    top: 7vh;
+    width: 100%;
+    height: 50vh;
+    background-color: rgb(255, 255, 255);
+    margin-bottom: 20px;
+}
+.el-input__count{
+    position: absolute;
+    width: 2vw;
+    left: 39.6vw;
+}
 
+.el-upload--picture-card{
+    position: absolute;
+    top: 30vh;
+    line-height: 120px;
+}
+.releaseHead{
+    width: 71vw;
+    height: 10vh;
+    background-color: white;
+}
+.releaseHead p{
+    top: 1vh;
+    font-size: 2em;
+}
+.releaseHead button{
+    left: 37vw;
+    top: 1vh;
+    position: absolute;
+    height: 5vh;
+    width: 9vh;
+}
