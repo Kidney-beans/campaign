@@ -5,7 +5,8 @@
     padding: 0;
     margin: 0;
     overflow: hidden;
-    background-image: url(../assets/relation/relationBJ.jpg);
+    background-color: white;
+    background-image: url(//s2.hdslb.com/bfs/static/blive/blfe-message-web/static/img/infocenterbg.a1a0d152.jpg);
     background-size: 100% 100%;
 }
 .relation-title-h1{
@@ -21,53 +22,176 @@
 }
 .contentBox{
     position: relative;
-    top: 8vh;
     width: 52vw;
-    height: 90vh;
+    height: 100vh;
     left: 23.4vw;
-    border: 1.5px solid black ;
-    border-radius: 1vw;
+    border: 1px solid black ;
     overflow: hidden;
 }
 /* 标题 */
 .titleHead{
     position: absolute;
-    width: 7VW;
+    width: 9VW;
     height: 100%;
-    background-color: rgba(108, 183, 253, 0.671);
+    /* background-color: rgba(108, 183, 253, 0.671); */
     border: 1.5px solid black ;
-    border-radius: .7vw;
+    /* border-radius: .7vw; */
+    border-bottom-left-radius: .7;
+    border-bottom-left-radius: .7;
 }
 .titleHead div{
-    height: 6vh;
-    border: 1px solid red;
+    background-color: rgba(0, 0, 0, 0.781);
+    color: white;
+    border: 1px solid black;
+    line-height: 7vh;
+    padding-left: 1vw;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+.titleHead .active{
+    background-color: rgba(0, 0, 0, 0.39);
+    color: skyblue;
 }
 /* 内容 */
 .titleContent{
     position: absolute;
-    width: 42VW;
-    height: 100%;
+    /* 内容板块移动 */
+    top: 0vh;
+    width: 42.8VW;
+    height: 500vh;
     right: 0;
-    background-color: rgba(147, 108, 253, 0.459);
-    border: 1.5px solid black ;
-    border-radius: .7vw;
+    /* background-color: rgba(147, 108, 253, 0.459); */
+    /* border: 1.5px solid black ; */
+    transition: all 0.5s;
+    border-bottom-right-radius: .7;
+    border-bottom-right-radius: .7;
     /* display: none; */
 }
 .titleContent div{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 255, 255, 0.322);
+    position: relative;
+    width: 60vw;
+    height: 100vh;
     
+    /* display: none; */
+     
 }
+.titleContent div:nth-child(1){
+    
+    /* background-color: rgb(119, 117, 0); */
+    display: block;  
+}
+.titleContent div:nth-child(2){
+
+    background-color: aqua;
+    display: block;  
+}
+.titleContent div:nth-child(3){
+   
+    background-color: blue;
+    display: block;  
+}
+.titleContent div:nth-child(4){
+    
+    background-color: cadetblue;
+    display: block;  
+}
+.titleContent div:nth-child(5){
+    background-color: rgb(196, 14, 212);
+    display: block;  
+}
+.myWorld{
+    position: relative;
+    /* width: 30vw;
+    height: 90vh;
+    background-color: red; */
+
+}
+.myWorld-Content-box{
+
+    position: absolute;
+    padding: 2vh;
+    width: 43vw;
+    height: 23vh;
+
+    background-color: rgba(12, 12, 12, 0.123);
+}
+.contentText{
+    position: absolute;
+    left: 14vw;
+    flex-direction: row;
+    width: 28vw;
+    height: 23vh;
+    border-radius: 8px;
+    /* background-color: rgb(0, 4, 255); */
+}
+.myWorld-Content-ico{
+    position: absolute;
+    top: 22vh;
+    right: 9vw;
+   
+}
+.myWorld-Content-box img{
+    /* left: vw; */
+    position: absolute;
+    border-radius: 8px;
+    width: 12vw;
+    height: 23vh;
+    /* background-color: blanchedalmond; */
+}
+.myWorld-Content-ico img{
+    /* position: absolute; */
+    width: 25px;
+    height: 25px;
+    /* width: 50px; */
+    /* box-sizing: 50px 50px; */
+}
+.myWorld-Content-ico img:nth-child(1){
+    position: absolute;
+    left: 3vw;
+}
+.myWorld-Content-ico p{
+    position: absolute;
+    color: red;
+    top: -1vw;
+    left: 1vw;
+}
+.contentText  p{
+    position: relative;
+    left: 1xw;
+    font-size: 1.3em;
+    line-height: 4vh;
+}
+
+.myWorld-Content-box input{
+    position: absolute;
+    top: 30vh;
+    width: 20vw;
+    height: 3vh;
+    border: none;
+    outline: none;
+    font-size: 1.4em;
+}
+.myWorld-Content-box button{
+    position: absolute;
+    top: 30vh;
+    right: 4vw;
+    width: 3vw;
+    height: 4vh;
+}
+
+ul{
+    list-style: none; 
+}
+
 /* 组件 */
 .relation-supplement-components{
-
-
+    position: absolute;
+    top: -2vh;
 
 }
 .popper-class{
-    width: 30vw;
-    left: 20vw;
-    top: 10vh;
+    width: 18vw;
+    /* left: 20vw; */
+    /* top: 5vh; */
 }
+
