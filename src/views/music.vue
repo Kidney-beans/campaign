@@ -1,20 +1,20 @@
 <template>
   <div id="music">
     <h1 class="title-h1">music</h1>
+    <top-nav></top-nav>
     <audio controls @timeupdate="timeUpdate" id="audio">
-      <source :src="currentMusicSrc" type="audio/mpeg" />
+      <source :src="musicData[currentMusicIndex].url" type="audio/mpeg" />
     </audio>
 
     <div :class="{ bulletInput: true, 'bulletInput-hidden': !bullet }">
-      <!-- Width:String,
-      Height:String,
-      Text:String,
-      BorderRadius:String,
-      FontSize:String-->
+
       <el-input v-model="bulletInputText" placeholder="请输入内容"> </el-input>
-      <cool-button width="100px" height="35px" Text="发送" BorderRadius="3px" font-size="0.8em"></cool-button>
+      <cool-button width="100px" height="35px" Text="发送" BorderRadius="3px" font-size="0.8em" @btn-click="sendBullet"></cool-button>
     </div>
     <div :class="{ 'music-box': true, 'music-box-far': bullet }">
+      <div class="bullet-show-container" :style="{'opacity':bullet?1:0}">
+        <bullet-show :bullets="bullets" :pause="pause"></bullet-show>
+      </div>
       <div class="music-bar" @mouseenter="shouldShowBar = true"></div>
       <div @mouseleave="shouldShowBar = false" :class="{ showbar: true, 'showbar-hidden': !shouldShowBar }">
         <!-- 音乐列表 -->
@@ -28,7 +28,7 @@
             <div class="music-List" v-for="(item ,index) in musicData" :key="item.url">
               <div>{{item.author}}</div>
               <div>{{item.name}}</div>
-              <img src="~assets/music/play1.png" @click="musPlay(item.url)">
+              <img src="~assets/music/play1.png" @click="musPlay(item.url,item.id)">
               <img src="~assets/music/delete.png" @click="deleteMusic(index)">
             </div>
          </div>
@@ -47,8 +47,7 @@
       </div>
       <div class="progress-bar">
         <div class="music-porgre"></div>
-
-        <span><img src="~assets/music/last.png" class="music-btn-last some-btns"  @click="lastMusic"/></span>
+        <span><img src="~assets/music/last.png" class="music-btn-last some-btns"  @click="preMusic"/></span>
         <span id="musicPause" v-show="!pause" @click="musicPause">
           <img src="~assets/music/pause.png" class="some-btns music-btn-position music-btn-play" id="music-play" />
         </span>
@@ -64,13 +63,10 @@
         </div>
         <span class="bulletText">弹幕</span>
         <div class="bulletScreen">
-          <el-switch v-model="bullet" active-color="#892cdc" inactive-color="#ff4949"> </el-switch>
+          <el-switch v-model="bullet" active-color="#892cdc" inactive-color="#ccc"> </el-switch>
         </div>
       </div>
-        <!-- 渲染到屏幕弹幕标签 -->
-      <ul class="bulletTextContent">
-        <li>{{ bulletInputText }}</li>
-      </ul>
+
     </div>
     <div class="supplement-components">
       <el-dialog title="搜索结果" :modal="false" :visible.sync="searchDialogShow" width="50%" top="17vh" custom-class="search-result-container">
@@ -95,6 +91,9 @@
 <script>
 import VolumnControl from "components/own/volumn-control.vue";
 import CoolButton from "components/common/cool-button.vue";
+import BulletShow from 'components/common/bullet-show.vue';
+import {post,get} from 'js/request/request.js';
+import TopNav from 'components/own/top-nav.vue';
 
 export default {
   props: {
@@ -102,6 +101,8 @@ export default {
   },
   data() {
     return {
+      currentMusicId:-1,
+      currentMusicIndex:0,
       currentMusicSrc:"http://118.25.144.69/public/music/172.mp3",
       currentPhotoIndex:-1,
       value: true,
@@ -243,13 +244,60 @@ export default {
         },
       ],
       musicInn:[
-            {
-              author: " ",
-              name: " ",
-              url:''
-            }
+          {
+            author: " ",
+            name: " ",
+            url:''
+          }
 
-      ]
+      ],
+      bullets:[{
+        content:"哈哈哈哈",
+        icon:1,
+        top:Math.floor(Math.random()*4)*2,
+        z_distance:100,
+        time:10
+      },
+      {
+        content:"嘿嘿嘿",
+        icon:2,
+        top:Math.floor(Math.random()*4)*2,
+        z_distance:0,
+        time:2
+      },{
+        content:"律师费带来的三机房",
+        icon:1,
+        top:Math.floor(Math.random()*4)*2,
+        z_distance:200,
+        time:1
+      },
+      {
+        content:"嘿嘿嘿",
+        icon:3,
+        top:Math.floor(Math.random()*4)*2,
+        z_distance:400,
+        time:5
+      },
+      {
+        content:"lsdkfjglsdfj",
+        icon:2,
+        top:Math.floor(Math.random()*4)*2,
+        z_distance:200,
+        time:2
+      },{
+        content:"律师费带来的三机房",
+        icon:1,
+        top:Math.floor(Math.random()*4)*2,
+        z_distance:100,
+        time:4
+      },
+      {
+        content:"嘿嘿嘿",
+        icon:3,
+        top:Math.floor(Math.random()*4)*2,
+        z_distance:400,
+        time:5
+      }]
     };
   },
   methods: {
@@ -305,12 +353,7 @@ export default {
       document.getElementById("audio").volume = va;
     },
     musicSeekBtn() {
-      // if (this.musicSeekValue == "") {
-      //   this.SeekListShow = false;
-      // } else {
-      //   this.SeekListShow = true;
-      //   console.log(2);
-      // }
+
       this.searchDialogShow = true
     },
     PhotoShadeShow(index){
@@ -322,20 +365,20 @@ export default {
     //添加音乐
     addMusic(music){
      this.musicData.splice(0,0,music)
-     console.log()
           // console.log(this.musicData[this.temp])
     },
     seekMusicPlay(music){
       this.musicData.splice(0,0,music)
-      this.musPlay(music.url)
+      this.musPlay(music.url,music.id)
     },
-    musPlay(url){
+    musPlay(url,id){
         document.getElementById("audio").load()
         this.musicPause()
         this.currentMusicSrc=url
         this.currentMusicTime = 0
         this.setMusicTime()
         this.musicPlay()
+        this.currentMusicId = id
         // console.log(this.currentMusicSrc)
     },
     deleteMusic(i){
@@ -347,19 +390,66 @@ export default {
         
         
     },
-    lastMusic(){
+    preMusic(){
         console.log("上一首音乐")
+        if(this.currentMusicIndex == 0){
+          this.$message('当前已经是第一首啦!');
+          return
+        }
+        this.currentMusicIndex--;
     },
     nextMusic(){
         console.log("下一首音乐")
+        if(this.currentMusicIndex == this.musicData.length-1){
+          this.$message("当前已经是最后一首啦!");
+          return
+        }
+        this.currentMusicIndex++;
     },
+    sendBullet(){
+      let time = Math.floor(this.currentMusicTime);
+      let bullet_obj = {
+        time:0,
+        content:this.bulletInputText,
+        top:Math.floor(Math.random()*4)*2,
+        z_distance:Math.floor(Math.random()*4) * 50,
+        icon:Math.floor(Math.random()*4)
+      }
+      this.bulletInputText = ''
+      this.bullets.push(bullet_obj)
+      let send_obj = {}
+      for(let item in bullet_obj){
+        send_obj[item] = bullet_obj[item]
+      }
+      send_obj.time = time
+      send_obj.musicid = this.currentMusicId,
+      send_obj.ssk = this.$store.state.ssk
+
+      get('/bullet/add',send_obj).then((result)=>{
+        let response = result.response
+        if(response.success){
+          this.$message({
+            message:'biubiu成功!',
+            type:"success"
+          })
+        }
+        else{
+          this.$message.error('biubiu失败!未知原因，请稍后再试！')
+        }
+      }).catch(()=>{
+          this.$message.error('biubiu失败,网络出问题啦!')
+      })
+    }
   },
   computed: {},
   components: {
     VolumnControl,
     CoolButton,
+    BulletShow,
+    TopNav
   },
   mounted(){
+    console.log(BulletShow)
   },
 };
 </script>

@@ -44,6 +44,14 @@
     transform: translateZ(50px);
     z-index: 50;
 }
+
+#music .music-box .bullet-show-container{
+    width:80vw;
+    height: 70vh;
+    position: absolute;
+    top:5vh;
+    left: 0;
+}
 #music .music-box-far{
     transform: translateZ(-50px);
 }
@@ -181,7 +189,7 @@
     position: absolute;
     top: .9vh;
     left: 16.2vw;
-    color:#892cdc;
+    color:white;
     font-size: 1em;
 }
 
@@ -218,14 +226,6 @@
     overflow-x: hidden !important;
 }
 
-/*弹幕文字输出样式设置*/
-#music .bulletTextContent{
-    position: absolute;
-    left: 40%;
-    list-style: none;
-    font-size: 1.2em;
-    color: white;
-}
 #music .cell img{
     height: 1vh;
     position: relative;
@@ -249,6 +249,13 @@
     background-size: 100%;
     user-select: none;
 }
+
+#music .music-seek{
+    padding:0 1em;
+    box-sizing: border-box;
+    font-size: 1em !important;
+    font-weight: 200;
+}
 /* 搜索按钮属性控制 */
 #music .music-seek-img img{
     position:absolute;
@@ -261,6 +268,7 @@
     width: 2vw;
     height: 4.1vh;
     z-index: 1;
+    cursor: pointer;
 }
 #music .music-seek-img img:hover{
     opacity: 1;

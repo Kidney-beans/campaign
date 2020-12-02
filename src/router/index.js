@@ -16,7 +16,7 @@ let receiveSSK=(to)=>{
   }
   if(query.name){
     store.state.name = query.name
-    console.log("用户名绑定:name" + store.state.name)
+    console.log("用户名绑定:name=" + store.state.name)
   }
 }
 
