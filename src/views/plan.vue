@@ -1,5 +1,6 @@
 <template>
   <div id='plan'>
+    <h1 class="webTitle">PLAN</h1>
     <!-- 背景 -->
     <div class="bgc">
       <h2 class="mask" :testStr="bgcNum"></h2>
@@ -354,6 +355,7 @@
           this.day="01";
         }else{
           this.day=parseInt(this.dayNow)>10?this.dayNow:"0"+this.dayNow
+          // console.log(this.day)
         }
       },
       //设置背景数字
@@ -541,8 +543,8 @@
       this.yearNow=this.year;
       this.month=date.getMonth()+1;
       this.monthNow=this.month;
-      this.day=date.getDate();
-      this.dayNow=this.day;
+      this.dayNow=date.getDate();
+      this.day=this.dayNow>10?this.dayNow:'0'+this.dayNow;
       // this.currentPlans = this.plans[this.day-1]?this.plans[this.day-1]:[];
       // console.log(this.planIndex)
       // // console.log(this.currentPlans[this.planIndex])
