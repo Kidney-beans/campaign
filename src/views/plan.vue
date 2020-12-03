@@ -11,7 +11,7 @@
         <div class="date">
           <!-- 当前年份 -->
           <div class="year">
-            <div>{{this.year}}</div>
+            <div>{{year}}</div>
             <!-- 增加年份 -->
             <div class="plus" @click="plusYear">+</div>
             <!-- 减少年份 -->
@@ -328,7 +328,24 @@
             
           ]
         ],
-        currentPlans:[],
+        currentPlans:[{
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去dasdsad打篮球",
+              title:'今天要去打篮球'
+            },
+            {
+              year:"2020",
+              month:"11",
+              day:"25",
+              time:"11:00-13:00",
+              position:"运动场",
+              plan:"今天要去sd打篮球",
+              title:'今天要去打篮球'
+            }],
         planIndex:0,
         activePlanIndex:-2
       }

@@ -1,7 +1,7 @@
 <template>
   <div class='top-nav'>
     <span class="return-home" @click="returnHome">返回首页</span>
-    <span class="user-name">{{$store.state.name}}1</span>
+    <span class="user-name">{{$store.state.name}}</span>
   </div>
 </template>
 <script>
