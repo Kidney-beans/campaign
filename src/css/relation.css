@@ -6,6 +6,7 @@
     margin: 0;
     position: absolute;
     background-color: rgba(128, 229, 255, 0.534);
+
     overflow: hidden;
     /* background-size: 100% 100%; */
 }
@@ -72,7 +73,6 @@
     position: relative;
     width: 60vw;
     height: 100vh;
-
 }
 .release{
     position: relative;
@@ -87,15 +87,15 @@
 
 .myWorld-Content-box{
 
-    position: absolute;
+    position: relative;
     padding: 2vh;
     width: 43vw;
-    height: 23vh;
-
+    height: 25vh;
+    margin-bottom: 30px;
     background-color: rgba(12, 12, 12, 0.123);
 }
 .contentText{
-    position: absolute;
+    position: relative;
     left: 14vw;
     flex-direction: row;
     width: 28vw;
@@ -132,9 +132,13 @@
     top: -1vw;
     left: 1vw;
 }
+.contentText{
+    
+}
 .contentText  p{
     position: relative;
-    left: 1xw;
+    padding: 3px;
+    left: .4xw;
     font-size: 1.3em;
     line-height: 4vh;
 }
@@ -150,13 +154,14 @@
     background-color: rgba(12, 12, 12, 0.123);
 } */
 .myWorld-Content-box .iptBox{
-    position: absolute;
-    top: 28vh;
-    right: 2vw;
-    width: 43vw;
+    
+    /* top: 28vh;
+    right: 2vw; */
+    width: 45vw;
     height: 4vh;
     background-color: rgba(12, 12, 12, 0.123);
     transition: all .3s;
+    display: block;
 }
 .animation{
     top: 28vh;
@@ -164,7 +169,7 @@
 .iptBox input{
     left: 2vw;
     top: .5vh;
-    position: absolute;
+    position: relative;
     /* top: 30vh; */
     width: 30vw;
     height: 3vh;
@@ -177,23 +182,16 @@
 .iptBox button{
     border: none;
     outline: none;
-    position: absolute;
-    top: .5vh;
+    position: relative;
+    /* flex-direction: row; */
+   
     height: 3vh;
     width: 5vw;
-    right: 2vw;
+    right: -4vw;
     background-color: skyblue;
     box-shadow: 1px 1px 4px #000;
 }
-.pingLunBox{
-    position: absolute;
-    right: -25vw;
-    height: 100vh;
-    width: 24.5vw;
-    color: orchid;
-    /* background-color: rgba(255, 255, 255, 0.712); */
-    transition: all .4s;
-}
+
 #relation .pingLunBox.active{
     right: 0vw;
     background-color: rgb(255, 255, 255);
@@ -256,5 +254,69 @@ height: 10vh;
     top: 1vh;
     position: absolute;
     height: 5vh;
+    border: none;
+    outline: none;
     width: 9vh;
+    background-color: skyblue;
+    box-shadow: 0 0 4px #000;
+}
+.el-upload-dragger{
+    width: 180px;
+}
+.imgUpload{
+    
+    display: flex;
+    flex-direction: row;
+justify-content: center;
+align-items: center;
+cursor: pointer;
+}
+.imgUpload img{
+    position: relative;
+    height: 3vw;
+    width: 3vw;
+}
+.imgUpload input{
+    position: relative;
+    height: 7vw;
+    width: 7vw;
+    top: 0;
+    display: none;
+    background-color: white;
+}
+.upload-container{
+    height: 8.5vw;
+    width: 33vw;
+    display: flex;
+    flex-direction: row;
+
+    /* border: 1px dashed red; */
+}
+.upload-item{
+    height: 8vw;
+    width: 8vw;
+    border: 1px dashed black;
+    margin: 4px;
+}
+.upload-item img{
+    height: 8vw;
+    width: 8vw;
+}
+.testBox{
+    position: fixed;
+    flex-direction: row;
+    height:100vh;
+    width: 24.4vw;
+    right: -25vw;
+    background-color: rgb(255, 255, 255);
+    transition: all .3s;
+}
+.testBoxgo{
+    right: 0vw;
+}
+.close{
+    position: relative;
+    right: 0;
+    width: 2vw;
+    height: 2vw;
 }
