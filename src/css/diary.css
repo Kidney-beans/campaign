@@ -30,14 +30,85 @@
     position: absolute;
     left: 22vw;
     top:12vh;
-    background: url(../assets/plan/img-2.jpg) no-repeat;
-    background-size: 60vw auto;
-    background-position: top right;
+    background: url(../assets/plan/img-2.jpg);
+    background-repeat: no-repeat !important;
+    background-size: 60vw auto !important;
+    background-position: top right !important;
     width: 60vw;
     height: 75vh;
     /* overflow: hidden; */
     /* opacity: 0.2; */
     filter: blur(2px);
+    border-radius: 15px;
+    animation:backBgc 1s infinite ;
+    box-sizing: border-box;
+}
+
+/* 返回按钮 */
+#diary .backCardBox{
+    position: absolute;
+    left: 73vw;
+    top:70vh;
+    width: 7vw;
+    height: 6vh;
+    border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px;
+    background-color: rgba(0, 0, 0, 0.719);
+    animation:backBgc 1s infinite ;
+    box-sizing: border-box;
+    z-index: 2;
+    cursor: pointer;
+}
+
+#diary .backCardBox .backFont{
+    position: absolute;
+    left: 1vw;
+    top: 0;
+    width: 3vw;
+    height: 6vh;
+    line-height: 5.5vh;
+    /* padding-left: 1vw; */
+    font-size: 1vw;
+    color: rgb(41, 135, 148);
+}
+
+/* 返回按钮图标 */
+#diary .backCardBox img{
+    position: absolute;
+    left: 4vw;
+    top: 0.7vh;
+    width: 2vw;
+    opacity: 0.7;
+}
+
+/* 返回按钮图标 鼠标放上时 */
+#diary .backCardBox:hover img{
+    opacity: 1;
+}
+
+#diary .backCardBox:hover .backFont{
+    color: rgb(0, 225, 255);
+    text-shadow: 0 0 4px white;
+}
+
+/* 日记展示 */
+#diary .diaryContent{
+    position: absolute;
+    left: 22vw;
+    top: 12vh;
+    width: 60vw;
+    height: 75vh;
+    background-color: rgba(255, 255, 255, 0.411);
+}
+
+/* 日记内容 */
+#diary .diaryContent .showContent{
+    position: relative;
+    left: 8vw;
+    top: 10vh;
+    width: 45vw;
+    height: 60vh;
+    background-color: rgba(0, 0, 0, 0.911);
 }
 
 /* 日记盒子 */
@@ -52,7 +123,9 @@
     transform-origin: right;
 }
 
-#diary .cardBox .myDairy::before{
+/*MY DAIRY文字 before伪类*/
+#diary .cardBox .myDairy::before,
+#diary .diaryContent .myDairy::before{
     position: absolute;
     left: 0vw;
     top: 0;
@@ -65,7 +138,9 @@
     animation: glitch-1 4s linear reverse infinite;
 }
 
-#diary .cardBox .myDairy::after{
+/*MY DAIRY文字 after伪类*/
+#diary .cardBox .myDairy::after,
+#diary .diaryContent .myDairy::after{
     position: absolute;
     left: 0;
     top: 0;
@@ -78,7 +153,9 @@
     animation: glitch-2 4s linear reverse infinite;
 }
 
-#diary .cardBox .myDairy{
+/*MY DAIRY文字*/
+#diary .cardBox .myDairy,
+#diary .diaryContent .myDairy{
     position: absolute;
     left: 2vw;
     top: 14vh;
@@ -88,7 +165,18 @@
     font-size: 3vw;
     transform: rotate(90deg);
     color: #d26d3d;
-    
+}
+
+#diary .diaryContent .myDairy::after,
+#diary .diaryContent .myDairy::before{
+    width: 20vw;
+}
+
+#diary .diaryContent .myDairy{
+    width: 20vw;
+    left: 10vw;
+    top: 5vh;
+    transform: rotate(0deg);
 }
 
 
@@ -111,9 +199,10 @@
     height: 50vh;
     /* background-color: rgba(57, 43, 138, 0.726); */
     border-radius: 15px;
-    background: url(../assets/plan/img-2.jpg) no-repeat;
-    background-position: top right;
-    background-size: 60vw auto;
+    background: url(../assets/plan/img-2.jpg);
+    background-repeat: no-repeat !important;
+    background-size: 60vw auto !important;
+    background-position: top right !important;
     z-index: 2;
     /* background-position: right; */
     /* perspective:400px */
@@ -148,7 +237,8 @@
 }
 
 /* 日记盒子 日记标题文字 */
-#diary .cardBox .card .title{
+#diary .cardBox .card .title,
+#diary .diaryContent .title{
     position: absolute;
     left:11vw;
     top: 0vh;
@@ -162,6 +252,13 @@
     font-size: 1.5vw;
     font-weight: 700;
     z-index: 3;
+}
+
+#diary .diaryContent .title{
+    left:0vw;
+    top: 10vh;
+    font-size: 2vw;
+    background:none;
 }
 
 /* 日记盒子 时间 */
@@ -215,6 +312,7 @@
     border-radius: 12px;
 }
 
+/* 上下按钮图标 鼠标放上时*/
 #diary .cardBox .bottom img:hover,
 #diary .cardBox .top img:hover{
 
@@ -252,11 +350,9 @@
 }
 
 /*日记盒子 上一天按钮 图标 */
-#diary .cardBox .top img{
-    
-    
-    /* transform: translateZ(1vw); */
-}
+/* #diary .cardBox .top img{
+ 
+} */
 
 @keyframes seeAn{
     0%{text-shadow: 0px 0px 0px #000, 
@@ -483,5 +579,52 @@
     100%{
         clip: rect(6vh,18vw,15vh,0vw);
     }
-   
+}
+
+@keyframes backBgc{
+    0%{
+        border-top: 0.1vw solid #f2f9fd;
+        border-left: 0.1vw solid #ec3858;
+        border-bottom: 0.1vw solid #fbb5fa;
+        border-right:0.1vw solid #fb984f;
+
+        /* box-shadow: -3px 0px 5px 0 red, 
+                0px -3px 5px 0 #00ffad; */
+    }
+    25%{
+        border-right: 0.1vw solid #f2f9fd;
+        border-top: 0.1vw solid #ec3858;
+        border-left: 0.1vw solid #fbb5fa;
+        border-bottom:0.1vw solid #fb984f;
+
+        /* box-shadow: 0px 3px 5px 0 red, 
+                -3px 0px 5px 0 #00ffad; */
+    }
+    50%{
+        border-bottom: 0.1vw solid #f2f9fd;
+        border-right: 0.1vw solid #ec3858;
+        border-top: 0.1vw solid #fbb5fa;
+        border-left:0.1vw solid #fb984f;
+
+        /* box-shadow: 3px 0px 5px 0 red, 
+                0px 3px 5px 0 #00ffad; */
+    }
+    75%{
+        border-left: 0.1vw solid #f2f9fd;
+        border-bottom: 0.1vw solid #ec3858;
+        border-right: 0.1vw solid #fbb5fa;
+        border-top:0.1vw solid #fb984f;
+
+        /* box-shadow: 0px -3px 5px 0 red, 
+                3px 0px 5px 0 #00ffad; */
+    }
+    100%{
+        border-top: 0.1vw solid #f2f9fd;
+        border-left: 0.1vw solid #ec3858;
+        border-bottom: 0.1vw solid #fbb5fa;
+        border-right:0.1vw solid #fb984f;
+
+        /* box-shadow: -3px 0px 5px 0 red, 
+                0px -3px 5px 0 #00ffad; */
+    }
 }
