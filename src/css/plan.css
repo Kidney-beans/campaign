@@ -22,6 +22,7 @@
     background-clip: text;
     color: transparent;
     user-select: none;
+    
 }
 
 /* 背景盒子 */
@@ -39,25 +40,6 @@
     float: left; */
     /* background: rgb(0, 0, 0); */
 }
-
-/*背景图片*/
-#plan .bgc .mask::after{
-    /* content: attr(testStr); */
-    content: attr(testStr);
-    background-image:url(../assets/plan/img-2.jpg);
-    /* background-size: 100vw; */
-    /* background-size: 100%; */
-    background-color: rgb(0, 0, 0);
-    width: 100vw;
-    height: 100vh;
-    position: absolute;
-    left: 0;
-    top: 0;
-    background-clip: text;
-    background-position: center;
-    animation: bgcMove 15s linear reverse infinite;
-}
-
 /* 背景文字 */
 #plan .bgc .mask{
     width: 100%;
@@ -70,9 +52,31 @@
     font-size: 20vw;
     text-align: center;
     line-height: 100vh;
+    background: transparent;
    /* background: linear-gradient(rgba(70, 48, 3, 1), rgb(0, 0, 0));
      */
 }
+
+
+#plan .bgc .mask::after{
+    /* content: attr(testStr); */
+    content: attr(testStr);
+    background-image:url(../assets/plan/img-2.jpg);
+    /* background-size: 100vw; */
+    /* background-size: 100%; */
+    /* background-color: rgb(0, 0, 0); */
+    /* background; */
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-clip: text;
+    background-position: center;
+    animation: bgcMove 15s linear reverse infinite;
+}
+
+
 
 /* 日历外框样式 */
 #plan .calendar{
@@ -512,7 +516,7 @@
     position: absolute;
     left: 0vw;
     top: 0vh;
-    background-color: #000000;
+    /* background-color: #000000; */
     width: 30vw;
     height: 50vh;
     z-index: 999;
@@ -568,14 +572,14 @@
 
 /*计划表单 文字颜色*/
 .el-form-item__label{
-    color: wheat;
+    color: white;
 }
 
 /*计划表单 input样式*/
 .el-input__inner,
 .el-textarea__inner{
     background-color: #1b05057d;
-    border: 1px solid #9e3425;
+    border: 1px solid white;
     color: #ffffff;
     width: 70%;
 }

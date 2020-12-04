@@ -66,7 +66,7 @@
       </ul>
       </div>
       <!-- 添加计划页 -->
-      <circle-drawer-form outter-background="#000" inner-background="rgba(255,0,0,1)" :hidden="add_dialog_hidden">
+      <circle-drawer-form outter-background="linear-gradient(rgb(28,114,251,0.8),rgba(241, 30, 178,0.8))" inner-background="rgba(0,0,0,0)" :hidden="add_dialog_hidden">
         <div class="addPlanPage PlanPageAn">
           <div class="clearPlanPage" @click="clearAddPlan">
             <img src="../assets/plan/clearPage.png" alt="清空"> 
@@ -504,7 +504,7 @@
         this.showPlan='none'
       },
       deleteItem(index,plan){
-        let dataForm = new dataForm()
+        let dataForm = new FormData()
         for(let item in plan){
           dataForm.append(item,plan[item])
         }
@@ -542,7 +542,7 @@
         this.clearAddPlan()
       },
       getPlan(date){
-        let dataForm = new dataForm()
+        let dataForm = new FormData()
         dataForm.append('date',date)
         dataForm.append("ssk",this.$store.state.ssk)
         post('/plan/find',dataForm).then(result=>{
@@ -587,17 +587,41 @@
           position:this.position,
           plan:this.plan,
           title:this.title,
-          d:new Date(this.yearNow,this.monthNow,this.day),
-          time:this.startTime + "-" + this.endTime
+          d:new Date(this.yearNow,this.monthNow-1,this.day),
+          time:this.startTime + "-" + this.endTime,
+          ssk:this.$store.state.ssk
         }
-
-        console.log(post_data)
-        this.currentPlans.push(plan)
-        this.AccessF='添加成功'
-        this.addAccess='block'
-        setTimeout(()=>{
-          this.addAccess='none'
-        },4000)
+        let dataForm = new FormData()
+        for(let item in post_data){
+          dataForm.append(item,post_data[item])
+        }
+        post('/plan/insert',dataForm).then(result=>{
+          let response = result.data
+          if(response.success){
+            console.log(response.result)
+            this.currentPlans.push(plan)
+            this.AccessF='添加成功'
+            this.addAccess='block'
+            setTimeout(()=>{
+              this.addAccess='none'
+            },4000)
+          }
+          else{
+            console.log(response.result)
+            this.AccessF='添加失败'
+            this.addAccess='block'
+            setTimeout(()=>{
+              this.addAccess='none'
+            },4000)
+          }
+        }).catch(()=>{
+          this.AccessF='网络故障'
+          this.addAccess='block'
+          setTimeout(()=>{
+            this.addAccess='none'
+          },4000)
+        })
+        
         
       }
     },
