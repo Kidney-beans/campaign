@@ -1,7 +1,8 @@
 <template>
   <div class='top-nav'>
     <span class="return-home" @click="returnHome">返回首页</span>
-    <span class="user-name">{{$store.state.name}}</span>
+    <span class="user-name">{{$store.state.name}}&nbsp;<img style="height:1em" src="~assets/bullet-icon/star-yellow.png"/></span>
+    
   </div>
 </template>
 <script>

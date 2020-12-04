@@ -51,15 +51,16 @@
     top:70vh;
     width: 7vw;
     height: 6vh;
-    border-top-right-radius: 15px;
-    border-bottom-left-radius: 15px;
-    background-color: rgba(0, 0, 0, 0.719);
-    animation:backBgc 1s infinite ;
+    /* border-top-right-radius: 15px;
+    border-bottom-left-radius: 15px; */
+    border-radius: 15px;
+    background-color: rgba(199, 18, 102, 0.432);
     box-sizing: border-box;
-    z-index: 2;
+    z-index: 4;
     cursor: pointer;
 }
 
+/* 返回按钮盒子 返回字 */
 #diary .backCardBox .backFont{
     position: absolute;
     left: 1vw;
@@ -69,7 +70,7 @@
     line-height: 5.5vh;
     /* padding-left: 1vw; */
     font-size: 1vw;
-    color: rgb(41, 135, 148);
+    color: rgb(0, 0, 0);
 }
 
 /* 返回按钮图标 */
@@ -79,6 +80,12 @@
     top: 0.7vh;
     width: 2vw;
     opacity: 0.7;
+}
+
+/* 返回按钮盒子 鼠标放上时样式 */
+#diary .backCardBox:hover{
+    background-color: rgba(0, 0, 0, 0.719);
+    animation:backBgc 1s infinite ;
 }
 
 /* 返回按钮图标 鼠标放上时 */
@@ -98,7 +105,8 @@
     top: 12vh;
     width: 60vw;
     height: 75vh;
-    background-color: rgba(255, 255, 255, 0.411);
+    /* background-color: rgba(255, 255, 255, 0.411); */
+    
 }
 
 /* 日记内容 */
@@ -108,7 +116,32 @@
     top: 10vh;
     width: 45vw;
     height: 60vh;
-    background-color: rgba(0, 0, 0, 0.911);
+    background-color: rgba(0, 0, 0, 0.57);
+    z-index: 2;
+    border-radius: 15px;
+}
+
+#diary .diaryContent .showContent div{
+    position: absolute;
+    left: 6vw;
+    top: 10vh;
+    width: 35vw;
+    height: 41vh;
+    font-size: 1vw;
+    /* background-color: rgba(148, 38, 38, 0.486); */
+    overflow-y: scroll;
+}
+
+/*日记展示右年份和月份*/
+#diary .diaryContent .yearAndMonth{
+    position: absolute;
+    left: 46vw;
+    top: 20vh;
+    height: -10vh;
+    /* transform-origin: left; */
+    transform: rotateZ(90deg);
+    font-size: 4vw;
+    animation: fontchangeColor 2s infinite ;
 }
 
 /* 日记盒子 */
@@ -132,7 +165,7 @@
     width: 10vw;
     height: 20vh;
     content: "MY DAIRY";
-    text-shadow: 6px 0 0 black;
+    text-shadow: 6px 0 0 #1cbfb3;
     color: #f2f9fd;
     clip: rect(0vh,18vw,15vh,0vw);
     animation: glitch-1 4s linear reverse infinite;
@@ -148,7 +181,7 @@
     height: 20vh;
     content: "MY DAIRY";
     text-shadow: -6px 0 0 #ec3858;
-    color: #861b25;
+    color: black;
     clip: rect(0vh,18vw,15vh,0vw);
     animation: glitch-2 4s linear reverse infinite;
 }
@@ -164,7 +197,7 @@
     /* background-color: rgba(255, 255, 255, 0.171); */
     font-size: 3vw;
     transform: rotate(90deg);
-    color: #d26d3d;
+    color: #d23d7bcf;
 }
 
 #diary .diaryContent .myDairy::after,
@@ -225,15 +258,17 @@
     background-color: rgba(165, 29, 29, 0.50);
     z-index: 2;
     cursor: pointer;
+    box-sizing: border-box;
 }
 
 /* 日记内小图片 see文字 鼠标放上去 */
 #diary .cardBox .img .see:hover{
-    animation: seeAn 1s linear;
+    background-color: rgba(0, 0, 0, 0.719);
+    animation:backBgc 1s infinite ;
+    /* animation: seeAn 1s linear; */
     color: aqua;
-    text-shadow: -2px 4px 2px #000, 
-                -4px 6px 1px #1c87a5,
-                -6px 8px 1px #dfb709;
+    text-shadow: -3px 0px 2px rgb(204, 195, 195), 
+                 3px 0px 2px rgba(199, 18, 102, 0.432);
 }
 
 /* 日记盒子 日记标题文字 */
@@ -252,13 +287,16 @@
     font-size: 1.5vw;
     font-weight: 700;
     z-index: 3;
+    animation: fontchangeColor 2s infinite ;
 }
 
+/*日记展示 的标题*/
 #diary .diaryContent .title{
     left:0vw;
     top: 10vh;
     font-size: 2vw;
     background:none;
+    
 }
 
 /* 日记盒子 时间 */
@@ -269,6 +307,7 @@
     left: 0;
     bottom: 0;
     background-color: rgba(112, 49, 49, 0.507);
+    
 }
 
 /* 日记盒子 日期文字 */
@@ -283,6 +322,7 @@
     text-align: center;
     line-height: 25vh;
     font-weight: 700;
+    animation: fontchangeColor 2s infinite ;
     /* background: url(../assets/photos/photos-bj.jpg); */
     /* background-position: center; */
     /* z-index: 4; */
@@ -322,10 +362,7 @@
 
 /*日记盒子 下一天按钮 */
 #diary .cardBox .bottom{
-    
     bottom:0 ;
-    
-    
     /* background: url(../assets/diary/img-1.jpg); */
     /* background-color: #fff; */
 }
@@ -626,5 +663,33 @@
 
         /* box-shadow: -3px 0px 5px 0 red, 
                 0px -3px 5px 0 #00ffad; */
+    }
+}
+
+@keyframes fontchangeColor{
+    0%{
+        color: #189cfc;
+        text-shadow: none;
+    }
+    20%{
+        color: white;
+        text-shadow: 0 0 20px #189cfc;
+    }
+    40%{
+        color: #fd7272;
+        text-shadow: none;
+    }
+    60%{
+        color: white;
+        text-shadow: 0 0 20px #fd7272;
+    }
+    80%{
+        color: white;
+        text-shadow: 0 0 20px #fd7272;
+        
+    }
+    100%{
+        color: #189cfc;
+        text-shadow: none;
     }
 }
