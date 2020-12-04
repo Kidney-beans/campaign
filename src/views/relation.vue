@@ -171,16 +171,18 @@ import topNav from "../components/own/top-nav"
         })
       },
       releaseButton(event){
-              let obj ={}
-            obj.text=this.releaseValue
-            obj.imgUrl=this.releaseModule.uploadModel.alreadyUploadList[0].url
-            obj.pingLunArr=''
-            obj.currentAssessInput=''
-            obj.assessing=false
-            obj.applaudCount=0
-             console.log( this.releaseValue)
-              console.log( this.releaseModule.uploadModel.alreadyUploadList[0].url)
-              this.community.newsArr.push(obj)
+          let obj ={}
+        obj.text=this.releaseValue
+        obj.imgUrl=this.releaseModule.uploadModel.alreadyUploadList[0].url
+        obj.pingLunArr=''
+        obj.currentAssessInput=''
+        obj.assessing=false
+        obj.applaudCount=0
+          console.log( this.releaseValue)
+          console.log( this.releaseModule.uploadModel.alreadyUploadList[0].url)
+          this.community.newsArr.push(obj)
+        this.releaseValue=''
+        this.releaseModule.uploadModel.alreadyUploadList.length--
       },
       closeRightAssessFrame(){
         this.isActive = false

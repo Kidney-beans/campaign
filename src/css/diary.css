@@ -698,7 +698,6 @@
 
 @keyframes seeDiary{
     0%{
-
         transform: translateZ(60vw) rotateX(360deg);
     }
     100%{
