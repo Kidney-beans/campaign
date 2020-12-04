@@ -1,5 +1,7 @@
 <template>
   <div id='diary'>
+
+    <top-nav></top-nav>
     <!-- 顶部DIARY文字 -->
     <h1 class="webTitle">DIARY</h1>
     <!-- 日记大背景 -->
@@ -11,15 +13,17 @@
       <img src="../assets/diary/back.png" alt="返回" >
     </div>
     <!-- 日记展示 -->
-    <div class="diaryContent" :style="{'display':showDiaryDisplay}">
+    <div class="diaryContent" :style="{'display':showDiaryDisplay,'opacity':showDiaryContent}">
       <!-- MY DAIRY文字 -->
       <div class="myDairy">MY  DAIRY</div>
       <!-- 日记内容 -->
-      <div class="showContent"></div>
+      <div class="showContent">
+        <div :contenteditable="false">{{diary[day-1].content}}</div>
+      </div>
       <!-- 日记标题文字 -->
       <div class="title">{{this.diary[this.day-1].title}}</div>
       <!-- 年月显示 -->
-      <!-- <div class="yearAndMonth">{{this.year+this.month+1>=10?this.month+1:"0"+(this.month+1)}}</div> -->
+      <div class="yearAndMonth">{{this.year}}.{{this.month+1>=10?this.month+1:"0"+(this.month+1)}}</div>
     </div>
     <!-- 日记盒子 -->
     <div class="cardBox" :style="{'opacity':cardBoxOpacity,'display':cardBoxDisplay}">
@@ -59,6 +63,7 @@
 </template>
 <script>
   import colorfulClock from '../components/common/colorful-clock'
+  import topNav from '../components/own/top-nav'
   export default {
     name:'',
     props:{
@@ -73,8 +78,8 @@
             img:"http://118.25.144.69/public/imgs/2.jpg"
           },
           {
-            title:'今天做网页',
-            content:'做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页做网页',
+            title:'篇一 ',
+            content:'　　妈妈给了我和妹妹一人一块抹布，我们学着妈妈的样子，把抹布放在水里打湿，然后拿起抹布，就准备往货架上擦。妈妈一看，马上叫住我们：“停一停！”　　原来，看着简简单单的事情做起来细节要这么多啊！　　今天，我像往常一样走进了教室，一抬头，看见有位同学的桌子上放着一个漂亮的发卡，爱臭美的我喜欢极了。　　我微笑着走向那位同学：“可以借给我戴一下吗？”她没有答应，我垂头丧气地回到座位上，还不时地瞅上几眼发卡。',
             img:"http://118.25.144.69/public/imgs/1.jpg"
           },
           {
@@ -219,7 +224,7 @@
         cardBoxOpacity:1,
         cardImgBgcBlur:2,
         cardBoxDisplay:'block',
-        showDiaryContent:'0',
+        showDiaryContent:0,
         day:'01',
         year:2020,
         month:1
@@ -288,7 +293,6 @@
         }
       },
       backCardBox(){
-        
         this.cardBoxDisplay='block';
         let timer=setInterval(()=>{
           this.cardImgBgcOpacity-=0.1
@@ -304,7 +308,8 @@
       }
     },
     components:{
-      colorfulClock
+      colorfulClock,
+      topNav
     },
     mounted(){
       let date=new Date();

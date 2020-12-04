@@ -1,5 +1,7 @@
 <template>
   <div id='plan'>
+    <top-nav></top-nav>
+
     <h1 class="webTitle">PLAN</h1>
     <!-- 背景 -->
     <div class="bgc">
@@ -144,6 +146,7 @@
 </template>
 <script>
   import circleDrawerForm from "components/common/circle-drawer-form.vue";
+  import topNav from '../components/own/top-nav'
   export default {
     name:'',
     props:{
@@ -351,7 +354,8 @@
       }
     },
     components:{
-     circleDrawerForm
+     circleDrawerForm,
+     topNav
     },
     methods:{
       //拼接时间
