@@ -120,8 +120,8 @@ export default {
       musicData: [
         {
           author: "容祖儿",
-          name: "怯",
-          url:'http://118.25.144.69/public/music/170.mp3'
+          name: "心淡",
+          url:'http://m7.music.126.net/20201204123158/e40066ee7a859aaf62b5220b5ae16d69/ymusic/e056/1f4c/9434/a1e451b55726a79905c28d90a892a7d9.mp3'
         },
         {
           author: "杨千嬅",
@@ -155,8 +155,8 @@ export default {
         },
         {
           author: "容祖儿",
-          name: "心淡",
-          url:'http://m7.music.126.net/20201129220005/51015f9bc6e39c6b0d0a4df7d07c440f/ymusic/e056/1f4c/9434/a1e451b55726a79905c28d90a892a7d9.mp3'
+          name: "怯",
+          url:'http://m7.music.126.net/20201204123158/e40066ee7a859aaf62b5220b5ae16d69/ymusic/e056/1f4c/9434/a1e451b55726a79905c28d90a892a7d9.mp3'
         },
         {
           author: "容祖儿",

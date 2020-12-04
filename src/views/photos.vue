@@ -1,5 +1,6 @@
 <template>
   <div id="photos">
+  <top-nav></top-nav>
     <!-- <div class="Bj-show"><img :path="currentImg"></div> -->
     <span
       class="meteor"
@@ -184,6 +185,7 @@
     </div>
 </template>
 <script>
+import topNav from "../components/own/top-nav"
 import PhotosMenuBtn from "components/own/photos-menu-btn.vue";
 import CoolButton from "components/common/cool-button.vue";
 import dateFormat from 'js/transfer/dateFormat.js';
@@ -1232,7 +1234,8 @@ export default {
   },
   components: {
     PhotosMenuBtn,
-    CoolButton
+    CoolButton,
+    topNav,
   },
   methods: {
     switchMode() {
