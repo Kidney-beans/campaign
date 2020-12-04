@@ -146,7 +146,8 @@
 </template>
 <script>
   import circleDrawerForm from "components/common/circle-drawer-form.vue";
-  import topNav from '../components/own/top-nav'
+  import {get,post} from "js/request/request.js"
+  import TopNav from 'components/own/top-nav.vue'
   export default {
     name:'',
     props:{
@@ -171,7 +172,7 @@
         yearNow:"",
         month:"",
         monthNow:"",
-        day:"",
+        day:1,
         dayNow:"",
         bgcNum:"",
         hour:"",
@@ -355,7 +356,7 @@
     },
     components:{
      circleDrawerForm,
-     topNav
+     TopNav
     },
     methods:{
       //拼接时间
@@ -364,6 +365,7 @@
         this.min=min<10?"0"+min:min;
         this.sec=sec<10?"0"+sec:sec;
         this.time=this.hour+":"+this.min+":"+this.sec;
+        //this.$store.state.id  类名：masterid
       },
       //停止或开始时间
       stopTime(){
@@ -382,7 +384,7 @@
       //设置背景数字
       setBgcNum(){
         this.bgcNum=this.month+"."+this.day;
-        this.currentPlans = this.plans[this.day-1]?this.plans[this.day-1]:[];
+        this.currentPlans = this.plans[this.day-1];
       },
       //增加年份
       plusYear(e){
@@ -461,7 +463,7 @@
       },
       // 查看计划
       seePlan(index,item){
-        parseInt(item)<10?this.day="0"+item:this.day=item;
+        this.day = (parseInt(item)<10)?"0"+item:item;
         this.setBgcNum();
         this.temp_sw='none'
         this.listShow = true
@@ -501,10 +503,31 @@
 
         this.showPlan='none'
       },
-      deleteItem(index){
-        this.currentPlans.splice(index,1)
+      deleteItem(index,plan){
+        let dataForm = new dataForm()
+        for(let item in plan){
+          dataForm.append(item,plan[item])
+        }
+        dataForm.append("ssk",this.$store.state.ssk)
+        post('/plan/delete',dataForm).then(result=>{
+          let response = result.data
+          if(response.success){
+            this.$message({
+              message:"删除成功!",
+              type:'success'
+            });
+            this.currentPlans.splice(index,1)
+          }
+          else{
+            this.$message("删除失败，请稍后再试!")
+          }
+        }).catch(()=>{
+          this.$message.error("删除失败，请检查网络!")
+        })
+        
       },
       planPageDisplay(){
+        
         this.add_dialog_hidden=false;
       },
       clearAddPlan(){
@@ -518,14 +541,36 @@
         this.add_dialog_hidden=true;
         this.clearAddPlan()
       },
-      axiosGet(){
-        // axios.get('',{
-        //   year:this.year,
-        //   month:this.month
-        // }).then(function(ret){
-        //   this.plans=ret.data;
-        // })
+      getPlan(date){
+        let dataForm = new dataForm()
+        dataForm.append('date',date)
+        dataForm.append("ssk",this.$store.state.ssk)
+        post('/plan/find',dataForm).then(result=>{
+          let response = result.data
+          if(response.success){
+            //请求成功！
+            //response.result是plan列表（一天的）
+            let list = response.result
+            this.currentPlans = list.map(element=>{
+              let obj = {
+                year:element.d.getFullYear(),
+                month:element.d.getMonth() + 1,
+                day:element.d.getDate(),
+                time:element.time,
+                position:element.position,
+                plan:element.plan,
+                title:element.title
+              }
+              return obj;
+            })
+          }else{
+            this.$message("获取计划列表失败")
+          }
+        }).catch(()=>{
+          this.$message.error("服务端故障，请稍后再试!")
+        })
       },
+  
       onSubmit() {
         let plan={
           year:this.yearNow,
@@ -537,24 +582,23 @@
           endTime:this.endTime,
           plan:this.plan
         }
+
+        let post_data = {
+          position:this.position,
+          plan:this.plan,
+          title:this.title,
+          d:new Date(this.yearNow,this.monthNow,this.day),
+          time:this.startTime + "-" + this.endTime
+        }
+
+        console.log(post_data)
+        this.currentPlans.push(plan)
         this.AccessF='添加成功'
         this.addAccess='block'
         setTimeout(()=>{
           this.addAccess='none'
         },4000)
-        // axios.post('',plan).then(function(response){
-        //   this.AccessF='添加成功'
-        //   this.addAccess='block'
-        //   setTimeout(()=>{
-        //     this.addAccess='none'
-        //   },4000)
-        // }).catch(function(error){
-        //   this.AccessF='添加失败'
-        //   this.addAccess='block'
-        //   setTimeout(()=>{
-        //     this.addAccess='none'
-        //   },4000)
-        // })
+        
       }
     },
     mounted(){
@@ -566,10 +610,7 @@
       this.monthNow=this.month;
       this.dayNow=date.getDate();
       this.day=this.dayNow>10?this.dayNow:'0'+this.dayNow;
-      // this.currentPlans = this.plans[this.day-1]?this.plans[this.day-1]:[];
-      // console.log(this.planIndex)
-      // // console.log(this.currentPlans[this.planIndex])
-      // console.log(this.currentPlans)
+
       this.setBgcNum();
       this.timer=setInterval(() => {
         if(this.counterPause){

@@ -275,6 +275,10 @@
   
 }
 
+#music .el-dialog__body{
+    background-color: rgba(237,237,237,0.5);
+}
+
 #music .cuntent-container{
     display: flex;
     flex-direction: row;
@@ -287,6 +291,8 @@
     position: relative;
     width: 9vw;
     margin: 1vh;
+    text-align: center;
+    line-height: 3em;
 }
 
 #music .musicPhotoBox{
@@ -294,6 +300,14 @@
     width: 9vw;
     
    
+}
+
+#music .musicPhotoBox img{
+    border-radius: 3px;
+    border: 8px solid white;
+    box-sizing: border-box;
+    box-shadow: 0 0 10px 2px #ccc;
+    
 }
         /* 搜索音乐遮罩 */
 #music .musicPhotoMaxBox .musicPhotoBox-Shade{
@@ -311,7 +325,7 @@
     height: 4vh;
     margin-left: 1.5vw;
     opacity: .7;
-
+    cursor: pointer;
 }
 #music .musicPhotoBox-Shade img:hover{
     opacity: 1;
