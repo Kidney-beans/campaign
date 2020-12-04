@@ -404,7 +404,6 @@ ul li .active{
     transform: translateX(20vw);
     transition: 0.4s all;
     border-left: rgb(114, 32, 114) 1px solid;
-    animation: border-shine 1s infinite linear;
 }
 
 .photos-upload-list-show-show{

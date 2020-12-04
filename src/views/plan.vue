@@ -144,6 +144,7 @@
 </template>
 <script>
   import circleDrawerForm from "components/common/circle-drawer-form.vue";
+  import {get,post} from "js/request/request.js"
   export default {
     name:'',
     props:{
@@ -168,7 +169,7 @@
         yearNow:"",
         month:"",
         monthNow:"",
-        day:"",
+        day:1,
         dayNow:"",
         bgcNum:"",
         hour:"",
@@ -378,7 +379,7 @@
       //设置背景数字
       setBgcNum(){
         this.bgcNum=this.month+"."+this.day;
-        this.currentPlans = this.plans[this.day-1]?this.plans[this.day-1]:[];
+        this.currentPlans = this.plans[this.day-1];
       },
       //增加年份
       plusYear(e){
@@ -457,7 +458,7 @@
       },
       // 查看计划
       seePlan(index,item){
-        parseInt(item)<10?this.day="0"+item:this.day=item;
+        this.day = (parseInt(item)<10)?"0"+item:item;
         this.setBgcNum();
         this.temp_sw='none'
         this.listShow = true
@@ -514,13 +515,20 @@
         this.add_dialog_hidden=true;
         this.clearAddPlan()
       },
-      axiosGet(){
-        // axios.get('',{
-        //   year:this.year,
-        //   month:this.month
-        // }).then(function(ret){
-        //   this.plans=ret.data;
-        // })
+      getPlan(date){
+        let dataForm = new dataForm()
+        dataForm.append('date',date)
+        post('/plan/find',dataForm).then(result=>{
+          let response = result.data
+          if(response.success){
+            //请求成功！
+            //response.result是plan列表（一天的）
+          }else{
+            this.$message("获取计划列表失败")
+          }
+        }).catch(()=>{
+          this.$message.error("服务端故障，请稍后再试!")
+        })
       },
       onSubmit() {
         let plan={
@@ -538,19 +546,7 @@
         setTimeout(()=>{
           this.addAccess='none'
         },4000)
-        // axios.post('',plan).then(function(response){
-        //   this.AccessF='添加成功'
-        //   this.addAccess='block'
-        //   setTimeout(()=>{
-        //     this.addAccess='none'
-        //   },4000)
-        // }).catch(function(error){
-        //   this.AccessF='添加失败'
-        //   this.addAccess='block'
-        //   setTimeout(()=>{
-        //     this.addAccess='none'
-        //   },4000)
-        // })
+        
       }
     },
     mounted(){
@@ -562,10 +558,7 @@
       this.monthNow=this.month;
       this.dayNow=date.getDate();
       this.day=this.dayNow>10?this.dayNow:'0'+this.dayNow;
-      // this.currentPlans = this.plans[this.day-1]?this.plans[this.day-1]:[];
-      // console.log(this.planIndex)
-      // // console.log(this.currentPlans[this.planIndex])
-      // console.log(this.currentPlans)
+
       this.setBgcNum();
       this.timer=setInterval(() => {
         if(this.counterPause){

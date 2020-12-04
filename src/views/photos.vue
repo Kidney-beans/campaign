@@ -15,6 +15,7 @@
     ></span>
 
     <h1 class="photos-title">Photos</h1>
+    <top-nav></top-nav>
     <div class="photosBox">
       <!-- 图片显示区 -->
       <div
@@ -187,6 +188,7 @@
 import PhotosMenuBtn from "components/own/photos-menu-btn.vue";
 import CoolButton from "components/common/cool-button.vue";
 import dateFormat from 'js/transfer/dateFormat.js';
+import TopNav from 'components/own/top-nav.vue'
 import {post,get} from 'js/request/request.js';
 export default {
   name: "",
@@ -1232,7 +1234,8 @@ export default {
   },
   components: {
     PhotosMenuBtn,
-    CoolButton
+    CoolButton,
+    TopNav
   },
   methods: {
     switchMode() {
