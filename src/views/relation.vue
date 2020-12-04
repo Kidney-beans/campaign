@@ -1,10 +1,12 @@
 <template>
   <div id='relation'>
+        <top-nav v-show="navShow"></top-nav>
         <h1 class="relation-title-h1">relation</h1>
         <div class="relationBox">
           <div :class="{testBox:true,testBoxgo:isActive}">
               <img src="~assets/relation/closeRightAssessFrame.png" class="close" @click="closeRightAssessFrame">
-              <p v-for="item in community.pingLunArr" :key="item.id">我：{{item.text}}</p>
+              <h3>评论区</h3>
+              <p v-for="item in community.pingLunArr" :key="item.id">我的评论：{{item.text}}</p>
           </div>
           <div class="contentBox">
               <div class="titleHead">
@@ -33,14 +35,10 @@
                   </div>
                          <!-- 收到的赞 -->
                   <div class="getPraise">
-                    <div>
-                          <div>
-                                <img src="">
-                                <p></p>
-                          </div>
-                    
+                    <div class="getPraise-box">                                                        
+                                <p>你暂时未的收到赞与评论</p>
+                                <img src="../assets/relation/kong.png">                        
                     </div>
-                      
                   </div>
                   <!-- 发布 -->
                   <div class="release">
@@ -50,7 +48,6 @@
                         
                         </div>
                   <div class="releaseBox">
-                  
                         <el-input
                                   type="textarea"
                                   placeholder="请输入内容"
@@ -66,10 +63,7 @@
                             <img src="~assets/relation/ad.png">
                             <input type="file" name="file" id="file" @change="fileChange">
                           </div>
-          
                         </div>
-                        
-                        
                       </div>
                   </div>
               </div>
@@ -80,11 +74,13 @@
   </div>
 </template>
 <script>
+import topNav from "../components/own/top-nav"
   export default {
     name:'',
 
     data() {
       return {
+        navShow:true,
         releaseValue:"",
         isActive:false,
         top_offset:'0vh',
@@ -92,8 +88,8 @@
         community:{
           newsArr:[
             {
-              imgUrl:"https://x0.ifengimg.com/res/2020/CCF4D1398A75722E75374EAE06402B66E0061E82_size2419_w1670_h879.png",
-              text:"目前嫦娥五号探测器的着陆器、上升器组合体正在月球表面开展采样探测。北京时间今天4时53分，着陆器、上升器组合体完成了月球钻取采样及封装，表取采样正在按计划进行。",
+              imgUrl:"https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1607059374758&di=56d73d24458c81139a5fd689f3526327&imgtype=0&src=http%3A%2F%2F5b0988e595225.cdn.sohucs.com%2Fq_70%2Cc_zoom%2Cw_640%2Fimages%2F20180216%2F318df6a09c0642c79583c8486590c6cf.jpeg",
+              text:"今天，大医中山第四届网页设计大赛总决赛了！快来观看吧各位同学们！！！！",
               pingLunArr:[],
               currentAssessInput:'',
               assessing:false,
@@ -145,6 +141,7 @@
           item.applaudCount++
       },
       pingLun(item,index){
+        this.navShow=false
         this.isActive = true
         this.community.pingLunArr = item.pingLunArr
         item.assessing = !item.assessing
@@ -174,17 +171,29 @@
         })
       },
       releaseButton(event){
-            this.releaseValue
+              let obj ={}
+            obj.text=this.releaseValue
+            obj.imgUrl=this.releaseModule.uploadModel.alreadyUploadList[0].url
+            obj.pingLunArr=''
+            obj.currentAssessInput=''
+            obj.assessing=false
+            obj.applaudCount=0
              console.log( this.releaseValue)
+              console.log( this.releaseModule.uploadModel.alreadyUploadList[0].url)
+              this.community.newsArr.push(obj)
       },
       closeRightAssessFrame(){
         this.isActive = false
+        this.navShow=true
       }
     },
     computed:{
     },
     mounted(){
 
+    },
+     components:{
+     topNav
     }
   }
 </script>

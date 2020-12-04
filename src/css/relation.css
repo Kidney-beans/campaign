@@ -5,10 +5,11 @@
     padding: 0;
     margin: 0;
     position: absolute;
-    background-color: rgba(128, 229, 255, 0.534);
-
+    background-color: rgba(0, 0, 0, 0.924);
+    background-image: url(../assets/relation/1039991.jpg);
+    background-size: 100% 100%;
     overflow: hidden;
-    /* background-size: 100% 100%; */
+    
 }
 .relation-title-h1{
     position: absolute;
@@ -26,7 +27,7 @@
     width: 52vw;
     height: 100vh;
     left: 23.4vw;
-    border: 1px solid black ;
+    border: 1px solid rgba(0, 0, 0, 0.301) ;
     overflow: hidden;
 }
 /* 标题 */
@@ -34,8 +35,8 @@
     position: absolute;
     width: 9VW;
     height: 100%;
-    /* background-color: rgba(108, 183, 253, 0.671); */
-    border: 1.5px solid black ;
+    background-color: rgba(63, 128, 189, 0.3);
+    border: 1px solid rgba(0, 0, 0, 0.37) ;
     /* border-radius: .7vw; */
     border-bottom-left-radius: .7;
     border-bottom-left-radius: .7;
@@ -48,6 +49,7 @@
     padding-left: 1vw;
     box-sizing: border-box;
     cursor: pointer;
+    
 }
 .titleHead .active{
     background-color: rgba(0, 0, 0, 0.39);
@@ -73,6 +75,7 @@
     position: relative;
     width: 60vw;
     height: 100vh;
+    overflow-y: scroll;
 }
 .release{
     position: relative;
@@ -81,10 +84,54 @@
 }
 .getPraise{
     position: relative;
-    width: 60vw;
+    width: 42.8VW;
     height: 100vh;
+    background-color: rgba(0, 0, 0, 0.37);
 }
+.getPraise-box{
+    position: absolute;
+    width: 42.8VW;
+    height: 100vh;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center; */
+}
+.getPraise-box p{
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    color:#fff;
+    font-size: 1.4em;
+    letter-spacing: .3em;
+    animation: tis .9s infinite;
+    transition: all .3s;
+}
+@keyframes tis{
+    0%{ 
+        color:rgb(255, 255, 255);
+        text-shadow: 0px 0px 10px #f8f416;
+    }25%{
+        color:rgb(255, 255, 255);
+        text-shadow: 0px 0px 20px #c3f816;
+    }
+    50%{
+        color:rgb(255, 255, 255);
+        text-shadow: 0px 0px 10px #1638f8;
+    }
+    100%{
+        color:rgb(255, 255, 255);
+        text-shadow: 0px 0px 20px #1638f8;
+    }
 
+}
+.getPraise-box img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
 .myWorld-Content-box{
 
     position: relative;
@@ -92,7 +139,58 @@
     width: 43vw;
     height: 25vh;
     margin-bottom: 30px;
-    background-color: rgba(12, 12, 12, 0.123);
+    background-color: rgba(0, 0, 0, 0.336);
+}
+/* .myWorld-Content-box:hover{
+    transition: all 5s;
+    animation:abc 6s infinite ;
+} */
+@keyframes abc{
+    0%{
+        border-top: 0.1vw solid #f2f9fd;
+        border-left: 0.1vw solid #ec3858;
+        border-bottom: 0.1vw solid #fbb5fa;
+        border-right:0.1vw solid #fb984f;
+
+        box-shadow: -3px 0px 5px 0 red, 
+                0px -3px 5px 0 #00ffad;
+    }
+    25%{
+        border-right: 0.1vw solid #f2f9fd;
+        border-top: 0.1vw solid #ec3858;
+        border-left: 0.1vw solid #fbb5fa;
+        border-bottom:0.1vw solid #fb984f;
+
+        box-shadow: 0px 3px 5px 0 red, 
+                -3px 0px 5px 0 #00ffad;
+    }
+    50%{
+        border-bottom: 0.1vw solid #f2f9fd;
+        border-right: 0.1vw solid #ec3858;
+        border-top: 0.1vw solid #fbb5fa;
+        border-left:0.1vw solid #fb984f;
+
+        box-shadow: 3px 0px 5px 0 red, 
+                0px 3px 5px 0 #00ffad;
+    }
+    75%{
+        border-left: 0.1vw solid #f2f9fd;
+        border-bottom: 0.1vw solid #ec3858;
+        border-right: 0.1vw solid #fbb5fa;
+        border-top:0.1vw solid #fb984f;
+
+        box-shadow: 0px -3px 5px 0 red, 
+                3px 0px 5px 0 #00ffad;
+    }
+    100%{
+        border-top: 0.1vw solid #f2f9fd;
+        border-left: 0.1vw solid #ec3858;
+        border-bottom: 0.1vw solid #fbb5fa;
+        border-right:0.1vw solid #fb984f;
+
+        box-shadow: -3px 0px 5px 0 red, 
+                0px -3px 5px 0 #00ffad;
+    }
 }
 .contentText{
     position: relative;
@@ -118,6 +216,7 @@
     /* background-color: blanchedalmond; */
 }
 .myWorld-Content-ico img{
+    cursor: pointer;
     width: 25px;
     height: 25px;
 
@@ -139,8 +238,9 @@
     position: relative;
     padding: 3px;
     left: .4xw;
-    font-size: 1.3em;
+    font-size: 1.2em;
     line-height: 4vh;
+    color: #fff;
 }
 
 /* .myWorld-Content-box input{
@@ -159,7 +259,7 @@
     right: 2vw; */
     width: 45vw;
     height: 4vh;
-    background-color: rgba(12, 12, 12, 0.123);
+    background-color: rgba(88, 88, 88, 0.123);
     transition: all .3s;
     display: block;
 }
@@ -173,18 +273,21 @@
     /* top: 30vh; */
     width: 30vw;
     height: 3vh;
-    border: none;
+    color: #fff;
+    /* border: none; */
+     border: 1px solid rgb(18, 107, 251);
     outline: none;
     font-size: 1.4em;
-    background-color: rgba(255, 255, 255, 0.664);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.233);
 
 }
 .iptBox button{
     border: none;
     outline: none;
     position: relative;
-    /* flex-direction: row; */
-   
+    cursor: pointer;
+   top: 2px;
     height: 3vh;
     width: 5vw;
     right: -4vw;
@@ -214,25 +317,33 @@ ul{
 /* background-color: ; */
 height: 10vh;
 }
+/* 大输入框 */
 .el-textarea__inner{
     font-size: 1.7em;
     width: 71%;
     height: 30vh;
-    background-color: rgb(255, 255, 255);
+    color: #fff;
+    background-color: rgba(107, 107, 107, 0.39);
 }
 .releaseBox{
     font-size: 4em;
     position: absolute;
     top: 7vh;
     width: 100%;
-    height: 50vh;
-    background-color: rgb(255, 255, 255);
+    height: 100vh;
+    background-color: rgba(245, 245, 245, 0.507);
     margin-bottom: 20px;
 }
 .el-input__count{
     position: absolute;
+    background-color: transparent;
+    color: #fff;
     width: 2vw;
     left: 39.6vw;
+}
+.el-textarea .el-input__count{
+    background: transparent;
+    color: #fff;
 }
 
 .el-upload--picture-card{
@@ -242,14 +353,15 @@ height: 10vh;
 }
 .releaseHead{
     width: 71vw;
-    height: 10vh;
-    background-color: white;
+    height: 7vh;
+    background-color: rgba(255, 255, 255, 0.712);
 }
 .releaseHead p{
     top: 1vh;
     font-size: 2em;
 }
 .releaseHead button{
+    cursor: pointer;
     left: 37vw;
     top: 1vh;
     position: absolute;
@@ -257,6 +369,7 @@ height: 10vh;
     border: none;
     outline: none;
     width: 9vh;
+    border-radius: 5px;
     background-color: skyblue;
     box-shadow: 0 0 4px #000;
 }
@@ -267,9 +380,9 @@ height: 10vh;
     
     display: flex;
     flex-direction: row;
-justify-content: center;
-align-items: center;
-cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
 }
 .imgUpload img{
     position: relative;
@@ -295,7 +408,7 @@ cursor: pointer;
 .upload-item{
     height: 8vw;
     width: 8vw;
-    border: 1px dashed black;
+    border: 1px dashed rgba(255, 255, 255, 0.507);
     margin: 4px;
 }
 .upload-item img{
@@ -308,15 +421,19 @@ cursor: pointer;
     height:100vh;
     width: 24.4vw;
     right: -25vw;
-    background-color: rgb(255, 255, 255);
+    background-color: rgba(255, 255, 255, 0.493);
     transition: all .3s;
+}
+.testBox p{
+    font-size: 1.2em;
 }
 .testBoxgo{
     right: 0vw;
 }
 .close{
     position: relative;
-    right: 0;
+    right: -22vw;
     width: 2vw;
     height: 2vw;
+    cursor: pointer;
 }
