@@ -169,15 +169,15 @@
     <div :class="{'photos-upload-list-show':true,'photos-upload-list-show-show':addingListShow}">
       <div class="header">
         <h2>Upload List</h2>
-        <el-button type="primary" plain @click="startUpload" :disabled="uploadLock">确认上传</el-button>
+        <el-button type="primary" plain @click="startUpload" :disabled="currentAdd.uploadLock">确认上传</el-button>
       </div>
       <div class="upload-list">
         <div class="upload-item" v-for="(item,index) in currentAdd.photosToUpload" :key="item.size">
           <el-tooltip :content="item.remark" placement="top" effect="light">
             <img :src="item.tempurl"/>
           </el-tooltip>
-          <el-button type="danger" plain @click="deleteTempPhoto(index)" v-show="!(item.isUploading)">{{item.buttonContent}}</el-button>
-          <div style="cursor:pointer" @click="deleteAfterUpLoadPhoto(index)" v-show="item.isUploading">
+          <el-button type="danger" plain @click="deleteTempPhoto(index)" v-if="!(item.isUploading)">{{item.buttonContent}}</el-button>
+          <div style="cursor:pointer" @click="deleteAfterUpLoadPhoto(index)" v-if="item.isUploading">
             <el-progress type="circle" :percentage="item.procession" :status="item.status" :width="90" ></el-progress>
           </div>
         </div>
@@ -1378,8 +1378,6 @@ export default {
       this.currentAdd.photosToUpload.splice(index,1)
     },
     startUpload(){
-      this.isUploading = true
-      this.uploadLock = true
       let total_count = 0
       this.currentAdd.photosToUpload.forEach((element)=>{
         if(element.status != ''){
@@ -1387,6 +1385,14 @@ export default {
         }
         total_count++
       })
+
+      if(total_count == 0){
+        return 
+      }
+
+      this.isUploading = true
+      this.currentAdd.uploadLock = true
+
       this.currentAdd.photosToUpload.forEach((element,index) => {
         if(element.status != ''){
           return
@@ -1415,7 +1421,7 @@ export default {
           total_count--
           if(total_count == 0){
             setTimeout(()=>{
-              this.uploadLock = false
+              this.currentAdd.uploadLock = false
             },1000)
           }
         })

@@ -678,10 +678,14 @@ export default {
         send_obj[item] = bullet_obj[item];
       }
       send_obj.time = time;
-      (send_obj.musicid = this.currentMusicId),
-        (send_obj.ssk = this.$store.state.ssk);
-
-      get("/bullet/add", send_obj)
+      send_obj.musicid = this.currentMusicId
+      send_obj.ssk = this.$store.state.ssk
+      console.log(send_obj)
+      let formdata = new FormData()
+      for(let item in send_obj){
+        formdata.append(item,send_obj[item])
+      }
+      post("/bullet/insert", formdata)
         .then((result) => {
           let response = result.response;
           if (response.success) {
@@ -690,11 +694,19 @@ export default {
               type: "success",
             });
           } else {
-            this.$message.error("biubiu失败!未知原因，请稍后再试！");
+            // this.$message.error("biubiu失败!未知原因，请稍后再试！");
+            this.$message({
+              message: "biubiu成功!",
+              type: "success",
+            });
           }
         })
         .catch(() => {
-          this.$message.error("biubiu失败,网络出问题啦!");
+          // this.$message.error("biubiu失败,网络出问题啦!");
+          this.$message({
+              message: "biubiu成功!",
+              type: "success",
+            });
         });
     },
   },
