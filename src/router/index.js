@@ -22,6 +22,10 @@ let receiveSSK=(to)=>{
 
 const routes = [
   {
+    path:'/',
+    redirect:'/gate'
+  },
+  {
     path:'/gate',
     component:()=>import('views/gate.vue')
   },
