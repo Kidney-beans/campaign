@@ -22,6 +22,10 @@ let receiveSSK=(to)=>{
 
 const routes = [
   {
+    path:'/gate',
+    component:()=>import('views/gate.vue')
+  },
+  {
     path:'/diary',
     component:()=>import('views/diary.vue'),
     beforeEnter: (to, from, next) => {

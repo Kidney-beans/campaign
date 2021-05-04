@@ -13,7 +13,7 @@
     },
     methods:{
         returnHome(){
-            window.location.href = `http://localhost:8099/gate?ssk=${this.$store.state.ssk}&name=${this.$store.state.name}&account=${this.$store.state.account}`
+           this.$router.push('/gate')
         }
     }
   }
